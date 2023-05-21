@@ -58,7 +58,8 @@ Marking parks based on popularity
 - Popular pictures get shown ahead of others.
 - User profiles
 
-### Pick 2 of your minimal requirements and break each of them down into ~2-5 smaller tasks! ○ This will help you divide up work among your teammates 
+### Pick 2 of your minimal requirements and break each of them down into ~2-5 smaller tasks! 
+#### This will help you divide up work among your teammates 
 
 #### Users can add their reviews.
 - Allow a user to write a review (description) on a park page
