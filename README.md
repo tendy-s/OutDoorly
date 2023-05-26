@@ -1,6 +1,6 @@
 # OutDoorly
 
-## National Park Tool
+## A tool for exploring national parks in the US
 
 
 https://www.nps.gov/subjects/developer/api-documentation.htm#/
