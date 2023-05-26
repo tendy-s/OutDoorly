@@ -38,24 +38,24 @@ Marking parks based on popularity
 ### Project task requirements: 
 #### 3-5 minimal requirements (will definitely complete) 
 - User can select preferences (activities, state)
-- Users can add their reviews.
-- Users can submit photos from their visit to the park.
-- A list of national park suggestions based on user preferences
+- Users can add their reviews
+- Users can submit photos from their visit to the park
+- Users can view and click into a list of national park suggestions based on their preferences
 
 
 #### 3-7 "standard" requirements (will most likely complete) 
 - Ability to filter/ search results
-- Show map location of selected park.
+- Show map location of selected park
 - Ability to see more detailed info (e.g. fees, hours) regarding each national park 
-- Find national parks that are having events in the next month.
-- Ability to locate parks by amenities offered.
+- Find national parks that are having events in the next month
+- Ability to locate parks by amenities offered
 
 
 #### 2-3 stretch requirements (plan to complete at least 1!) 
 - Leverage ChatGPT
-- Alert users if the park they are in experiences an emergency situation.
-- Ability to locate parks by proximity.
-- Popular pictures get shown ahead of others.
+- Alert users if the park they are in experiences an emergency situation
+- Ability to locate parks by proximity
+- Popular pictures get shown ahead of others
 - User profiles
 
 ### Pick 2 of your minimal requirements and break each of them down into ~2-5 smaller tasks! 
@@ -69,14 +69,16 @@ Marking parks based on popularity
 - Review will be added to the park reviews
 
 #### Users can submit photos from their visit to the park.
-- Allow user to upload an image (or multiple images)
-- Allow user to caption images
+- Allow a user to upload an image (or multiple images)
+- Allow a user to caption images
 - Images are tagged to the park that they were uploaded to
 - Image will be added to the image gallery
 
 
 
 ### Finally, draw 2-3 rough sketch prototypes of some key tasks of your app. Sketch these physically on paper and then scan and add to your repo. (If you’d like to use sketch/prototype software because that’s easier somehow, you can, but we’d advise against it as these prototypes should be low-fidelity (i.e. look bad)).
+
+#### Note: all text below is not finalized.
 
 ![Screen 1](https://github.com/tendy-s/parksAndRec/assets/51394856/4079ae30-f59a-4fab-b860-57dcd5365dc0)
 ![Screen 2](https://github.com/tendy-s/parksAndRec/assets/51394856/f599f704-d102-4ce7-aed1-4e425adec820)
