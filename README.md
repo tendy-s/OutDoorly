@@ -77,3 +77,10 @@ Marking parks based on popularity
 
 
 ### Finally, draw 2-3 rough sketch prototypes of some key tasks of your app. Sketch these physically on paper and then scan and add to your repo. (If you’d like to use sketch/prototype software because that’s easier somehow, you can, but we’d advise against it as these prototypes should be low-fidelity (i.e. look bad)).
+
+![Screen 1](https://github.com/tendy-s/parksAndRec/assets/51394856/4079ae30-f59a-4fab-b860-57dcd5365dc0)
+![Screen 2](https://github.com/tendy-s/parksAndRec/assets/51394856/f599f704-d102-4ce7-aed1-4e425adec820)
+![Screen 3](https://github.com/tendy-s/parksAndRec/assets/51394856/c03f64d3-defb-4d9a-b05c-e908c82b6205)
+![Screen 4](https://github.com/tendy-s/parksAndRec/assets/51394856/bb06d2fb-1a9e-468a-a296-161b858a44f0)
+![Screen 5](https://github.com/tendy-s/parksAndRec/assets/51394856/167c36fd-05cc-4776-8972-2e75b561c99a)
+
