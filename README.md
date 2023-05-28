@@ -15,7 +15,7 @@ This project essentially allows for people to rate and view national parks in th
 Individuals interested in visiting national parks in the US
 
 ### What will it do? (What "human activity" will it support?) 
-Users submit information regarding their fitness level, length (of hike) preference, elevation preference, availability, dog friendly or not and the app suggests suitable hiking places in the U.S. 
+Users submit information regarding their preferences (e.g. activities of choice, US state of choice, etc.) and the app suggests suitable hiking places in the U.S. 
 Users provide reviews on their personal experience with different national parks 
 
 
