@@ -24,7 +24,7 @@ export default function SearchResults() {
           <>
             <h4>{a.name}</h4>
             {a.parks.map((p) => {
-              return <a href={p.url}>{p.name}</a>;
+              return <ResultListItem name={p.name} />;
             })}
           </>
         );
