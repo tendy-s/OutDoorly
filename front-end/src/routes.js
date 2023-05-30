@@ -12,3 +12,7 @@ export const PARKS_API_KEY = "tpKlhub2fE3bdPbvzHdMthRnjLj560SE0eLaBUKZ";
 export function getActivitiesRoute() {
   return `${PARKS_API_BASE_ROUTE}activities?api_key=${PARKS_API_KEY}`;
 }
+
+export function getActivitiesSearchRoute(ids) {
+  return `${PARKS_API_BASE_ROUTE}activities/parks?id=${ids}&api_key=${PARKS_API_KEY}`;
+}

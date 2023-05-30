@@ -4,13 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { getRoutes } from "../../routes";
 import { useEffect, useState } from "react";
 import { getActivites } from "../../services/park-service";
-import { Checkbox, Grid } from "@mui/material";
 import Select from "react-select";
 import { STATE_OPTIONS } from "./state-codes";
+import { useDispatch } from "react-redux";
+import {
+  setSearchActivities,
+  setSearchStates,
+} from "../../redux/ParkSearchInfo/ParkSearchInfo.actions";
 
 export default function PreferencesForm() {
   const navigate = useNavigate();
   const [activities, setActivities] = useState([]);
+  const [selectedActivities, setSelectedActivities] = useState([]);
+  const [selectedStates, setSelectedStates] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function populateActivities() {
@@ -25,27 +32,22 @@ export default function PreferencesForm() {
     populateActivities();
   }, []);
 
-  function handleChange(selectedOption) {
-    console.log("Selected State: ", selectedOption.value);
+  function onSubmitSearch() {
+    console.log(selectedStates);
+    console.log(selectedActivities);
+    dispatch(setSearchActivities(selectedActivities));
+    dispatch(setSearchStates(selectedStates));
+    navigate(getRoutes().searchResults);
   }
 
   return (
     <div className={styles.formWrapper}>
       <h2>Which activities are you interested in?</h2>
-      {/* <Grid container spacing={2}>
-        {activities.map((a) => (
-          <Grid item sm={4}>
-            <p>{a.name}</p>
-            <label>
-              <Checkbox /> {a.name}
-            </label>
-          </Grid>
-        ))}
-      </Grid> */}
+
       <Select
         options={activities}
         className={styles.selector}
-        onChange={handleChange}
+        onChange={(v) => setSelectedActivities(v)}
         isMulti
         placeholder="Select some activities"
       />
@@ -54,15 +56,12 @@ export default function PreferencesForm() {
       <Select
         className={styles.selector}
         options={STATE_OPTIONS}
-        onChange={handleChange}
+        onChange={(v) => setSelectedStates(v)}
         isMulti
         placeholder="Select one or multiple states"
       />
       <div className={styles.submitButton}>
-        <Button
-          variant="contained"
-          onClick={() => navigate(getRoutes().searchResults)}
-        >
+        <Button variant="contained" onClick={onSubmitSearch}>
           Find parks
         </Button>
       </div>
