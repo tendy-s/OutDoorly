@@ -5,11 +5,8 @@ import { getRoutes } from "../../routes";
 import { useEffect, useState } from "react";
 import { getActivites } from "../../services/park-service";
 import { Checkbox, Grid } from "@mui/material";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
+import Select from "react-select";
+import { STATE_OPTIONS } from "./state-codes";
 
 export default function PreferencesForm() {
   const navigate = useNavigate();
@@ -18,57 +15,57 @@ export default function PreferencesForm() {
   useEffect(() => {
     async function populateActivities() {
       const response = await getActivites();
-      setActivities(response.data.data);
+      setActivities(
+        response.data.data.map((a) => {
+          return { label: a.name, value: a.id };
+        })
+      );
       console.log(response.data.data);
     }
     populateActivities();
   }, []);
 
+  function handleChange(selectedOption) {
+    console.log("Selected State: ", selectedOption.value);
+  }
+
   return (
     <div className={styles.formWrapper}>
       <h2>Which activities are you interested in?</h2>
-      <Grid container spacing={2}>
+      {/* <Grid container spacing={2}>
         {activities.map((a) => (
           <Grid item sm={4}>
-            {/* <p>{a.name}</p> */}
+            <p>{a.name}</p>
             <label>
               <Checkbox /> {a.name}
             </label>
           </Grid>
         ))}
-      </Grid>
-      <h2>Which state are you interested in visiting?</h2>
+      </Grid> */}
+      <Select
+        options={activities}
+        className={styles.selector}
+        onChange={handleChange}
+        isMulti
+        placeholder="Select some activities"
+      />
+      <h2>Which states are you interested in visiting?</h2>
 
-      <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="Arizona"
-          name="radio-buttons-group"
+      <Select
+        className={styles.selector}
+        options={STATE_OPTIONS}
+        onChange={handleChange}
+        isMulti
+        placeholder="Select one or multiple states"
+      />
+      <div className={styles.submitButton}>
+        <Button
+          variant="contained"
+          onClick={() => navigate(getRoutes().searchResults)}
         >
-          <FormControlLabel
-            value="Arizona"
-            control={<Radio />}
-            label="Arizona"
-          />
-          <FormControlLabel
-            value="California"
-            control={<Radio />}
-            label="California"
-          />
-          <FormControlLabel
-            value="Washington"
-            control={<Radio />}
-            label="Washington"
-          />
-        </RadioGroup>
-      </FormControl>
-      <Button
-        variant="contained"
-        onClick={() => navigate(getRoutes().searchResults)}
-      >
-        Find parks
-      </Button>
+          Find parks
+        </Button>
+      </div>
     </div>
   );
 }
