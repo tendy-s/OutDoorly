@@ -7,15 +7,17 @@ import CardContent from "@mui/material/CardContent";
 export default function ResultListItem({ name }) {
   const navigate = useNavigate();
   return (
-    <Card>
-      <CardContent>
-        <div
-          className={styles.listItemWrapper}
-          onClick={() => navigate(getRoutes().parkDetails)}
-        >
-          {name}
-        </div>
-      </CardContent>
-    </Card>
+    <div className={styles.parkContainer}>
+      <Card>
+        <CardContent>
+          <div
+            className={styles.listItemWrapper}
+            onClick={() => navigate(getRoutes().parkDetails)}
+          >
+            {name}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
