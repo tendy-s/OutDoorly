@@ -21,7 +21,7 @@ export default function SearchResults() {
   return (
     <div>
       <div className={styles.sortButton}>
-        <Button>Sort by</Button>
+        <Button>Sort by Ratings</Button>
       </div>
       <div className={styles.searchResultsWrapper}>
         <ResultsListing searchResults={parksInfo} />
