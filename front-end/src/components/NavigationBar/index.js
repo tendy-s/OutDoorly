@@ -6,7 +6,7 @@ export function NavigationBar() {
   return (
     <div className={styles.navBar}>
       <AppBar position="static">
-        <h1>
+        <h1 className={styles.title}>
           OutDoorly <HikingIcon />
         </h1>
       </AppBar>

@@ -6,3 +6,17 @@
 .parkContainer {
     border: 1px black solid;
 }
+
+.previewImage {
+    max-width: 10rem;
+}
+
+.previewText {
+    padding: 1rem;
+}
+
+.resultsWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
