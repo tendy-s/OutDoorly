@@ -9,8 +9,8 @@ let connection;
  * @returns mongoose connection
  */
 const getMongooseConnection = async (refreshDatabase = false) => {
-  const MONGO_CONN_STRING = 'mongoDBConnectionString'; // move to .env in future
-  const DATABASE_NAME = 'Database Name'; //move to .env in future
+  const MONGO_CONN_STRING = 'mongodb://127.0.0.1:27017/outdoorly'; // move to .env in future
+  const DATABASE_NAME = 'outdoorly'; //move to .env in future
   if (connection == null) {
     try {
       connection = mongoose.connect(MONGO_CONN_STRING, {
