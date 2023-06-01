@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getParkDetails } from "../../services/park-service";
 import { Button, Tab, Tabs } from "@mui/material";
 import { TabPanel } from "../../components/ParkDetailsTabPanel";
+import ReviewsModal from "../../components/ReviewsModal";
+import PhotosModal from "../../components/PhotosModal";
 import styles from "./photos-and-reviews.module.scss";
 
 export default function PhotosAndReviews() {
@@ -10,6 +12,10 @@ export default function PhotosAndReviews() {
   const [parkDetails, setParkDetails] = useState();
   const [value, setValue] = useState(0);
 
+  const [photoModal, setPhotoModal] = useState(false);
+  const [reviewModal, setReviewModal] = useState(false);
+
+ 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -26,6 +32,7 @@ export default function PhotosAndReviews() {
     return <div>loading...</div>;
   }
 
+
   return (
     <div className={styles.photosAndReviewsWrapper}>
       {/* {JSON.stringify(parkDetails)} */}
@@ -38,7 +45,7 @@ export default function PhotosAndReviews() {
         <Tab label="Photos" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Button variant="outlined">Add review</Button>
+        <Button variant="outlined" onClick={() => setReviewModal(true)}>Add review</Button>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className={styles.addPhotoButton}>
@@ -50,6 +57,8 @@ export default function PhotosAndReviews() {
           })}
         </div>
       </TabPanel>
+      {reviewModal && <ReviewsModal setVisible={setReviewModal}/>}
+      {photoModal && <PhotosModal setVisible={setPhotoModal}/>}
     </div>
   );
 }
