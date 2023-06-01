@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import ResultListItem from "../../components/ResultListItem";
 import styles from "./search-results.module.scss";
 import { useEffect, useState } from "react";
 import { getParksByActivity } from "../../services/park-service";
 import ResultsListing from "../../components/ResultsListing";
+import { Button } from "@mui/material";
 
 export default function SearchResults() {
   const searchParams = useSelector((state) => state.parkSearchInfo);
@@ -19,8 +19,13 @@ export default function SearchResults() {
 
   console.log(searchParams, parksInfo);
   return (
-    <div className={styles.searchResultsWrapper}>
-      <ResultsListing searchResults={parksInfo} />
+    <div>
+      <div className={styles.sortButton}>
+        <Button>Sort by</Button>
+      </div>
+      <div className={styles.searchResultsWrapper}>
+        <ResultsListing searchResults={parksInfo} />
+      </div>
     </div>
   );
 }

@@ -8,10 +8,12 @@ import Home from "./pages/home";
 import SearchResults from "./pages/search-results";
 import ParkDetails from "./pages/park-details";
 import { getRoutes } from "./routes";
+import { NavigationBar } from "./components/NavigationBar";
 
 function App() {
   return (
     <Router>
+      <NavigationBar />
       <div className="App">
         <Routes>
           <Route path={getRoutes().home} element={<Home />} />
