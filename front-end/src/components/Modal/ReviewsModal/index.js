@@ -15,6 +15,7 @@ export default function ReviewsModal(props) {
   const setVisible = props.setVisible;
   const [open, setOpen] = useState(true);
   const [rating, setRating] = useState(0);
+
   function handleClose() {
     setVisible(false);
   }
@@ -61,12 +62,7 @@ export default function ReviewsModal(props) {
               setRating(newValue);
             }}
           />
-          <Button
-            onClick={() => {
-              setVisible(false);
-            }}>
-            Submit
-          </Button>
+          <Button onClick={handleClose}>Submit</Button>
         </Box>
       </Fade>
     </Modal>
