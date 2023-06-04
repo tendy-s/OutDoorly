@@ -6,6 +6,7 @@ import { TabPanel } from "../../components/ParkDetailsTabPanel";
 import ReviewsModal from "../../components/Modal/ReviewsModal";
 import PhotosModal from "../../components/Modal/PhotosModal";
 import styles from "./photos-and-reviews.module.scss";
+import { ReviewTable } from "../ReviewTable";
 
 export default function PhotosAndReviews() {
   const { parkCode } = useParams();
@@ -47,6 +48,7 @@ export default function PhotosAndReviews() {
         <Button variant="outlined" onClick={() => setReviewModal(true)}>
           Add review
         </Button>
+        <ReviewTable />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className={styles.addPhotoButton}>
