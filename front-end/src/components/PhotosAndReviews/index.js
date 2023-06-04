@@ -44,10 +44,13 @@ export default function PhotosAndReviews() {
         <Tab label="Reviews" />
         <Tab label="Photos" />
       </Tabs>
+
       <TabPanel value={value} index={0}>
-        <Button variant="outlined" onClick={() => setReviewModal(true)}>
-          Add review
-        </Button>
+        <div className={styles.addReviewButton}>
+          <Button variant="outlined" onClick={() => setReviewModal(true)}>
+            Add review
+          </Button>
+        </div>
         <ReviewTable />
       </TabPanel>
       <TabPanel value={value} index={1}>
