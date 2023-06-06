@@ -36,8 +36,10 @@ export default function PhotosAndReviews() {
       {/* {JSON.stringify(parkDetails)} */}
       <Tabs
         value={value}
+        style={{ display: "flex", justifyContent: "center" }}
         onChange={handleChange}
-        aria-label="basic tabs example">
+        aria-label="basic tabs example"
+      >
         <Tab label="Reviews" />
         <Tab label="Photos" />
       </Tabs>

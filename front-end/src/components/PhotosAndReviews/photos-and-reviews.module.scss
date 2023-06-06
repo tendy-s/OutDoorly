@@ -1,5 +1,9 @@
 .photosAndReviewsWrapper {
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
 }
 
 .parkImg {
@@ -17,4 +21,7 @@
 .addPhotoButton {
     padding: 2rem;
     margin-bottom: 2rem;
+   width: 100%;
+   display: flex;
+   justify-content: center;
 }
