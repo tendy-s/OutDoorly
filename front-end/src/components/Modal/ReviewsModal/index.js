@@ -62,7 +62,7 @@ export default function ReviewsModal(props) {
               setRating(newValue);
             }}
           />
-          <Button onClick={handleClose}>Submit</Button>
+          <Button onClick={handleClose} className={styles.modalSubmit}>Submit</Button>
         </Box>
       </Fade>
     </Modal>
