@@ -5,23 +5,23 @@ import { useNavigate } from "react-router-dom";
 import { getRoutes } from "../../routes";
 
 export function NavigationBar() {
-  const navigate = useNavigate();
-  return (
-    <div className={styles.navBar}>
-      <AppBar position="static">
-        <div
-          className={styles.pageName}
-          onClick={() => {
-            navigate(getRoutes().home);
-          }}
-        >
-          <div className={styles.appName}>
-            <h1>
-              OutDoorly <HikingIcon />
-            </h1>
-          </div>
-        </div>
-      </AppBar>
-    </div>
-  );
+	const navigate = useNavigate();
+	return (
+		<div className={styles.navBar}>
+			<AppBar position="static">
+				<div
+					className={styles.pageName}
+					onClick={() => {
+						navigate(getRoutes().home);
+					}}>
+					<div className={styles.appName}>
+						<h1>
+							<HikingIcon className={styles.navIcon}  />
+							OutDoorly
+						</h1>
+					</div>
+				</div>
+			</AppBar>
+		</div>
+	);
 }
