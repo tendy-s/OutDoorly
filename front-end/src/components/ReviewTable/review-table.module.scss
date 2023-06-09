@@ -1,0 +1,14 @@
+.reviewsList {
+    width: 100%;
+    max-width: 100%;
+    background-color: white;
+    
+    .reviewsListItem {
+        align-items: flex-start;
+    }
+    
+    .reviewsAvatar {
+        background-color: teal;
+    }
+}
+
