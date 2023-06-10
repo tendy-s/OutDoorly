@@ -109,7 +109,7 @@ const UserImagesSchema = new mongoose.Schema({
   favouritedCount: Number,
 });
 
-const UserCommentSchema = new mongoose.Schema({
+const UserReviewSchema = new mongoose.Schema({
   comment: String,
   createdAt: String,
   userName: String,
