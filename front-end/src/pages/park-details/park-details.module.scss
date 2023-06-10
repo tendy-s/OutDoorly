@@ -1,0 +1,12 @@
+.parkDetailsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 60rem;
+    margin: 0 auto 0 auto;
+}
+
+.mainImg {
+    max-width: 40rem;
+	filter: brightness(0.85);
+}
