@@ -17,7 +17,6 @@ export default function SearchResults() {
     searchForParks();
   }, []);
 
-  console.log(searchParams, parksInfo);
   return (
     <div>
       <div className={styles.sortButton}>
