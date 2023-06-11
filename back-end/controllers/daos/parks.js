@@ -1,4 +1,5 @@
 const { getModelForCollection } = require("../../shared/mongoose");
+const util = require("util");
 
 // import data from ('../../data/allParks.json')
 // const data = require("../../data/allParks.json");
@@ -21,22 +22,22 @@ const populateLocaldatabase = async () => {
   }
 };
 
-const getParks = async (req) => {
-  const activities1 = "Shopping";
-  const activies2 = "Astronomy";
-  const state = "CA";
-
+const getParks = async (selectedActivities, state) => {
   const parks = await getModelForCollection("parksSchema");
-  const query = await parks.findOne({
-    $and: [
-      { "activities.name": activities1 },
-      { "activities.name": activies2 },
-      { states: state },
-    ],
-  });
+  const query = await parks
+    .find({
+      $and: [
+        { "activities.name": { $all: selectedActivities } },
+        { states: state },
+      ],
+    })
+    .select("name states activities.name");
 
-  console.log(query);
+  console.log(util.inspect(query, { depth: 3 }));
 };
 
+module.exports = {
+  getParks,
+};
 
-getParks();
+getParks(["Shopping", "Food"], "CA");
