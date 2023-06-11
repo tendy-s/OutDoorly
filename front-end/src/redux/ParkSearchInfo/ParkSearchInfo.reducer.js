@@ -1,12 +1,14 @@
 import {
   CLEAR_SEARCH,
   SET_SEARCH_ACTIVITIES,
+  SET_SEARCH_AMENITIES,
   SET_SEARCH_STATES,
 } from "./ParkSearchInfo.types";
 
 const INITIAL_STATE = {
   searchActivities: [],
   searchStates: [],
+  searchAmenities: [],
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -15,6 +17,12 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         searchActivities: action.payload,
+      };
+
+    case SET_SEARCH_AMENITIES:
+      return {
+        ...state,
+        searchAmenities: action.payload,
       };
 
     case SET_SEARCH_STATES:

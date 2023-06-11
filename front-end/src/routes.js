@@ -20,3 +20,7 @@ export function getActivitiesSearchRoute(ids) {
 export function getParkDetailsRoute(parkCode) {
   return `${PARKS_API_BASE_ROUTE}parks?parkCode=${parkCode}&api_key=${PARKS_API_KEY}`;
 }
+
+export function getAmenitiesRoute() {
+  return `${PARKS_API_BASE_ROUTE}amenities?api_key=${PARKS_API_KEY}`;
+}

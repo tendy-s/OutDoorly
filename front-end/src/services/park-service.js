@@ -2,11 +2,16 @@ import axios from "axios";
 import {
   getActivitiesRoute,
   getActivitiesSearchRoute,
+  getAmenitiesRoute,
   getParkDetailsRoute,
 } from "../routes";
 
 export function getActivites() {
   return axios.get(getActivitiesRoute());
+}
+
+export function getAmenities() {
+  return axios.get(getAmenitiesRoute());
 }
 
 export function getParksByActivity(activites) {

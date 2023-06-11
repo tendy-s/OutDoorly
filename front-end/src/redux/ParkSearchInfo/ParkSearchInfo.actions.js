@@ -11,6 +11,13 @@ export const setSearchActivities = (payload) => {
   };
 };
 
+export const setSearchAmenities = (payload) => {
+  return {
+    type: SET_SEARCH_ACTIVITIES,
+    payload,
+  };
+};
+
 export const setSearchStates = (payload) => {
   return {
     type: SET_SEARCH_STATES,
