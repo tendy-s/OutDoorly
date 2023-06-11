@@ -1,33 +1,37 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const ActivitySchema = new mongoose.Schema({
+const ActivitySchema = {
   id: String,
   name: String,
-});
+};
 
-const TopicSchema = new mongoose.Schema({
+const TopicSchema = {
   id: String,
   name: String,
-});
+};
 
-const PhoneNumberSchema = new mongoose.Schema({
+const PhoneNumberSchema = {
   phoneNumber: String,
   description: String,
   extension: String,
   type: String,
-});
+};
 
-const EmailAddressSchema = new mongoose.Schema({
+const EmailAddressSchema = {
   description: String,
   emailAddress: String,
-});
+};
 
-const ContactSchema = new mongoose.Schema({
-  phoneNumbers: [PhoneNumberSchema],
-  emailAddresses: [EmailAddressSchema],
-});
+const ContactSchema = new Schema(
+  {
+    phoneNumbers: [PhoneNumberSchema],
+    emailAddresses: [EmailAddressSchema],
+  },
+  { typeKey: "$type" }
+);
 
-const ExceptionHoursSchema = new mongoose.Schema({
+const ExceptionHoursSchema = {
   wednesday: String,
   monday: String,
   thursday: String,
@@ -35,16 +39,16 @@ const ExceptionHoursSchema = new mongoose.Schema({
   tuesday: String,
   friday: String,
   saturday: String,
-});
+};
 
-const ExceptionSchema = new mongoose.Schema({
+const ExceptionSchema = {
   exceptionHours: ExceptionHoursSchema,
   startDate: String,
   name: String,
   endDate: String,
-});
+};
 
-const StandardHoursSchema = new mongoose.Schema({
+const StandardHoursSchema = {
   wednesday: String,
   monday: String,
   thursday: String,
@@ -52,71 +56,75 @@ const StandardHoursSchema = new mongoose.Schema({
   tuesday: String,
   friday: String,
   saturday: String,
-});
+};
 
-const OperatingHoursSchema = new mongoose.Schema({
+const OperatingHoursSchema = {
   exceptions: [ExceptionSchema],
   description: String,
   standardHours: StandardHoursSchema,
   name: String,
-});
+};
 
-const AddressSchema = new mongoose.Schema({
-  postalCode: String,
-  city: String,
-  stateCode: String,
-  countryCode: String,
-  provinceTerritoryCode: String,
-  line1: String,
-  type: String,
-  line3: String,
-  line2: String,
-});
+const AddressSchema = new Schema(
+  {
+    postalCode: String,
+    city: String,
+    stateCode: String,
+    countryCode: String,
+    provinceTerritoryCode: String,
+    line1: String,
+    type: String,
+    line3: String,
+    line2: String,
+  },
+  { typeKey: "$type" }
+);
 
-const ImageSchema = new mongoose.Schema({
+const ImageSchema = {
   credit: String,
   title: String,
   altText: String,
   caption: String,
   url: String,
-});
+};
 
-const EntranceFeeSchema = new mongoose.Schema({
+const EntranceFeeSchema = {
   cost: String,
   description: String,
   title: String,
-});
+};
 
-const EntrancePassSchema = new mongoose.Schema({
+const EntrancePassSchema = {
   cost: String,
   description: String,
   title: String,
-});
+};
 
 // Can't find this field populated in dataset so just assumed it will be same as EntraceFeeSchema. If issues, look here:
-const FeeSchema = new mongoose.Schema({
+const FeeSchema = {
   cost: String,
   description: String,
   title: String,
-});
+};
 
 // Dates and numbers have so far been set to type String. Need to discuss with team whether to change.
-const UserImagesSchema = new mongoose.Schema({
+const UserImagesSchema = {
   url: String,
   caption: String,
-  uploadDate: String,
+  uploadDate: Date,
   alt: String,
   favouritedCount: Number,
-});
+};
 
-const UserReviewSchema = new mongoose.Schema({
+const UserReviewSchema = {
   comment: String,
-  createdAt: String,
+  createdAt: Date,
   userName: String,
   experienceRating: String,
-});
+};
+
 //testing
-const ParkSchema = new mongoose.Schema({
+const objectSchema = {
   id: String,
   url: String,
   fullName: String,
@@ -152,9 +160,9 @@ const ParkSchema = new mongoose.Schema({
       ref: "userReviewsModel",
     },
   ],
-});
+};
 
-module.exports = mongoose.model("Park", ParkSchema);
+module.exports = objectSchema;
 
 // var schemaObject = {
 //     city_name: {
