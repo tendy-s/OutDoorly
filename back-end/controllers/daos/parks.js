@@ -38,4 +38,5 @@ const getParks = async (req) => {
   console.log(query);
 };
 
+
 getParks();
