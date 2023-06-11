@@ -5,6 +5,7 @@ import { getParkDetails } from "../../services/park-service";
 import { Tab, Tabs } from "@mui/material";
 import { TabPanel } from "../../components/ParkDetailsTabPanel";
 import PhotosAndReviews from "../../components/PhotosAndReviews";
+import { Map } from "../../components/Map/Map";
 
 export default function ParkDetails() {
 	const { parkCode } = useParams();
@@ -19,7 +20,7 @@ export default function ParkDetails() {
 		async function fetchParkDetails() {
 			const res = await getParkDetails(parkCode);
 			setParkDetails(res.data.data[0]);
-			console.log();
+			console.log(parkDetails);
 		}
 		fetchParkDetails();
 	}, []);
@@ -31,7 +32,11 @@ export default function ParkDetails() {
 	return (
 		<div className={styles.parkDetailsWrapper}>
 			<h2>{parkDetails.fullName}</h2>
-			<img className={styles.mainImg} alt={"park"} src={parkDetails.images[0].url}/>
+			<img
+				className={styles.mainImg}
+				alt={"park"}
+				src={parkDetails.images[0].url}
+			/>
 			{/* {JSON.stringify(parkDetails)} */}
 			<Tabs
 				value={value}
@@ -50,6 +55,7 @@ export default function ParkDetails() {
 			<TabPanel value={value} index={2}>
 				{parkDetails.weatherInfo}
 			</TabPanel>
+			<Map lon={parkDetails.longitude} lat={parkDetails.latitude} ></Map>
 			<PhotosAndReviews />
 		</div>
 	);
