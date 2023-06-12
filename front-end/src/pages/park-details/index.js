@@ -5,7 +5,7 @@ import { getParkDetails } from "../../services/park-service";
 import { Tab, Tabs } from "@mui/material";
 import { TabPanel } from "../../components/ParkDetailsTabPanel";
 import PhotosAndReviews from "../../components/PhotosAndReviews";
-import { MyMap } from "../../components/Map/Map";
+import  ParkMap  from "../../components/Map/index.js";
 
 export default function ParkDetails() {
 	const { parkCode } = useParams();
@@ -49,10 +49,10 @@ export default function ParkDetails() {
 			<TabPanel value={value} index={0}>
 				<div className={styles.descriptionContainer}>
 					<div className={styles.description}>{parkDetails.description}</div>
-					<MyMap
+					<ParkMap
 						lon={parkDetails.longitude}
 						lat={parkDetails.latitude}
-						name={parkDetails.fullName}></MyMap>
+						name={parkDetails.fullName}></ParkMap>
 				</div>
 			</TabPanel>
 			<TabPanel value={value} index={1}>

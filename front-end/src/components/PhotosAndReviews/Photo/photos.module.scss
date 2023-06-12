@@ -1,0 +1,47 @@
+.photoImage {
+  max-width: 15rem;
+}
+
+.photoImage:hover {
+}
+
+.photoContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+}
+
+.photoContainer:hover {
+}
+
+.photoFavorite {
+  position: absolute;
+  color: lightskyblue;
+  transform: scale(5);
+}
+
+.favourites {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: pink;
+  align-items: center;
+  padding-left: 1%;
+  padding-bottom: 1%;
+}
+
+.notFavourited:hover {
+  cursor: pointer;
+}
+
+.hovered {
+  filter: brightness(1);
+}
+
+.notHovered {
+  filter: brightness(0.5);
+}
