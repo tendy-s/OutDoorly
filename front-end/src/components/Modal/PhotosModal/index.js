@@ -5,80 +5,88 @@ import { useState, useEffect } from "react";
 import styles from "./photos-modal.module.scss";
 
 export default function PhotosModal(props) {
-	const setVisible = props.setVisible;
-	const [open] = useState(true);
-	const [uploadedFiles, setUploadedFiles] = useState([]);
-	const uploadRef = useRef();
+  const setVisible = props.setVisible;
+  const [open] = useState(true);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const uploadRef = useRef();
 
-	useEffect(() => {
-		console.log(uploadedFiles);
-	}, [uploadedFiles]);
+  useEffect(() => {
+    console.log(uploadedFiles);
+  }, [uploadedFiles]);
 
-	function handleClose() {
-		setVisible(false);
-	}
+  function handleClose() {
+    setVisible(false);
+  }
 
-	function uploadPhoto() {
-		uploadRef.current.click();
-	}
+  function uploadPhoto() {
+    uploadRef.current.click();
+  }
 
-	function handleUpload() {
-		setUploadedFiles(uploadRef.current.files);
-	}
+  function handleUpload() {
+    setUploadedFiles(uploadRef.current.files);
+  }
 
-	const displayUpload = Array.from(uploadedFiles).map((file) => {
-		return (
-			<img
-				src={URL.createObjectURL(file)}
-				alt="uploaded"
-				className={styles.uploadImagePreview}
-			/>
-		);
-	});
-	return (
-		<Modal
-			aria-labelledby="transition-modal-title"
-			aria-describedby="transition-modal-description"
-			open={open}
-			onClose={handleClose}
-			closeAfterTransition
-			slots={{ backdrop: Backdrop }}
-			slotProps={{
-				backdrop: {
-					timeout: 500,
-				},
-			}}>
-			<Fade in={open}>
-				<Box
-					sx={{
-						bgcolor: "background.paper",
-					}}
-					className={styles.modalBox}>
-					<Typography
-						sx={{ mx: "5rem", mt: "1rem" }}
-						className={styles.modalHeader}
-						id="transition-modal-title"
-						variant="h6"
-						component="h2">
-						Add Photos
-					</Typography>
-					<input
-						ref={uploadRef}
-						accept="image/*"
-						multiple
-						hidden
-						type="file"
-						onChange={handleUpload}
-					/>
-					<Button onClick={uploadPhoto} variant="contained" sx={{mb: ".5rem"}}>
-						Upload Files
-					</Button>
-					{displayUpload}
-					<Button sx={{ mb: ".5rem" }} onClick={handleClose}>
-						Submit
-					</Button>
-				</Box>
-			</Fade>
-		</Modal>
-	);
+  function handleSubmit() {
+    setVisible(false);
+    props.setAlert(true);
+  }
+
+  const displayUpload = Array.from(uploadedFiles).map((file) => {
+    return (
+      <img
+        src={URL.createObjectURL(file)}
+        alt="uploaded"
+        className={styles.uploadImagePreview}
+      />
+    );
+  });
+  return (
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      open={open}
+      onClose={handleClose}
+      closeAfterTransition
+      slots={{ backdrop: Backdrop }}
+      slotProps={{
+        backdrop: {
+          timeout: 500,
+        },
+      }}>
+      <Fade in={open}>
+        <Box
+          sx={{
+            bgcolor: "background.paper",
+          }}
+          className={styles.modalBox}>
+          <Typography
+            sx={{ mx: "5rem", mt: "1rem" }}
+            className={styles.modalHeader}
+            id="transition-modal-title"
+            variant="h6"
+            component="h2">
+            Add Photos
+          </Typography>
+          <input
+            ref={uploadRef}
+            accept="image/*"
+            multiple
+            hidden
+            type="file"
+            onChange={handleUpload}
+          />
+          <Button
+            onClick={uploadPhoto}
+            variant="contained"
+            sx={{ mb: ".5rem" }}>
+            Upload Files
+          </Button>
+          {displayUpload}
+          <Button sx={{ mb: ".5rem" }} onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Box>
+      </Fade>
+    </Modal>
+  );
 }

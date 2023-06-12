@@ -35,3 +35,19 @@
   display: flex;
   justify-content: center;
 }
+
+.submitAlert {
+  animation: fadeIn 4s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+	opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
