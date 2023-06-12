@@ -1,19 +1,23 @@
 .navBar {
-    min-width: 100%
+  min-width: 100%;
 }
 
-.appName {
-    margin-left: 2rem;
-	font-size: 1rem;
+.pageName{
+  margin-left: 2rem;
+  font-size: 2rem;
+  margin-right: auto;
+}
+
+.pageName {
+  display: inline;
 }
 
 .pageName:hover {
-	opacity: 50%;
-	cursor: pointer;
+  opacity: 50%;
+  cursor: pointer;
 }
 
 .navIcon {
-	transform: scale(1.5);
-	padding-right: .5rem;
+  transform: scale(1.5);
+  padding-right: 0.5rem;
 }
-

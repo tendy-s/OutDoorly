@@ -10,3 +10,14 @@
     max-width: 40rem;
 	filter: brightness(0.85);
 }
+
+.descriptionContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.description {
+	align-items: center;
+	width: 40%;
+	margin: 0 2%;
+}
