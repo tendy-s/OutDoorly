@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchParkActivities, searchForParks } from "./ParkSearchInfo.thunks";
+import {
+  fetchParkActivities,
+  retrieveParkDetails,
+  searchForParks,
+} from "./ParkSearchInfo.thunks";
 
 const INITIAL_STATE = {
   loading: false,
@@ -8,6 +12,8 @@ const INITIAL_STATE = {
   searchAmenities: [],
   activityOptions: [],
   searchResults: [],
+  selectedParkCode: undefined,
+  parkDetails: undefined,
 };
 
 const parkSearchSlice = createSlice({
@@ -22,6 +28,9 @@ const parkSearchSlice = createSlice({
     },
     setSearchAmenities: (state, action) => {
       state.searchAmenities = action.payload;
+    },
+    setSelectedParkCode: (state, action) => {
+      state.selectedParkCode = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -47,11 +56,25 @@ const parkSearchSlice = createSlice({
       })
       .addCase(searchForParks.rejected, (state) => {
         state.loading = false;
+      })
+      .addCase(retrieveParkDetails.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(retrieveParkDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.parkDetails = action.payload.data[0];
+      })
+      .addCase(retrieveParkDetails.rejected, (state) => {
+        state.loading = false;
       });
   },
 });
 
-export const { setSearchActivities, setSearchAmenities, setSearchStates } =
-  parkSearchSlice.actions;
+export const {
+  setSearchActivities,
+  setSearchAmenities,
+  setSearchStates,
+  setSelectedParkCode,
+} = parkSearchSlice.actions;
 
 export default parkSearchSlice.reducer;

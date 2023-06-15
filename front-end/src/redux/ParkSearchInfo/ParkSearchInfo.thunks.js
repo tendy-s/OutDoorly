@@ -1,5 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getActivities, getParksByActivity } from "../../services/park-service";
+import {
+  getActivities,
+  getParkDetails,
+  getParksByActivity,
+} from "../../services/park-service";
 
 export const fetchParkActivities = createAsyncThunk(
   "parkSearchInfo/fetchParkActivities",
@@ -14,6 +18,15 @@ export const searchForParks = createAsyncThunk(
   async (_, thunkApi) => {
     const state = thunkApi.getState();
     const res = await getParksByActivity(state.parkSearchInfo.searchActivities);
+    return res.data;
+  }
+);
+
+export const retrieveParkDetails = createAsyncThunk(
+  "parkSearchInfo/retrieveParkDetails",
+  async (_, thunkApi) => {
+    const state = thunkApi.getState();
+    const res = await getParkDetails(state.parkSearchInfo.selectedParkCode);
     return res.data;
   }
 );
