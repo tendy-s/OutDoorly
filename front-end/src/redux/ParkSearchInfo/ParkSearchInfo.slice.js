@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchParkActivities } from "./ParkSearchInfo.thunks";
+import { fetchParkActivities, searchForParks } from "./ParkSearchInfo.thunks";
 
 const INITIAL_STATE = {
   loading: false,
@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   searchStates: [],
   searchAmenities: [],
   activityOptions: [],
+  searchResults: [],
 };
 
 const parkSearchSlice = createSlice({
@@ -35,6 +36,16 @@ const parkSearchSlice = createSlice({
         });
       })
       .addCase(fetchParkActivities.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(searchForParks.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(searchForParks.fulfilled, (state, action) => {
+        state.loading = false;
+        state.searchResults = action.payload.data;
+      })
+      .addCase(searchForParks.rejected, (state) => {
         state.loading = false;
       });
   },
