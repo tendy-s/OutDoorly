@@ -11,7 +11,7 @@ import {
   setSearchActivities,
   setSearchAmenities,
   setSearchStates,
-} from "../../redux/ParkSearchInfo/ParkSearchInfo.actions";
+} from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 
 export default function PreferencesForm() {
   const navigate = useNavigate();
