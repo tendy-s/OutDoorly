@@ -6,7 +6,7 @@ import {
   getParkDetailsRoute,
 } from "../routes";
 
-export function getActivites() {
+export function getActivities() {
   return axios.get(getActivitiesRoute());
 }
 

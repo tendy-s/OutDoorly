@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 
 export default function SearchResults() {
   const searchParams = useSelector((state) => state.parkSearchInfo);
+  console.log(searchParams);
   const [parksInfo, setParksInfo] = useState([]);
   useEffect(() => {
     async function searchForParks() {

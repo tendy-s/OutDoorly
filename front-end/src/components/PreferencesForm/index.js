@@ -3,36 +3,41 @@ import styles from "./preferences-form.module.scss";
 import { useNavigate } from "react-router-dom";
 import { getRoutes } from "../../routes";
 import { useEffect, useState } from "react";
-import { getActivites, getAmenities } from "../../services/park-service";
+import { getAmenities } from "../../services/park-service";
 import Select from "react-select";
 import { STATE_OPTIONS } from "./state-codes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setSearchActivities,
   setSearchAmenities,
   setSearchStates,
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+import { fetchParkActivities } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
 
 export default function PreferencesForm() {
   const navigate = useNavigate();
-  const [activities, setActivities] = useState([]);
+  // const [activities, setActivities] = useState([]);
   const [selectedActivities, setSelectedActivities] = useState([]);
   const [selectedStates, setSelectedStates] = useState([]);
   const [amenities, setAmenities] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const dispatch = useDispatch();
+  const activities = useSelector(
+    (store) => store.parkSearchInfo.activityOptions
+  );
 
   useEffect(() => {
-    async function populateActivities() {
-      const response = await getActivites();
-      setActivities(
-        response.data.data.map((a) => {
-          return { label: a.name, value: a.id };
-        })
-      );
-      console.log(response.data.data);
-    }
-    populateActivities();
+    // async function populateActivities() {
+    //   const response = await getActivites();
+    //   setActivities(
+    //     response.data.data.map((a) => {
+    //       return { label: a.name, value: a.id };
+    //     })
+    //   );
+    //   console.log(response.data.data);
+    // }
+    // populateActivities();
+    dispatch(fetchParkActivities());
   }, []);
 
   useEffect(() => {

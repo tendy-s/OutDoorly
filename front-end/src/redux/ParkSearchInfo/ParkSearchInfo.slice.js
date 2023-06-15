@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchParkActivities } from "./ParkSearchInfo.thunks";
 
 const INITIAL_STATE = {
+  loading: false,
   searchActivities: [],
   searchStates: [],
   searchAmenities: [],
+  activityOptions: [],
 };
 
 const parkSearchSlice = createSlice({
@@ -19,6 +22,21 @@ const parkSearchSlice = createSlice({
     setSearchAmenities: (state, action) => {
       state.searchAmenities = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchParkActivities.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchParkActivities.fulfilled, (state, action) => {
+        state.loading = false;
+        state.activityOptions = action.payload.data.map((a) => {
+          return { label: a.name, value: a.id };
+        });
+      })
+      .addCase(fetchParkActivities.rejected, (state) => {
+        state.loading = false;
+      });
   },
 });
 
