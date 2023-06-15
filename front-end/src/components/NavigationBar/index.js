@@ -9,18 +9,14 @@ export function NavigationBar() {
 	return (
 		<div className={styles.navBar}>
 			<AppBar position="static">
-				<div
+				<h1
 					className={styles.pageName}
 					onClick={() => {
 						navigate(getRoutes().home);
 					}}>
-					<div className={styles.appName}>
-						<h1>
-							<HikingIcon className={styles.navIcon}  />
-							OutDoorly
-						</h1>
-					</div>
-				</div>
+					<HikingIcon className={styles.navIcon} />
+					OutDoorly
+				</h1>
 			</AppBar>
 		</div>
 	);
