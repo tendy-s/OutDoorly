@@ -16,7 +16,6 @@ export function getAmenities() {
 
 export function getParksByActivity(activites) {
   const url = getActivitiesSearchRoute(activites.map((a) => a.value).join(","));
-  console.log(url);
   return axios.get(url);
 }
 

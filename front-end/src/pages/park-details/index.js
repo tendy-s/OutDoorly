@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import styles from "./park-details.module.scss";
 import { useEffect, useState } from "react";
-import { getParkDetails } from "../../services/park-service";
 import { Tab, Tabs } from "@mui/material";
 import { TabPanel } from "../../components/ParkDetailsTabPanel";
 import PhotosAndReviews from "../../components/PhotosAndReviews";
@@ -12,7 +11,6 @@ import { retrieveParkDetails } from "../../redux/ParkSearchInfo/ParkSearchInfo.t
 
 export default function ParkDetails() {
   const { parkCode } = useParams();
-  //   const [parkDetails, setParkDetails] = useState();
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const parkDetails = useSelector((store) => store.parkSearchInfo.parkDetails);
@@ -22,12 +20,6 @@ export default function ParkDetails() {
   };
 
   useEffect(() => {
-    // async function fetchParkDetails() {
-    //   const res = await getParkDetails(parkCode);
-    //   setParkDetails(res.data.data[0]);
-    //   console.log(parkDetails);
-    // }
-    // fetchParkDetails();
     dispatch(setSelectedParkCode(parkCode));
     dispatch(retrieveParkDetails());
   }, []);

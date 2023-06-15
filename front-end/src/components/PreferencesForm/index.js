@@ -16,7 +16,6 @@ import { fetchParkActivities } from "../../redux/ParkSearchInfo/ParkSearchInfo.t
 
 export default function PreferencesForm() {
   const navigate = useNavigate();
-  // const [activities, setActivities] = useState([]);
   const [selectedActivities, setSelectedActivities] = useState([]);
   const [selectedStates, setSelectedStates] = useState([]);
   const [amenities, setAmenities] = useState([]);
@@ -27,16 +26,6 @@ export default function PreferencesForm() {
   );
 
   useEffect(() => {
-    // async function populateActivities() {
-    //   const response = await getActivites();
-    //   setActivities(
-    //     response.data.data.map((a) => {
-    //       return { label: a.name, value: a.id };
-    //     })
-    //   );
-    //   console.log(response.data.data);
-    // }
-    // populateActivities();
     dispatch(fetchParkActivities());
   }, []);
 
