@@ -38,6 +38,7 @@ const INITIAL_STATE = {
   searchResults: [],
   selectedParkCode: undefined,
   parkDetails: undefined,
+  currReviewID: 4,
 };
 
 const parkSearchSlice = createSlice({
@@ -55,6 +56,13 @@ const parkSearchSlice = createSlice({
     },
     setSelectedParkCode: (state, action) => {
       state.selectedParkCode = action.payload;
+    },
+    submitUserReview: (state, action) => {
+      state.parkDetails.userReviews.push({
+        ...action.payload,
+        id: state.currReviewID,
+      });
+      state.currReviewID++;
     },
   },
   extraReducers: (builder) => {
@@ -100,6 +108,7 @@ export const {
   setSearchAmenities,
   setSearchStates,
   setSelectedParkCode,
+  submitUserReview,
 } = parkSearchSlice.actions;
 
 export default parkSearchSlice.reducer;
