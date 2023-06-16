@@ -20,6 +20,11 @@ export default function ReviewsModal(props) {
     setVisible(false);
   }
 
+  function handleUpload() {
+    setVisible(false);
+    props.setAlert(true);
+  }
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -62,7 +67,9 @@ export default function ReviewsModal(props) {
               setRating(newValue);
             }}
           />
-          <Button onClick={handleClose} className={styles.modalSubmit}>Submit</Button>
+          <Button onClick={handleUpload} className={styles.modalSubmit}>
+            Submit
+          </Button>
         </Box>
       </Fade>
     </Modal>

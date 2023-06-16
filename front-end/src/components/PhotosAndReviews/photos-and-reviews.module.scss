@@ -6,10 +6,6 @@
   width: 100%;
 }
 
-.parkImg {
-  max-width: 15rem;
-}
-
 .parkImagesContainer {
   display: flex;
   columns: 3;
@@ -38,4 +34,20 @@
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
+}
+
+.submitAlert {
+  animation: fadeIn 4s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+	opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
