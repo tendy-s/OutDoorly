@@ -24,10 +24,11 @@ export default function ReviewsModal(props) {
     setVisible(false);
   }
 
-  function handleSubmit() {
+  function handleUpload() {
     dispatch(
       submitUserReview({ experienceRating: rating, comment, userName: "Tendy" })
     );
+    props.setAlert(true);
     handleClose();
   }
 
@@ -77,7 +78,7 @@ export default function ReviewsModal(props) {
               setRating(newValue);
             }}
           />
-          <Button onClick={handleSubmit} className={styles.modalSubmit}>
+          <Button onClick={handleUpload} className={styles.modalSubmit}>
             Submit
           </Button>
         </Box>

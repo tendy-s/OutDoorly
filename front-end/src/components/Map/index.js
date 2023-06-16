@@ -5,7 +5,7 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 
 import styles from "./map.module.scss";
 
-export function MyMap(props) {
+export default function ParkMap(props) {
 	const parkCoords = [props.lat, props.lon];
 	let icon = new Icon({ iconUrl: markerIconPng });
 	return (

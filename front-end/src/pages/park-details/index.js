@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import styles from "./park-details.module.scss";
 import { useEffect, useState } from "react";
-import { Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
 import { TabPanel } from "../../components/ParkDetailsTabPanel";
 import PhotosAndReviews from "../../components/PhotosAndReviews";
-import { MyMap } from "../../components/Map/Map";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedParkCode } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 import { retrieveParkDetails } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
+import ParkMap from "../../components/Map/index.js";
 
 export default function ParkDetails() {
   const { parkCode } = useParams();
@@ -30,13 +30,15 @@ export default function ParkDetails() {
 
   return (
     <div className={styles.parkDetailsWrapper}>
-      <h2>{parkDetails.fullName}</h2>
+      <Typography variant="h3" sx={{ m: 2 }}>
+        {parkDetails.fullName}
+      </Typography>
+
       <img
         className={styles.mainImg}
         alt={"park"}
         src={parkDetails.images[0].url}
       />
-      {/* {JSON.stringify(parkDetails)} */}
       <Tabs
         value={value}
         onChange={handleChange}
@@ -47,20 +49,32 @@ export default function ParkDetails() {
         <Tab label="Weather Info" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <div className={styles.descriptionContainer}>
-          <div className={styles.description}>{parkDetails.description}</div>
-          <MyMap
+        <Box
+          className={styles.descriptionContainer}
+          sx={{ borderBottom: 1, borderColor: "grey.500" }}
+        >
+          <Box
+            sx={{ borderRight: 1, borderColor: "grey.500", mb: 2 }}
+            className={styles.description}
+          >
+            <Typography>{parkDetails.description}</Typography>
+          </Box>
+          <ParkMap
             lon={parkDetails.longitude}
             lat={parkDetails.latitude}
             name={parkDetails.fullName}
-          ></MyMap>
-        </div>
+          ></ParkMap>
+        </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {parkDetails.operatingHours[0].description}
+        <Box sx={{ borderBottom: 1, borderColor: "grey.500", pb: 2 }}>
+          <Typography>{parkDetails.operatingHours[0].description}</Typography>
+        </Box>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        {parkDetails.weatherInfo}
+        <Box sx={{ borderBottom: 1, borderColor: "grey.500", pb: 3 }}>
+          <Typography>{parkDetails.weatherInfo}</Typography>
+        </Box>
       </TabPanel>
       <PhotosAndReviews />
     </div>
