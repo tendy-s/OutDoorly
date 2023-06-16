@@ -5,6 +5,30 @@ import {
   searchForParks,
 } from "./ParkSearchInfo.thunks";
 
+const DEFAULT_REVIEWS = [
+  {
+    id: 1,
+    userName: "Tendy",
+    comment: "Don't forget bear spray",
+    experienceRating: 4,
+    createdAt: "2023-06-15",
+  },
+  {
+    id: 2,
+    userName: "Babak",
+    comment: "Hydration is key",
+    experienceRating: 4,
+    createdAt: "2023-06-10",
+  },
+  {
+    id: 3,
+    userName: "Tendy Jr.",
+    comment: "Don't stand on a cliff to take a photo",
+    experienceRating: 1,
+    createdAt: "2023-06-01",
+  },
+];
+
 const INITIAL_STATE = {
   loading: false,
   searchActivities: [],
@@ -63,6 +87,7 @@ const parkSearchSlice = createSlice({
       .addCase(retrieveParkDetails.fulfilled, (state, action) => {
         state.loading = false;
         state.parkDetails = action.payload.data[0];
+        state.parkDetails.userReviews = DEFAULT_REVIEWS;
       })
       .addCase(retrieveParkDetails.rejected, (state) => {
         state.loading = false;
