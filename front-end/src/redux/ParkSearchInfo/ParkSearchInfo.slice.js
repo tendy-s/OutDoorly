@@ -39,6 +39,7 @@ const INITIAL_STATE = {
   selectedParkCode: undefined,
   parkDetails: undefined,
   currReviewID: 4,
+  currImageID: 1,
 };
 
 const parkSearchSlice = createSlice({
@@ -63,6 +64,13 @@ const parkSearchSlice = createSlice({
         id: state.currReviewID,
       });
       state.currReviewID++;
+    },
+    submitUserImage: (state, action) => {
+      state.parkDetails.images.push({
+        ...action.payload,
+        id: state.currImageID,
+      });
+      state.currImageID++;
     },
   },
   extraReducers: (builder) => {
@@ -109,6 +117,7 @@ export const {
   setSearchStates,
   setSelectedParkCode,
   submitUserReview,
+  submitUserImage,
 } = parkSearchSlice.actions;
 
 export default parkSearchSlice.reducer;
