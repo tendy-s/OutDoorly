@@ -1,12 +1,8 @@
 const { getModelForCollection } = require("../../shared/mongoose");
 const util = require("util");
-
-// import data from ('../../data/allParks.json')
-// const data = require("../../data/allParks.json");
-
 const fs = require("fs");
 
-const { data } = JSON.parse(fs.readFileSync("../../data/allParks.json"));
+// const { data } = JSON.parse(fs.readFileSync("../../data/allParks.json"));
 
 // ONLY RUN to populate local DB upon initialization of backend
 const populateLocaldatabase = async () => {
@@ -31,13 +27,12 @@ const getParks = async (selectedActivities, state) => {
         { states: state },
       ],
     })
-    .select("name states activities.name");
+    .select("name states activities.name fullName description images");
+  console.log(query);
 
-  console.log(util.inspect(query, { depth: 3 }));
+  return query;
 };
 
-module.exports = {
-  getParks,
-};
+module.exports = getParks;
 
-getParks(["Shopping", "Food"], "CA");
+// getParks(["Shopping", "Food"], "CA");
