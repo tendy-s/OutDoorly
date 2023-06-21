@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { getSchemaForCollection } = require('./schema/collectionSchema');
+const mongoose = require("mongoose");
+const { getSchemaForCollection } = require("./schema/collectionSchema");
 
 let connection;
 
@@ -9,8 +9,8 @@ let connection;
  * @returns mongoose connection
  */
 const getMongooseConnection = async (refreshDatabase = false) => {
-  const MONGO_CONN_STRING = 'mongodb://127.0.0.1:27017/outdoorly'; // move to .env in future
-  const DATABASE_NAME = 'outdoorly'; //move to .env in future
+  const MONGO_CONN_STRING = "mongodb://127.0.0.1:27017/outdoorly"; // move to .env in future
+  const DATABASE_NAME = "outdoorly"; //move to .env in future
   if (connection == null) {
     try {
       connection = mongoose.connect(MONGO_CONN_STRING, {
@@ -21,7 +21,7 @@ const getMongooseConnection = async (refreshDatabase = false) => {
       });
       await connection;
     } catch (err) {
-      console.log('Could not connect to database.');
+      console.log("Could not connect to database.");
     }
   }
 
@@ -42,7 +42,8 @@ const getMongooseConnection = async (refreshDatabase = false) => {
 const getCollectionModel = (collection, mongooseConnection) => {
   const modelSchema = getSchemaForCollection(collection, mongoose);
   return (
-    mongoose.models[collection] || mongooseConnection.model(collection, modelSchema, collection)
+    mongoose.models[collection] ||
+    mongooseConnection.model(collection, modelSchema, collection)
   );
 };
 
@@ -54,7 +55,7 @@ const getCollectionModel = (collection, mongooseConnection) => {
  * @returns {null|Model}
  */
 exports.getModelForCollection = async (collectionName = null, conn = null) => {
-  if (!collectionName || collectionName === '') {
+  if (!collectionName || collectionName === "") {
     return null;
   }
   const mongooseConn = conn || (await getMongooseConnection());
