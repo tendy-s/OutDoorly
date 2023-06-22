@@ -3,40 +3,49 @@ import styles from "./preferences-form.module.scss";
 import { useNavigate } from "react-router-dom";
 import { getRoutes } from "../../routes";
 import { useEffect, useState } from "react";
-import { getActivites } from "../../services/park-service";
+import { getAmenities } from "../../services/park-service";
 import Select from "react-select";
 import { STATE_OPTIONS } from "./state-codes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setSearchActivities,
+  setSearchAmenities,
   setSearchStates,
-} from "../../redux/ParkSearchInfo/ParkSearchInfo.actions";
+} from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+import { fetchParkActivities } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
 
 export default function PreferencesForm() {
   const navigate = useNavigate();
-  const [activities, setActivities] = useState([]);
   const [selectedActivities, setSelectedActivities] = useState([]);
   const [selectedStates, setSelectedStates] = useState([]);
+  const [amenities, setAmenities] = useState([]);
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
   const dispatch = useDispatch();
+  const activities = useSelector(
+    (store) => store.parkSearchInfo.activityOptions
+  );
 
   useEffect(() => {
-    async function populateActivities() {
-      const response = await getActivites();
-      setActivities(
-        response.data.data.map((a) => {
-          return { label: a.name, value: a.id };
+    dispatch(fetchParkActivities());
+  }, []);
+
+  useEffect(() => {
+    async function populateAmenities() {
+      const response = await getAmenities();
+      setAmenities(
+        response.data.data.map((amenity) => {
+          return { label: amenity.name, value: amenity.id };
         })
       );
       console.log(response.data.data);
     }
-    populateActivities();
+    populateAmenities();
   }, []);
 
   function onSubmitSearch() {
-    console.log(selectedStates);
-    console.log(selectedActivities);
     dispatch(setSearchActivities(selectedActivities));
     dispatch(setSearchStates(selectedStates));
+    dispatch(setSearchAmenities(selectedAmenities));
     navigate(getRoutes().searchResults);
   }
 
@@ -50,6 +59,15 @@ export default function PreferencesForm() {
         onChange={(v) => setSelectedActivities(v)}
         isMulti
         placeholder="Select some activities"
+      />
+      <h2>Which amenities are you interested in?</h2>
+
+      <Select
+        options={amenities}
+        className={styles.selector}
+        onChange={(v) => setSelectedAmenities(v)}
+        isMulti
+        placeholder="Select some amenities"
       />
       <h2>Which states are you interested in visiting?</h2>
 

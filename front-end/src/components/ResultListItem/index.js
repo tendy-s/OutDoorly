@@ -1,5 +1,4 @@
 import styles from "./result-list-item.module.scss";
-import { getRoutes } from "../../routes";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, Rating } from "@mui/material";

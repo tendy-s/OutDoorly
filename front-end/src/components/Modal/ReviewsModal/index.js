@@ -10,19 +10,26 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import styles from "./reviews-modal.module.scss";
+import { useDispatch } from "react-redux";
+import { submitUserReview } from "../../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 
 export default function ReviewsModal(props) {
   const setVisible = props.setVisible;
   const [open, setOpen] = useState(true);
   const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const dispatch = useDispatch();
 
   function handleClose() {
     setVisible(false);
   }
 
   function handleUpload() {
-    setVisible(false);
+    dispatch(
+      submitUserReview({ experienceRating: rating, comment, userName: "Tendy" })
+    );
     props.setAlert(true);
+    handleClose();
   }
 
   return (
@@ -37,18 +44,21 @@ export default function ReviewsModal(props) {
         backdrop: {
           timeout: 500,
         },
-      }}>
+      }}
+    >
       <Fade in={open}>
         <Box
           sx={{
             bgcolor: "background.paper",
           }}
-          className={styles.modalBox}>
+          className={styles.modalBox}
+        >
           <Typography
             className={styles.modalHeader}
             id="transition-modal-title"
             variant="h6"
-            component="h2">
+            component="h2"
+          >
             Add a Review
           </Typography>
           <TextField
@@ -58,6 +68,7 @@ export default function ReviewsModal(props) {
             label="Review Description"
             multiline
             rows={3}
+            onChange={(e) => setComment(e.target.value)}
           />
           <Rating
             className={styles.modalRating}

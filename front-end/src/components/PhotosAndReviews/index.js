@@ -9,10 +9,11 @@ import styles from "./photos-and-reviews.module.scss";
 import { ReviewTable } from "../ReviewTable";
 import Photo from "./Photo";
 import Alert from "@mui/material/Alert";
+import { useSelector } from "react-redux";
 
 export default function PhotosAndReviews() {
   const { parkCode } = useParams();
-  const [parkDetails, setParkDetails] = useState();
+  const parkDetails = useSelector((store) => store.parkSearchInfo.parkDetails);
   const [value, setValue] = useState(0);
 
   const [photoModal, setPhotoModal] = useState(false);
@@ -23,14 +24,6 @@ export default function PhotosAndReviews() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  useEffect(() => {
-    async function fetchParkDetails() {
-      const res = await getParkDetails(parkCode);
-      setParkDetails(res.data.data[0]);
-    }
-    fetchParkDetails();
-  }, []);
 
   useEffect(() => {
     if (showReviewsAlert) {
@@ -58,7 +51,8 @@ export default function PhotosAndReviews() {
         value={value}
         style={{ display: "flex", justifyContent: "center" }}
         onChange={handleChange}
-        aria-label="basic tabs example">
+        aria-label="basic tabs example"
+      >
         <Tab label="Reviews" />
         <Tab label="Photos" />
       </Tabs>
@@ -71,12 +65,13 @@ export default function PhotosAndReviews() {
         </div>
         {showReviewsAlert && (
           <Alert
-			className={styles.submitAlert}
+            className={styles.submitAlert}
             severity="success"
             maxWidth={false}
             variant="filled"
-            sx={{ mb: 2 }}>
-            Review added Successfully
+            sx={{ mb: 2 }}
+          >
+            Review added successfully
           </Alert>
         )}
         <ReviewTable />
@@ -89,12 +84,13 @@ export default function PhotosAndReviews() {
         </div>
         {showPhotosAlert && (
           <Alert
-			className={styles.submitAlert}
+            className={styles.submitAlert}
             severity="success"
             maxWidth={false}
             variant="filled"
-            sx={{ mb: 2 }}>
-            Photo added Successfully
+            sx={{ mb: 2 }}
+          >
+            Photo added successfully
           </Alert>
         )}
         <div className={styles.parkImagesContainer}>
