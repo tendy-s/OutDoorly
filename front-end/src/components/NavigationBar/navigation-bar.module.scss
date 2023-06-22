@@ -1,0 +1,23 @@
+.navBar {
+  min-width: 100%;
+}
+
+.pageName{
+  margin-left: 2rem;
+  font-size: 2rem;
+  margin-right: auto;
+}
+
+.pageName {
+  display: inline;
+}
+
+.pageName:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.navIcon {
+  transform: scale(1.5);
+  padding-right: 0.5rem;
+}
