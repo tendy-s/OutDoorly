@@ -69,7 +69,7 @@ export default function PreferencesForm() {
     <div className={styles.formWrapper}>
       <h1>Find parks based on one of the following two options:</h1>
       <h2>1. Which city are you located in?</h2>
-      <PlacesAutoComplete onChange={setSelectedCity} />
+      {/* <PlacesAutoComplete onChange={setSelectedCity} /> */}
       <h2>2. How far are you willing to travel? (in km)</h2>
       <Slider
         getAriaLabel={() => "Distance range"}
