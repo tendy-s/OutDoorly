@@ -8,9 +8,10 @@ const axios = require("axios");
 // const allParksCoords = require("../data/allParksCoordinates.js");
 const closestParksfromDB = require("./daos/closestParks.js");
 
-const allParksCoords = JSON.parse(
-  fs.readFileSync("../data/allParksCoordinates.json")
-);
+// TODO: uncomment after
+// const allParksCoords = JSON.parse(
+//   fs.readFileSync("../data/allParksCoordinates.json")
+// );
 
 let userLat = 0;
 let userLon = 0;
@@ -172,3 +173,5 @@ function calculateDistanceHelper(lat1, lon1, lat2, lon2) {
 function deg2radHelper(deg) {
   return deg * (Math.PI / 180);
 }
+
+module.exports = getParksByDistance;

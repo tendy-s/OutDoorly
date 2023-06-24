@@ -14,10 +14,23 @@ const getParks = require("./daos/parks.js");
 //     // return result;
 // };
 
+/*  Returns the information associated with parks that contain ALL 
+    activities provided AND in the state that is provided 
+    
+    @param {activities} an array of activities
+    @param {state} state code e.g 'CA'
+    @returns list of parks
+    
+*/
+
 const getParksStateAndActivities = async (req, res) => {
   try {
     const selectedActivities = req.query.activities;
     const selectedState = req.query.state;
+
+    if (!selectedActivities || ! selectedState){
+      res.status(400).json({ error: "Activities and state must be provided." })
+    }
 
     const result = await getParks(selectedActivities, selectedState);
     console.log(result);
@@ -25,7 +38,7 @@ const getParksStateAndActivities = async (req, res) => {
     return res.status(200).json(result);
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ error: "Internal database error" });
+    return res.status(500).json({ error: "Internal database error." });
   }
 };
 
