@@ -55,14 +55,13 @@ function PlacesAutoComplete() {
   }, []);
 
   return (
-    <div className="search-location-input">
-      <input
-        ref={autoCompleteRef}
-        onChange={(event) => setQuery(event.target.value)}
-        placeholder="Enter a City"
-        value={query}
-      />
-    </div>
+    <input
+      className={styles.searchCityInput}
+      ref={autoCompleteRef}
+      onChange={(event) => setQuery(event.target.value)}
+      placeholder="Enter a city"
+      value={query}
+    />
   );
 }
 

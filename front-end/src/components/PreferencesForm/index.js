@@ -71,13 +71,16 @@ export default function PreferencesForm() {
       <h2>1. Which city are you located in?</h2>
       <PlacesAutoComplete onChange={setSelectedCity} />
       <h2>2. How far are you willing to travel? (in km)</h2>
+
       <Slider
+        className={styles.slider}
         getAriaLabel={() => "Distance range"}
         value={distanceValue}
         onChange={handleChange}
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
       />
+
       <h1>OR</h1>
       <h2>1. Which activities are you interested in?</h2>
 
