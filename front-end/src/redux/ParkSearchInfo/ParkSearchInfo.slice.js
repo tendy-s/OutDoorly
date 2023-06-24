@@ -61,7 +61,7 @@ const DEFAULT_REVIEWS = [
   },
   {
     id: 8,
-    userName: "Cyote",
+    userName: "Coyote",
     comment: "Keep small dogs on leash",
     experienceRating: 1,
     createdAt: "2023-06-01",
