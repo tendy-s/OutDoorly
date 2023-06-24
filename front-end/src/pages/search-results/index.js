@@ -4,21 +4,33 @@ import { useEffect } from "react";
 import ResultsListing from "../../components/ResultsListing";
 import { Button } from "@mui/material";
 import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
+import {
+  A_TO_Z_SORTING,
+  toggleSort,
+} from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 
 export default function SearchResults() {
   const searchResults = useSelector(
     (state) => state.parkSearchInfo.searchResults
   );
+  const searchCity = useSelector((state) => state.parkSearchInfo.searchCity);
+  const searchDistance = useSelector(
+    (state) => state.parkSearchInfo.searchDistance
+  );
+  const sortDir = useSelector((state) => state.parkSearchInfo.sortDir);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(searchForParks());
+    console.log(searchCity, searchDistance);
   }, []);
 
   return (
     <div>
       <div className={styles.sortButton}>
-        <Button>Sort by Ratings</Button>
+        <Button onClick={() => dispatch(toggleSort())}>
+          {sortDir === A_TO_Z_SORTING ? "Sort A-Z" : "Sort Z-A"}
+        </Button>
       </div>
       <div className={styles.searchResultsWrapper}>
         <ResultsListing searchResults={searchResults} />

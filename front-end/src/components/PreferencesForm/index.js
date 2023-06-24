@@ -10,9 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setSearchActivities,
   setSearchAmenities,
+  setSearchCity,
+  setSearchDistance,
   setSearchStates,
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 import { fetchParkActivities } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
+import Slider from "@mui/material/Slider";
+import PlacesAutoComplete from "../PlacesAutoComplete";
 
 export default function PreferencesForm() {
   const navigate = useNavigate();
@@ -20,6 +24,12 @@ export default function PreferencesForm() {
   const [selectedStates, setSelectedStates] = useState([]);
   const [amenities, setAmenities] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [distanceValue, setDistanceValue] = useState([10, 85]);
+  const [selectedCity, setSelectedCity] = useState("");
+
+  const handleChange = (event, newValue) => {
+    setDistanceValue(newValue);
+  };
   const dispatch = useDispatch();
   const activities = useSelector(
     (store) => store.parkSearchInfo.activityOptions
@@ -42,16 +52,37 @@ export default function PreferencesForm() {
     populateAmenities();
   }, []);
 
+  function valuetext(value) {
+    return `${value}km`;
+  }
+
   function onSubmitSearch() {
     dispatch(setSearchActivities(selectedActivities));
+    dispatch(setSearchCity(selectedCity));
     dispatch(setSearchStates(selectedStates));
     dispatch(setSearchAmenities(selectedAmenities));
     navigate(getRoutes().searchResults);
+    dispatch(setSearchDistance(distanceValue));
   }
 
   return (
     <div className={styles.formWrapper}>
-      <h2>Which activities are you interested in?</h2>
+      <h1>Find parks based on one of the following two options:</h1>
+      <h2>1. Which city are you located in?</h2>
+      <PlacesAutoComplete onChange={setSelectedCity} />
+      <h2>2. How far are you willing to travel? (in km)</h2>
+
+      <Slider
+        className={styles.slider}
+        getAriaLabel={() => "Distance range"}
+        value={distanceValue}
+        onChange={handleChange}
+        getAriaValueText={valuetext}
+        valueLabelDisplay="on"
+      />
+
+      <h1>OR</h1>
+      <h2>1. Which activities are you interested in?</h2>
 
       <Select
         options={activities}
@@ -60,7 +91,7 @@ export default function PreferencesForm() {
         isMulti
         placeholder="Select some activities"
       />
-      <h2>Which amenities are you interested in?</h2>
+      <h2>2. Which amenities are you interested in?</h2>
 
       <Select
         options={amenities}
@@ -69,7 +100,7 @@ export default function PreferencesForm() {
         isMulti
         placeholder="Select some amenities"
       />
-      <h2>Which states are you interested in visiting?</h2>
+      <h2>3. Which states are you interested in visiting?</h2>
 
       <Select
         className={styles.selector}

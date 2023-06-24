@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 40rem;
 }
 
 .selector {
@@ -11,5 +12,9 @@
 }
 
 .submitButton {
+    margin-top: 1rem;
+}
+
+.slider {
     margin-top: 1rem;
 }

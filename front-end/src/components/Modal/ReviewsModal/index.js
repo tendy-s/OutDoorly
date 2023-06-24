@@ -17,6 +17,7 @@ export default function ReviewsModal(props) {
   const setVisible = props.setVisible;
   const [open, setOpen] = useState(true);
   const [rating, setRating] = useState(0);
+  const [name, setName] = useState("");
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
 
@@ -26,7 +27,7 @@ export default function ReviewsModal(props) {
 
   function handleUpload() {
     dispatch(
-      submitUserReview({ experienceRating: rating, comment, userName: "Tendy" })
+      submitUserReview({ experienceRating: rating, comment, userName: name })
     );
     props.setAlert(true);
     handleClose();
@@ -44,23 +45,27 @@ export default function ReviewsModal(props) {
         backdrop: {
           timeout: 500,
         },
-      }}
-    >
+      }}>
       <Fade in={open}>
         <Box
           sx={{
             bgcolor: "background.paper",
           }}
-          className={styles.modalBox}
-        >
+          className={styles.modalBox}>
           <Typography
             className={styles.modalHeader}
             id="transition-modal-title"
             variant="h6"
-            component="h2"
-          >
+            component="h2">
             Add a Review
           </Typography>
+          <TextField
+            id="outlined-multiline-static"
+            sx={{ mb: 3, mt: 1 }}
+            size="small"
+            label="Review Name"
+            onChange={(e) => setName(e.target.value)}
+          />
           <TextField
             className={styles.modalTextField}
             margin={"small"}
