@@ -148,6 +148,7 @@ const objectSchema = {
   weatherInfo: String,
   name: String,
   designation: String,
+  amenities: [String],
   userImages: [
     {
       type: mongoose.Schema.Types.ObjectId,

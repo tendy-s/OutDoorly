@@ -25,14 +25,29 @@ const getParks = require("./daos/parks.js");
 
 const getParksStateAndActivities = async (req, res) => {
   try {
-    const selectedActivities = req.query.activities;
-    const selectedState = req.query.state;
 
-    if (!selectedActivities || ! selectedState){
-      res.status(400).json({ error: "Activities and state must be provided." })
+    let selectedActivities;
+    let selectedAmenities;
+    let selectedState;
+    let sortBy;
+
+    if (req.query.activities){
+       selectedActivities = req.query.activities;
     }
 
-    const result = await getParks(selectedActivities, selectedState);
+    if (req.query.selectedAmenities){
+       selectedAmenities = req.query.state;
+    }
+
+    if (req.query.state){
+       state = req.query.state;
+    }
+
+    if (req.query.sortBy){
+      sortBy = req.query.sortBy;
+    }
+
+    const result = await getParks(selectedActivities, selectedAmenities, selectedState, sortBy);
     console.log(result);
   
     return res.status(200).json(result);
