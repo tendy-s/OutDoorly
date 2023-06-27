@@ -97,8 +97,9 @@ const getParks = async (
     queryBuilder["$and"].push({ amenities: { $all: selectedAmenities } });
   }
 
+
   if (state) {
-    queryBuilder["$and"].push({ states: state });
+    queryBuilder["$and"].push({ states: { "$regex": `${state}`, "$options": "i" } });
   }
 
   if (sortBy) {

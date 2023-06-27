@@ -35,12 +35,12 @@ const getParksStateAndActivities = async (req, res) => {
        selectedActivities = req.query.activities;
     }
 
-    if (req.query.selectedAmenities){
-       selectedAmenities = req.query.state;
+    if (req.query.amenities){
+       selectedAmenities = req.query.amenities;
     }
 
     if (req.query.state){
-       state = req.query.state;
+      selectedState = req.query.state;
     }
 
     if (req.query.sortBy){
