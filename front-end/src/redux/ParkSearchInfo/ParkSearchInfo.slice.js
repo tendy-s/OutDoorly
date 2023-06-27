@@ -144,7 +144,8 @@ const parkSearchSlice = createSlice({
       })
       .addCase(searchForParks.fulfilled, (state, action) => {
         state.loading = false;
-        state.searchResults = action.payload.data;
+        console.log("ACTION ", action);
+        state.searchResults = action.payload;
       })
       .addCase(searchForParks.rejected, (state) => {
         state.loading = false;

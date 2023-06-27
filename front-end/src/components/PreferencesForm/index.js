@@ -24,7 +24,7 @@ export default function PreferencesForm() {
   const [selectedStates, setSelectedStates] = useState([]);
   const [amenities, setAmenities] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
-  const [distanceValue, setDistanceValue] = useState([10, 85]);
+  const [distanceValue, setDistanceValue] = useState(45);
   const [selectedCity, setSelectedCity] = useState("");
 
   const handleChange = (event, newValue) => {
@@ -74,7 +74,6 @@ export default function PreferencesForm() {
 
       <Slider
         className={styles.slider}
-        getAriaLabel={() => "Distance range"}
         value={distanceValue}
         onChange={handleChange}
         getAriaValueText={valuetext}
@@ -100,14 +99,13 @@ export default function PreferencesForm() {
         isMulti
         placeholder="Select some amenities"
       />
-      <h2>3. Which states are you interested in visiting?</h2>
+      <h2>3. Which state are you interested in visiting?</h2>
 
       <Select
         className={styles.selector}
         options={STATE_OPTIONS}
         onChange={(v) => setSelectedStates(v)}
-        isMulti
-        placeholder="Select one or multiple states"
+        placeholder="Select a state"
       />
       <div className={styles.submitButton}>
         <Button variant="contained" onClick={onSubmitSearch}>

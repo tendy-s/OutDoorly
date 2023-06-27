@@ -36,3 +36,4 @@ const getParks = async (selectedActivities, state) => {
 module.exports = getParks;
 
 // getParks(["Shopping", "Food"], "CA");
+// populateLocaldatabase();

@@ -49,7 +49,7 @@ const getCollectionModel = (collection, mongooseConnection) => {
 
 /**
  * Returns a model associated with Mongoose collection, which can be
- * used by Database access layer fucntion for querying
+ * used by Database access layer function for querying
  * @param {string} collectionName
  * @param {*} conn : Mongoose connection object. If not passed a new one will be created
  * @returns {null|Model}

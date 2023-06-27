@@ -3,6 +3,7 @@ import {
   getActivitiesRoute,
   getActivitiesSearchRoute,
   getAmenitiesRoute,
+  getAppActivitiesSearchRoute,
   getParkDetailsRoute,
 } from "../routes";
 
@@ -17,6 +18,13 @@ export function getAmenities() {
 export function getParksByActivity(activites) {
   const url = getActivitiesSearchRoute(activites.map((a) => a.value).join(","));
   return axios.get(url);
+}
+
+// TODO
+export function getParksByProximity() {}
+
+export function getParksByPreferences(activities, usStates, amenities) {
+  return axios.get(getAppActivitiesSearchRoute(usStates, activities));
 }
 
 export function getParkDetails(parkCode) {

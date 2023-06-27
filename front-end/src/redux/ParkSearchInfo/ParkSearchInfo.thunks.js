@@ -3,6 +3,7 @@ import {
   getActivities,
   getParkDetails,
   getParksByActivity,
+  getParksByPreferences,
 } from "../../services/park-service";
 
 export const fetchParkActivities = createAsyncThunk(
@@ -17,7 +18,15 @@ export const searchForParks = createAsyncThunk(
   "parkSearchInfo/searchForParks",
   async (_, thunkApi) => {
     const state = thunkApi.getState();
-    const res = await getParksByActivity(state.parkSearchInfo.searchActivities);
+    console.log("this is the state:", state);
+    const res = await getParksByPreferences(
+      state.parkSearchInfo.searchActivities
+        .map((activity) => `&activities[]=${activity.label}`)
+        .join(""),
+      state.parkSearchInfo.searchStates.value
+    );
+    console.log("RES ", res);
+    // const res = await getParksByActivity(state.parkSearchInfo.searchActivities);
     return res.data;
   }
 );
