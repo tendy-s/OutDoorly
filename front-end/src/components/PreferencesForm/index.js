@@ -12,6 +12,7 @@ import {
   setSearchAmenities,
   setSearchCity,
   setSearchDistance,
+  setSearchMode,
   setSearchStates,
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 import { fetchParkActivities } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
@@ -57,12 +58,18 @@ export default function PreferencesForm() {
   }
 
   function onSubmitSearch() {
+    dispatch(setSearchMode("PREFERENCES"));
     dispatch(setSearchActivities(selectedActivities));
-    dispatch(setSearchCity(selectedCity));
     dispatch(setSearchStates(selectedStates));
     dispatch(setSearchAmenities(selectedAmenities));
     navigate(getRoutes().searchResults);
+  }
+
+  function onSubmitDistanceSearch() {
+    dispatch(setSearchMode("PROXIMITY"));
+    dispatch(setSearchCity(selectedCity));
     dispatch(setSearchDistance(distanceValue));
+    navigate(getRoutes().searchResults);
   }
 
   return (
@@ -79,6 +86,10 @@ export default function PreferencesForm() {
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
       />
+
+      <Button variant="contained" onClick={onSubmitDistanceSearch}>
+        Search parks
+      </Button>
 
       <h1>OR</h1>
       <h2>1. Which activities are you interested in?</h2>

@@ -8,7 +8,7 @@ export default function ResultsListing({ searchResults }) {
         return (
           <ResultListItem
             key={p.parkCode}
-            name={p.name}
+            fullName={p.fullName}
             parkCode={p.parkCode}
           />
         );

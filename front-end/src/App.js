@@ -17,7 +17,7 @@ const theme = createTheme({
   button: {
     fontFamily: ["Poppins", "serif"].join(","),
     fontSize: 16,
-    fontWeight: 400,
+    fontWeight: 500,
   },
 });
 

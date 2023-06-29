@@ -24,33 +24,32 @@ const loadScript = (url, callback) => {
   document.getElementsByTagName("head")[0].appendChild(script);
 };
 
-function handleScriptLoad(updateQuery, autoCompleteRef) {
+function handleScriptLoad(updateQuery, autoCompleteRef, onChange) {
   autoComplete = new window.google.maps.places.Autocomplete(
     autoCompleteRef.current,
     { types: ["(cities)"], componentRestrictions: { country: "us" } }
   );
   autoComplete.setFields(["address_components", "formatted_address"]);
   autoComplete.addListener("place_changed", () =>
-    handlePlaceSelect(updateQuery)
+    handlePlaceSelect(updateQuery, onChange)
   );
 }
 
-async function handlePlaceSelect(updateQuery) {
+async function handlePlaceSelect(updateQuery, onChange) {
   const addressObject = autoComplete.getPlace();
   const query = addressObject.formatted_address;
   updateQuery(query);
-  console.log(addressObject);
+  onChange(addressObject.formatted_address);
 }
 
-function PlacesAutoComplete() {
+function PlacesAutoComplete({ onChange }) {
   const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
-    console.log("key", process.env.GOOGLE_API_KEY);
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback`,
-      () => handleScriptLoad(setQuery, autoCompleteRef)
+      () => handleScriptLoad(setQuery, autoCompleteRef, onChange)
     );
   }, []);
 
@@ -58,7 +57,9 @@ function PlacesAutoComplete() {
     <input
       className={styles.searchCityInput}
       ref={autoCompleteRef}
-      onChange={(event) => setQuery(event.target.value)}
+      onChange={(event) => {
+        setQuery(event.target.value);
+      }}
       placeholder="Enter a city"
       value={query}
     />

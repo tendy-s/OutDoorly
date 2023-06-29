@@ -5,6 +5,7 @@ import {
   getAmenitiesRoute,
   getAppActivitiesSearchRoute,
   getParkDetailsRoute,
+  getProximitySearchRoute,
 } from "../routes";
 
 export function getActivities() {
@@ -21,7 +22,9 @@ export function getParksByActivity(activites) {
 }
 
 // TODO
-export function getParksByProximity() {}
+export function getParksByProximity(city, state, radius) {
+  return axios.get(getProximitySearchRoute(city, state, radius));
+}
 
 export function getParksByPreferences(activities, usStates, amenities) {
   return axios.get(

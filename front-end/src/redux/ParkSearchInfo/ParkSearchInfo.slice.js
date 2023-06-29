@@ -70,6 +70,7 @@ const DEFAULT_REVIEWS = [
 
 const INITIAL_STATE = {
   loading: false,
+  searchMode: undefined,
   searchActivities: [],
   searchStates: [],
   searchAmenities: [],
@@ -88,6 +89,9 @@ const parkSearchSlice = createSlice({
   name: "parkSearchInfo",
   initialState: INITIAL_STATE,
   reducers: {
+    setSearchMode: (state, action) => {
+      state.searchMode = action.payload;
+    },
     setSearchActivities: (state, action) => {
       state.searchActivities = action.payload;
     },
@@ -165,6 +169,7 @@ const parkSearchSlice = createSlice({
 });
 
 export const {
+  setSearchMode,
   setSearchActivities,
   setSearchAmenities,
   setSearchStates,

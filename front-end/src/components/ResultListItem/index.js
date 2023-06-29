@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, Rating } from "@mui/material";
 
-export default function ResultListItem({ name, parkCode }) {
+export default function ResultListItem({ fullName, parkCode }) {
   return (
     <div className={styles.parkContainer}>
       <Card>
@@ -12,7 +12,7 @@ export default function ResultListItem({ name, parkCode }) {
             className={styles.listItemWrapper}
             onClick={() => (window.location.href = `/park-details/${parkCode}`)}
           >
-            <h4>{name}</h4>
+            <h4>{fullName}</h4>
             <div className={styles.resultsWrapper}>
               <img
                 className={styles.previewImage}

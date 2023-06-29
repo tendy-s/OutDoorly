@@ -4,6 +4,7 @@ import {
   getParkDetails,
   getParksByActivity,
   getParksByPreferences,
+  getParksByProximity,
 } from "../../services/park-service";
 
 export const fetchParkActivities = createAsyncThunk(
@@ -19,15 +20,30 @@ export const searchForParks = createAsyncThunk(
   async (_, thunkApi) => {
     const state = thunkApi.getState();
     console.log("this is the state:", state);
-    const res = await getParksByPreferences(
-      state.parkSearchInfo.searchActivities
-        .map((activity) => `&activities[]=${activity.label}`)
-        .join(""),
-      state.parkSearchInfo.searchStates.value,
-      state.parkSearchInfo.searchActivities
-        .map((amenity) => `&amenities[]=${amenity.label}`)
-        .join("")
-    );
+    let res;
+    if (state.parkSearchInfo.searchMode === "PREFERENCES") {
+      res = await getParksByPreferences(
+        state.parkSearchInfo.searchActivities
+          .map((activity) => `&activities[]=${activity.label}`)
+          .join(""),
+        state.parkSearchInfo.searchStates.value,
+        state.parkSearchInfo.searchAmenities
+          .map((amenity) => `&amenities[]=${amenity.label}`)
+          .join("")
+      );
+    } else {
+      console.log(
+        "Search city",
+        state.parkSearchInfo.searchCity,
+        state.parkSearchInfo.searchDistance
+      );
+      res = await getParksByProximity(
+        state.parkSearchInfo.searchCity.split(", ")[0],
+        state.parkSearchInfo.searchCity.split(", ")[1],
+        state.parkSearchInfo.searchDistance
+      );
+    }
+
     console.log("RES ", res);
     // const res = await getParksByActivity(state.parkSearchInfo.searchActivities);
     return res.data;
