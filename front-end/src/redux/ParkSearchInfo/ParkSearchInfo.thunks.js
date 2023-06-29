@@ -23,7 +23,10 @@ export const searchForParks = createAsyncThunk(
       state.parkSearchInfo.searchActivities
         .map((activity) => `&activities[]=${activity.label}`)
         .join(""),
-      state.parkSearchInfo.searchStates.value
+      state.parkSearchInfo.searchStates.value,
+      state.parkSearchInfo.searchActivities
+        .map((amenity) => `&amenities[]=${amenity.label}`)
+        .join("")
     );
     console.log("RES ", res);
     // const res = await getParksByActivity(state.parkSearchInfo.searchActivities);

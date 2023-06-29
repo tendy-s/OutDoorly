@@ -24,7 +24,9 @@ export function getParksByActivity(activites) {
 export function getParksByProximity() {}
 
 export function getParksByPreferences(activities, usStates, amenities) {
-  return axios.get(getAppActivitiesSearchRoute(usStates, activities));
+  return axios.get(
+    getAppActivitiesSearchRoute(usStates, activities, amenities)
+  );
 }
 
 export function getParkDetails(parkCode) {
