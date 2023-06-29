@@ -10,6 +10,8 @@ export default function ResultsListing({ searchResults }) {
             key={p.parkCode}
             fullName={p.fullName}
             parkCode={p.parkCode}
+            description={p.description}
+            images={p.images}
           />
         );
       })}
