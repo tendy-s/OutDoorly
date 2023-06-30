@@ -48,7 +48,7 @@ const getParkDetails = async (req, res) =>{
 
   console.log(req.params.id);
 
-  if (!req.params){
+  if (!req.params.id || req.params.id === ":id"){
     return res.status(400).json({error: "Id param must be provided."});
   }
 
