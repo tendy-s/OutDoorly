@@ -49,26 +49,11 @@ const addAmenitiesToDB = async () => {
   }
 };
 
-// const getParks = async (selectedActivities, state) => {
-//   const parks = await getModelForCollection("parksSchema");
-//   const query = await parks
-//     .find({
-//       $and: [
-//         { "activities.name": { $all: selectedActivities } },
-//         { states: state },
-//       ],
-//     })
-//     .select("name states activities.name fullName description images");
-//   console.log(query);
-
-//   return query;
-// };
-
 const getParks = async (
   selectedActivities,
   selectedAmenities,
   state,
-  sortBy=""
+  sortBy = ""
 ) => {
   const parks = await getModelForCollection("parksSchema");
 
@@ -83,7 +68,7 @@ const getParks = async (
     fullName: "asc",
   };
 
-  if (!selectedActivities && !selectedAmenities && !sortBy && !state){
+  if (!selectedActivities && !selectedAmenities && !sortBy && !state) {
     queryBuilder = {};
   }
 
@@ -97,9 +82,10 @@ const getParks = async (
     queryBuilder["$and"].push({ amenities: { $all: selectedAmenities } });
   }
 
-
   if (state) {
-    queryBuilder["$and"].push({ states: { "$regex": `${state}`, "$options": "i" } });
+    queryBuilder["$and"].push({
+      states: { $regex: `${state}`, $options: "i" },
+    });
   }
 
   if (sortBy) {
@@ -115,9 +101,20 @@ const getParks = async (
   return result;
 };
 
-module.exports = getParks;
+const getParkDetails = async (id) => {
+  const parks = await getModelForCollection("parksSchema");
+  let queryProjection =
+    "parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees";
+
+  const result = await parks.findById(id).select(queryProjection);
+  console.log(result);
+  return result;
+};
+
+// module.exports = getParks;
+
+module.exports = {getParks, getParkDetails};
+
 
 // addAmenitiesToDB();
 // getParks(['Astronomy'], ['Bicycle - Rack'], "CA", 'desc');
-
-
