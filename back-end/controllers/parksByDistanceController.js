@@ -5,17 +5,14 @@
 
 const fs = require("fs");
 const axios = require("axios");
-// const allParksCoords = require("../data/allParksCoordinates.js");
 const closestParksfromDB = require("./daos/closestParks.js");
 
-// TODO: uncomment after
-// const allParksCoords = JSON.parse(
-//   fs.readFileSync("../data/allParksCoordinates.json")
-// );
+const allParksCoords = JSON.parse(
+  fs.readFileSync("../data/allParksCoordinates.json")
+);
 
 let userLat = 0;
 let userLon = 0;
-// let closestParks = [];
 
 const getGeoCode = async (address) => {
   try {
@@ -30,17 +27,6 @@ const getGeoCode = async (address) => {
     console.error(error);
   }
 };
-
-// Use the function
-// getGeoCode("denver, colorado")
-//   .then((data) => {
-//     // You can also use the data here
-//     console.log("Data222222:", data);
-//     console.log(Number(userLat), Number(userLon));
-//   })
-//   .catch((err) => console.error(err));
-
-// console.log(userLat, userLon);
 
 // receive city name from frontend
 // check that letters
@@ -68,7 +54,6 @@ async function getClosestParks(allParksCoords, userCoords, radius) {
   }
   sortParksByDistanceHelper(closestParks);
   return closestParks;
-  // console.log(closestParks);
 }
 
 // Sorts an array of parks according to their distance field
@@ -77,8 +62,6 @@ function sortParksByDistanceHelper(closestParks) {
     p1.distance > p2.distance ? 1 : p1.distance < p2.distance ? -1 : 0
   );
 }
-
-// getClosestParks(allParksCoords, [39, -104]);
 
 function makeCoordinatesFile() {
   let parkCoordinates = {
@@ -126,34 +109,14 @@ async function getParksByDistance(req, res) {
   }
 }
 
-// let query = {
-//   city: "Denver",
-//   state: "CO",
-//   radius: 600,
-// };
-// let res;
-// let req = { query };
-// getParksByDistance(req, res);
-
-// const getParks = async (selectedActivities, state) => {
-//   const parks = await getModelForCollection("parksSchema");
-//   const query = await parks
-//     .find({
-//       $and: [
-//         { "activities.name": { $all: selectedActivities } },
-//         { states: state },
-//       ],
-//     })
-//     .select("name states activities.name");
-
-//   console.log(util.inspect(query, { depth: 3 }));
-// };
-
-// module.exports = {
-//   getParks,
-// };
-
-// getParks(["Shopping", "Food"], "CA");
+let query = {
+  city: "Denver",
+  state: "CO",
+  radius: 600,
+};
+let res = {};
+let req = { query };
+getParksByDistance(req, res);
 
 function calculateDistanceHelper(lat1, lon1, lat2, lon2) {
   var R = 6371; // Radius of the earth in km
