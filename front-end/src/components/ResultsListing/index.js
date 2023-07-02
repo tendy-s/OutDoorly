@@ -2,6 +2,7 @@ import ResultListItem from "../ResultListItem";
 import styles from "./results-listing.module.scss";
 
 export default function ResultsListing({ searchResults }) {
+  console.log("SEARCH RESULTS ", searchResults);
   return (
     <div>
       {searchResults.map((p) => {
@@ -9,7 +10,7 @@ export default function ResultsListing({ searchResults }) {
           <ResultListItem
             key={p.parkCode}
             fullName={p.fullName}
-            parkCode={p.parkCode}
+            parkID={p._id}
             description={p.description}
             images={p.images}
           />

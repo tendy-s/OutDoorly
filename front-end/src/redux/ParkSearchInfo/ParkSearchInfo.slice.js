@@ -78,7 +78,7 @@ const INITIAL_STATE = {
   searchDistance: undefined,
   activityOptions: [],
   searchResults: [],
-  selectedParkCode: undefined,
+  selectedParkID: undefined,
   parkDetails: undefined,
   currReviewID: 4,
   sortDir: A_TO_Z_SORTING,
@@ -107,8 +107,8 @@ const parkSearchSlice = createSlice({
     setSearchAmenities: (state, action) => {
       state.searchAmenities = action.payload;
     },
-    setSelectedParkCode: (state, action) => {
-      state.selectedParkCode = action.payload;
+    setSelectedParkID: (state, action) => {
+      state.selectedParkID = action.payload;
     },
     submitUserReview: (state, action) => {
       state.parkDetails.userReviews.push({
@@ -159,7 +159,7 @@ const parkSearchSlice = createSlice({
       })
       .addCase(retrieveParkDetails.fulfilled, (state, action) => {
         state.loading = false;
-        state.parkDetails = action.payload.data[0];
+        state.parkDetails = action.payload;
         state.parkDetails.userReviews = DEFAULT_REVIEWS;
       })
       .addCase(retrieveParkDetails.rejected, (state) => {
@@ -173,7 +173,7 @@ export const {
   setSearchActivities,
   setSearchAmenities,
   setSearchStates,
-  setSelectedParkCode,
+  setSelectedParkID,
   setSearchCity,
   setSearchDistance,
   submitUserReview,
