@@ -1,5 +1,6 @@
 const routers = require("./routers/index.js")
 const express = require('express')
+var bodyParser = require('body-parser');
 var cors = require("cors");
 
 const app = express();
