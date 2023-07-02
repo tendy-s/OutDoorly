@@ -1,18 +1,5 @@
 // import { getParks } from "./daos/parks.js";
-const getParks = require("./daos/parks.js");
-
-// const getParksStateAndActivities = async (req, res) => {
-//     const selectedActivities = req.query.activities;
-//     const selectedState = req.query.state;
-
-//     if (!selectedActivities || !selectedState){
-//       throw new Error("Parameters not defined");
-//     }
-
-//     const result = await getParks(selectedActivities, selectedState);
-//     return res.status(201).json(result)
-//     // return result;
-// };
+const DAOS = require("./daos/parks.js");
 
 /*  Returns the information associated with parks that contain ALL 
     activities provided AND in the state that is provided 
@@ -47,7 +34,7 @@ const getParksStateAndActivities = async (req, res) => {
       sortBy = req.query.sortBy;
     }
 
-    const result = await getParks(selectedActivities, selectedAmenities, selectedState, sortBy);
+    const result = await DAOS.getParks(selectedActivities, selectedAmenities, selectedState, sortBy);
     console.log(result);
   
     return res.status(200).json(result);
@@ -57,4 +44,28 @@ const getParksStateAndActivities = async (req, res) => {
   }
 };
 
-module.exports = getParksStateAndActivities;
+const getParkDetails = async (req, res) =>{
+
+  console.log(req.params.id);
+
+  if (!req.params.id || req.params.id === ":id"){
+    return res.status(400).json({error: "Id param must be provided."});
+  }
+
+  const objId = req.params.id;
+
+  try{
+
+    const result = await DAOS.getParkDetails(objId);
+    console.log(result);
+
+    return res.status(200).json(result);
+
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({ error: "Internal database error." });
+  }
+
+}
+
+module.exports = {getParksStateAndActivities, getParkDetails};
