@@ -25,6 +25,9 @@ export default function ParkDetails() {
     dispatch(retrieveParkDetails());
   }, []);
 
+  useEffect(() => {
+    console.log(parkDetails);
+  });
   if (!parkDetails) {
     return <div> loading...</div>;
   }
@@ -43,8 +46,7 @@ export default function ParkDetails() {
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="basic tabs example"
-      >
+        aria-label="basic tabs example">
         <Tab label="Description" />
         <Tab label="Operating Hours" />
         <Tab label="Weather Info" />
@@ -52,19 +54,16 @@ export default function ParkDetails() {
       <TabPanel value={value} index={0}>
         <Box
           className={styles.descriptionContainer}
-          sx={{ borderBottom: 1, borderColor: "grey.500" }}
-        >
+          sx={{ borderBottom: 1, borderColor: "grey.500" }}>
           <Box
             sx={{ borderRight: 1, borderColor: "grey.500", mb: 2 }}
-            className={styles.description}
-          >
+            className={styles.description}>
             <Typography>{parkDetails.description}</Typography>
           </Box>
           <ParkMap
             lon={parkDetails.longitude}
             lat={parkDetails.latitude}
-            name={parkDetails.fullName}
-          ></ParkMap>
+            name={parkDetails.fullName}></ParkMap>
         </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>

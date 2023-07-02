@@ -5,6 +5,7 @@ import {
   getParksByPreferences,
   getParksByProximity,
 } from "../../services/park-service";
+import { Z_TO_A_SORTING } from "./ParkSearchInfo.slice";
 
 export const fetchParkActivities = createAsyncThunk(
   "parkSearchInfo/fetchParkActivities",
@@ -21,6 +22,8 @@ export const searchForParks = createAsyncThunk(
     console.log("this is the state:", state);
     let res;
     if (state.parkSearchInfo.searchMode === "PREFERENCES") {
+      let sort =
+        (state.parkSearchInfo.sortDir === Z_TO_A_SORTING) ? "&sortBy=desc" : "";
       res = await getParksByPreferences(
         state.parkSearchInfo.searchActivities
           .map((activity) => `&activities[]=${activity.label}`)
@@ -28,7 +31,8 @@ export const searchForParks = createAsyncThunk(
         state.parkSearchInfo.searchStates.value,
         state.parkSearchInfo.searchAmenities
           .map((amenity) => `&amenities[]=${amenity.label}`)
-          .join("")
+          .join(""),
+        sort
       );
     } else {
       console.log(

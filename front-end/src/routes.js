@@ -14,8 +14,9 @@ export function getProximitySearchRoute(city, state, radius) {
   return `${APP_API_BASE_ROUTE}/parks/?city=${city}&state=${state}&radius=${radius}`;
 }
 
-export function getAppActivitiesSearchRoute(state, activities, amenities) {
-  return `${APP_API_BASE_ROUTE}/parks/?state=${state}${activities}${amenities}`;
+export function getAppActivitiesSearchRoute(state, activities, amenities, sort) {
+	console.log("test")
+  return `${APP_API_BASE_ROUTE}/parks/?state=${state}${activities}${amenities}${sort}`;
 }
 
 export function getAppParkDetailsRoute(id) {

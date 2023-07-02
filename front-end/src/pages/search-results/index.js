@@ -23,7 +23,7 @@ export default function SearchResults() {
   useEffect(() => {
     dispatch(searchForParks());
     console.log(searchCity, searchDistance);
-  }, []);
+  }, [sortDir]) 
 
   return (
     <div>
