@@ -56,7 +56,7 @@ export default function ParkDetails() {
           className={styles.descriptionContainer}
           sx={{ borderBottom: 1, borderColor: "grey.500" }}>
           <Box
-            sx={{ borderRight: 1, borderColor: "grey.500", mb: 2 }}
+            sx={{ borderRight: 1, borderColor: "grey.500", mb: 2, pt: 4 }}
             className={styles.description}>
             <Typography>{parkDetails.description}</Typography>
           </Box>

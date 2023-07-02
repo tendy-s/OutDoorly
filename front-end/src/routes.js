@@ -15,7 +15,6 @@ export function getProximitySearchRoute(city, state, radius) {
 }
 
 export function getAppActivitiesSearchRoute(state, activities, amenities, sort) {
-	console.log("test")
   return `${APP_API_BASE_ROUTE}/parks/?state=${state}${activities}${amenities}${sort}`;
 }
 
