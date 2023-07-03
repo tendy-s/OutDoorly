@@ -6,10 +6,17 @@
 const fs = require("fs");
 const axios = require("axios");
 const closestParksfromDB = require("./daos/closestParks.js");
+const path = require("path");
 
-const allParksCoords = JSON.parse(
-  fs.readFileSync("../data/allParksCoordinates.json")
+const allParksCoordsPath = path.join(
+  __dirname,
+  "../data/allParksCoordinates.json"
 );
+const allParksCoords = JSON.parse(fs.readFileSync(allParksCoordsPath));
+
+// const allParksCoords = JSON.parse(
+//   fs.readFileSync("../data/allParksCoordinates.json")
+// );
 
 let userLat = 0;
 let userLon = 0;
@@ -90,7 +97,15 @@ async function getParksByDistance(req, res) {
   try {
     const userCity = req.query.city;
     const userState = req.query.state;
-    const userRadius = req.query.radius;
+    let userRadius = req.query.radius;
+
+    // Check if city or state is not provided in the request
+    if (!userCity || !userState || !userRadius) {
+      return res
+        .status(400)
+        .json({ error: "City and State and Radius are required parameters." });
+    }
+
     const cityAndState = userCity + ", " + userState;
     // console.log(cityAndState);
     const coordinates = await getGeoCode(userCity + "," + userState);
@@ -105,18 +120,9 @@ async function getParksByDistance(req, res) {
     // console.log(closestParks);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "Internal database error" });
+    res.status(500).json({ error: "Internal database error 3" });
   }
 }
-
-let query = {
-  city: "Denver",
-  state: "CO",
-  radius: 600,
-};
-let res = {};
-let req = { query };
-getParksByDistance(req, res);
 
 function calculateDistanceHelper(lat1, lon1, lat2, lon2) {
   var R = 6371; // Radius of the earth in km
