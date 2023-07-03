@@ -113,8 +113,7 @@ const getParkDetails = async (id) => {
 
 // module.exports = getParks;
 
-module.exports = {getParks, getParkDetails};
-
+module.exports = { getParks, getParkDetails };
 
 // addAmenitiesToDB();
 // getParks(['Astronomy'], ['Bicycle - Rack'], "CA", 'desc');
