@@ -7,6 +7,7 @@ import {
   getAppParkDetailsRoute,
   getParkDetailsRoute,
   getProximitySearchRoute,
+  getReviewRoute,
 } from "../routes";
 
 export function getActivities() {
@@ -35,4 +36,16 @@ export function getParksByPreferences(activities, usStates, amenities, sort) {
 
 export function getParkDetails(id) {
   return axios.get(getAppParkDetailsRoute(id));
+}
+
+export function getReview(id) {
+  return axios.get(getReviewRoute(id));
+}
+
+export function postReview(id) {
+  return axios({
+    method: "post",
+    url: getReviewRoute(id),
+    data: {},
+  });
 }

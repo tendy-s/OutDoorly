@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 export default function PhotosAndReviews() {
   const { parkCode } = useParams();
-  const parkDetails = useSelector((store) => store.parkSearchInfo.parkDetails);
+  const parkDetails = useSelector((store) => store.parkDetails.details);
   const [value, setValue] = useState(0);
 
   const [photoModal, setPhotoModal] = useState(false);

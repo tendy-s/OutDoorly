@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 export function ReviewTable() {
   const reviews = useSelector(
-    (store) => store.parkSearchInfo.parkDetails.userReviews
+    (store) => store.parkDetails.details.userReviews
   );
   return (
     <List className={styles.reviewsList}>

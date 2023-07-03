@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getActivities,
-  getParkDetails,
   getParksByPreferences,
   getParksByProximity,
 } from "../../services/park-service";
@@ -23,7 +22,7 @@ export const searchForParks = createAsyncThunk(
     let res;
     if (state.parkSearchInfo.searchMode === "PREFERENCES") {
       let sort =
-        (state.parkSearchInfo.sortDir === Z_TO_A_SORTING) ? "&sortBy=desc" : "";
+        state.parkSearchInfo.sortDir === Z_TO_A_SORTING ? "&sortBy=desc" : "";
       res = await getParksByPreferences(
         state.parkSearchInfo.searchActivities
           .map((activity) => `&activities[]=${activity.label}`)
@@ -49,18 +48,6 @@ export const searchForParks = createAsyncThunk(
 
     console.log("RES ", res);
     // const res = await getParksByActivity(state.parkSearchInfo.searchActivities);
-    return res.data;
-  }
-);
-
-export const retrieveParkDetails = createAsyncThunk(
-  "parkSearchInfo/retrieveParkDetails",
-  async (_, thunkApi) => {
-    const state = thunkApi.getState();
-    console.log("PARK DETAILS FETCHING", state.parkSearchInfo.selectedParkID);
-
-    const res = await getParkDetails(state.parkSearchInfo.selectedParkID);
-    console.log("PARK DETAILS ", res);
     return res.data;
   }
 );

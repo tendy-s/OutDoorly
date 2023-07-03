@@ -13,7 +13,7 @@ export default function ParkDetails() {
   const { id } = useParams();
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
-  const parkDetails = useSelector((store) => store.parkSearchInfo.parkDetails);
+  const parkDetails = useSelector((store) => store.parkDetails.details);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

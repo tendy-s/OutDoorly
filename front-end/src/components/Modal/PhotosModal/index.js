@@ -56,22 +56,19 @@ export default function PhotosModal(props) {
         backdrop: {
           timeout: 500,
         },
-      }}
-    >
+      }}>
       <Fade in={open}>
         <Box
           sx={{
             bgcolor: "background.paper",
           }}
-          className={styles.modalBox}
-        >
+          className={styles.modalBox}>
           <Typography
             sx={{ mx: "5rem", mt: "1rem" }}
             className={styles.modalHeader}
             id="transition-modal-title"
             variant="h6"
-            component="h2"
-          >
+            component="h2">
             Add Photos
           </Typography>
           <input
@@ -85,8 +82,7 @@ export default function PhotosModal(props) {
           <Button
             onClick={uploadPhoto}
             variant="contained"
-            sx={{ mb: ".5rem" }}
-          >
+            sx={{ mb: ".5rem" }}>
             Upload Files
           </Button>
           {displayUpload}
