@@ -104,7 +104,7 @@ const getParks = async (
 const getParkDetails = async (id) => {
   const parks = await getModelForCollection("parksSchema");
   let queryProjection =
-    "parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees";
+    "fullName parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees";
 
   const result = await parks.findById(id).select(queryProjection);
   console.log(result);
@@ -113,8 +113,7 @@ const getParkDetails = async (id) => {
 
 // module.exports = getParks;
 
-module.exports = {getParks, getParkDetails};
-
+module.exports = { getParks, getParkDetails };
 
 // getParks(["Shopping", "Food"], "CA");
 // populateLocaldatabase();
