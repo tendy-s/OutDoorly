@@ -12,6 +12,7 @@ router.get("/", parkController.getParksStateAndActivities);
 
 router.get("/distance", getParksByDistance);
 
+router.get("/review/:id", review.getReview);
 router.post("/review/:id", review.addReview);
 router.put("/review/:id", review.updateReview);
 router.delete("/review/:id", review.deleteReview);

@@ -59,7 +59,7 @@ async function getClosestParks(allParksCoords, userCoords, radius) {
       closestParks.push({ distance, ParkID, ParkName });
     }
   }
-  sortParksByDistanceHelper(closestParks);
+  closestParks = sortParksByDistanceHelper(closestParks);
   return closestParks;
 }
 
@@ -68,6 +68,7 @@ function sortParksByDistanceHelper(closestParks) {
   let sortedParks = closestParks.sort((p1, p2) =>
     p1.distance > p2.distance ? 1 : p1.distance < p2.distance ? -1 : 0
   );
+  return sortedParks;
 }
 
 function makeCoordinatesFile() {
