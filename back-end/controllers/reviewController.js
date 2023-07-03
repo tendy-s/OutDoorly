@@ -2,7 +2,20 @@ const {
   addReviewDAOS,
   editReviewDAOS,
   deleteReviewDAOS,
+  getReviewDAOS,
 } = require("./daos/review");
+
+// Get User Review
+const getReview = async (req, res) => {
+  const parkId = req.params.id;
+
+  try {
+    const reviews = await getReviewDAOS(parkId);
+    res.status(200).json({ reviews });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
 
 // Create/Add User Review
 const addReview = async (req, res) => {
@@ -97,4 +110,4 @@ const validateInput = ({
   }
 };
 
-module.exports = { addReview, updateReview, deleteReview };
+module.exports = { addReview, updateReview, deleteReview, getReview };

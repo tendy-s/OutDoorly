@@ -1,5 +1,18 @@
 const { getModelForCollection } = require("../../shared/mongoose");
 
+async function getReviewDAOS(parkId) {
+  const parks = await getModelForCollection("parksSchema");
+  const park = await parks.findOne({ id: parkId });
+
+  // If no park was found, throw an error.
+  if (!park) {
+    throw new Error(`No park found with ID ${parkId}`);
+  }
+
+  const result = park.userReviews;
+  return result;
+}
+
 async function addReviewDAOS(newReview, parkId) {
   console.log(newReview);
   const parks = await getModelForCollection("parksSchema");
@@ -63,6 +76,7 @@ module.exports = {
   addReviewDAOS,
   editReviewDAOS,
   deleteReviewDAOS,
+  getReviewDAOS,
 };
 
 // const newReview = {
