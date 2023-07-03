@@ -21,7 +21,7 @@ export default function PreferencesForm() {
   return (
     <>
       <Typography sx={{mt:3}} variant="h4"> Searching by</Typography>
-      <Button sx={{mt:1}} onClick={toggleSearch} size='large'> {search} </Button>
+      <Button sx={{mt:1}} onClick={toggleSearch} size='large' className={styles.formButton}> {search} </Button>
       {search === PREFERENCES_SEARCH ? (
         <PreferenceSearch />
       ) : (
