@@ -97,7 +97,8 @@ async function getParksByDistance(req, res) {
   try {
     const userCity = req.query.city;
     const userState = req.query.state;
-    let userRadius = req.query.radius;
+    const userRadius = req.query.radius;
+    const sort = req.query.sortBy;
 
     // Check if city or state is not provided in the request
     if (!userCity || !userState || !userRadius) {
@@ -114,7 +115,10 @@ async function getParksByDistance(req, res) {
       coordinates,
       userRadius
     );
-    const result = await closestParksfromDB(closestParks);
+    let result = await closestParksfromDB(closestParks);
+    if (sort === "desc") {
+      result = result.reverse();
+    }
     res.status(201).json(result);
 
     // console.log(closestParks);

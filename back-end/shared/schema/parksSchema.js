@@ -120,6 +120,8 @@ const UserReviewSchema = {
   comment: String,
   createdAt: Date,
   userName: String,
+  userID: Number,
+  title: String,
   experienceRating: String,
 };
 
@@ -149,18 +151,8 @@ const objectSchema = {
   name: String,
   designation: String,
   amenities: [String],
-  userImages: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "userImagesModel",
-    },
-  ],
-  userReviews: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "userReviewsModel",
-    },
-  ],
+  userImages: [UserImagesSchema],
+  userReviews: [UserReviewSchema],
 };
 
 module.exports = objectSchema;
