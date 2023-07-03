@@ -16,10 +16,7 @@ const INITIAL_STATE = {
   activityOptions: [],
   searchResults: [],
   selectedParkID: undefined,
-  parkDetails: undefined,
-  currReviewID: 4,
   sortDir: A_TO_Z_SORTING,
-  currImageID: 1,
 };
 
 const parkSearchSlice = createSlice({
