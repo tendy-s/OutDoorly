@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRoutes } from "../../routes";
 import { useState } from "react";
-import Typography from "@mui/material/Typography"
+import Typography from "@mui/material/Typography";
 import styles from "./preferences-form.module.scss";
 
 import {
@@ -55,6 +55,7 @@ export default function DistanceSearch() {
         onChange={handleChange}
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
+        max={800}
       />
 
       <Button variant="contained" onClick={onSubmitDistanceSearch}>
