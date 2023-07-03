@@ -1,3 +1,5 @@
+import { DECREASING } from "./redux/ParkSearchInfo/ParkSearchInfo.slice";
+
 export function getRoutes() {
   return {
     home: "/",
@@ -10,8 +12,10 @@ export const PARKS_API_BASE_ROUTE = "https://developer.nps.gov/api/v1/";
 export const PARKS_API_KEY = "tpKlhub2fE3bdPbvzHdMthRnjLj560SE0eLaBUKZ";
 export const APP_API_BASE_ROUTE = "http://localhost:3001";
 
-export function getProximitySearchRoute(city, state, radius) {
-  return `${APP_API_BASE_ROUTE}/parks/distance?city=${city}&state=${state}&radius=${radius}`;
+export function getProximitySearchRoute(city, state, radius, sortDir) {
+  return `${APP_API_BASE_ROUTE}/parks/distance?city=${city}&state=${state}&radius=${radius}${
+    sortDir === DECREASING ? "&sortBy=desc" : ""
+  }`;
 }
 
 export function getAppActivitiesSearchRoute(

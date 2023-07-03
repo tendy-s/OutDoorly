@@ -6,6 +6,8 @@ import { Button } from "@mui/material";
 import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
 import {
   A_TO_Z_SORTING,
+  INCREASING,
+  toggleDistanceSort,
   toggleSort,
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 
@@ -18,19 +20,31 @@ export default function SearchResults() {
     (state) => state.parkSearchInfo.searchDistance
   );
   const sortDir = useSelector((state) => state.parkSearchInfo.sortDir);
+  const distanceSortDir = useSelector(
+    (state) => state.parkSearchInfo.distanceSortDir
+  );
+  const searchMode = useSelector((state) => state.parkSearchInfo.searchMode);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(searchForParks());
     console.log(searchCity, searchDistance);
-  }, [sortDir]) 
+  }, [sortDir, distanceSortDir]);
 
   return (
     <div>
       <div className={styles.sortButton}>
-        <Button onClick={() => dispatch(toggleSort())}>
-          {sortDir === A_TO_Z_SORTING ? "Sort A-Z" : "Sort Z-A"}
-        </Button>
+        {searchMode === "PREFERENCES" ? (
+          <Button onClick={() => dispatch(toggleSort())}>
+            {sortDir === A_TO_Z_SORTING ? "Sort A-Z" : "Sort Z-A"}
+          </Button>
+        ) : (
+          <Button onClick={() => dispatch(toggleDistanceSort())}>
+            {distanceSortDir === INCREASING
+              ? "Sort by Increasing Distance"
+              : "Sort by Decreasing Distance"}
+          </Button>
+        )}
       </div>
       <div className={styles.searchResultsWrapper}>
         <ResultsListing searchResults={searchResults} />

@@ -23,7 +23,7 @@ export const searchForParks = createAsyncThunk(
     let res;
     if (state.parkSearchInfo.searchMode === "PREFERENCES") {
       let sort =
-        (state.parkSearchInfo.sortDir === Z_TO_A_SORTING) ? "&sortBy=desc" : "";
+        state.parkSearchInfo.sortDir === Z_TO_A_SORTING ? "&sortBy=desc" : "";
       res = await getParksByPreferences(
         state.parkSearchInfo.searchActivities
           .map((activity) => `&activities[]=${activity.label}`)
@@ -43,7 +43,8 @@ export const searchForParks = createAsyncThunk(
       res = await getParksByProximity(
         state.parkSearchInfo.searchCity.split(", ")[0],
         state.parkSearchInfo.searchCity.split(", ")[1],
-        state.parkSearchInfo.searchDistance
+        state.parkSearchInfo.searchDistance,
+        state.parkSearchInfo.distanceSortDir
       );
     }
 

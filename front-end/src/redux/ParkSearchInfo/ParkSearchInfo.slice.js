@@ -9,6 +9,10 @@ export const A_TO_Z_SORTING = "A_Z_SORT";
 
 export const Z_TO_A_SORTING = "Z_A_SORT";
 
+export const INCREASING = "INCREASING";
+
+export const DECREASING = "DECREASING";
+
 const DEFAULT_REVIEWS = [
   {
     id: 1,
@@ -83,6 +87,7 @@ const INITIAL_STATE = {
   currReviewID: 4,
   sortDir: A_TO_Z_SORTING,
   currImageID: 1,
+  distanceSortDir: INCREASING,
 };
 
 const parkSearchSlice = createSlice({
@@ -127,6 +132,10 @@ const parkSearchSlice = createSlice({
     toggleSort: (state) => {
       state.sortDir =
         state.sortDir === A_TO_Z_SORTING ? Z_TO_A_SORTING : A_TO_Z_SORTING;
+    },
+    toggleDistanceSort: (state) => {
+      state.distanceSortDir =
+        state.distanceSortDir === INCREASING ? DECREASING : INCREASING;
     },
   },
   extraReducers: (builder) => {
@@ -179,6 +188,7 @@ export const {
   submitUserReview,
   submitUserImage,
   toggleSort,
+  toggleDistanceSort,
 } = parkSearchSlice.actions;
 
 export default parkSearchSlice.reducer;
