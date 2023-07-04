@@ -117,6 +117,7 @@ async function getParksByDistance(req, res) {
       userRadius
     );
     let result = await closestParksfromDB(closestParks);
+
     if (sort === "desc") {
       result = result.reverse();
     }
