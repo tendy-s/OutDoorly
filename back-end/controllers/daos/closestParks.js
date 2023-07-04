@@ -14,14 +14,14 @@ async function fetchAllParksCoordinates() {
       Lon: parkObject.longitude,
     };
   });
-  console.log(transformedParks);
+  // console.log(transformedParks);
   return transformedParks;
 }
 
 async function closestParksfromDB(Parks) {
   const parkIDs = Parks.map((obj) => obj.ParkID);
   const distances = Parks.map((obj) => obj.distance);
-  console.log(parkIDs);
+  // console.log(parkIDs);
   const parks = await getModelForCollection("parksSchema");
   let parksResult = await parks.find({ id: { $in: parkIDs } });
 

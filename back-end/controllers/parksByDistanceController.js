@@ -9,12 +9,19 @@ const path = require("path");
 // );
 // const allParksCoords = JSON.parse(fs.readFileSync(allParksCoordsPath));
 
-// const allParksCoords = closestParksfromDB.fetchAllParksCoordinates();
+// const allParksCoords = await closestParksDAOS.fetchAllParksCoordinates();
 // console.log(allParksCoords);
 
 // const allParksCoords = JSON.parse(
 //   fs.readFileSync("../data/allParksCoordinates.json")
 // );
+
+let allParksCoords;
+
+async function main() {
+  allParksCoords = await closestParksDAOS.fetchAllParksCoordinates();
+}
+main();
 
 let userLat = 0;
 let userLon = 0;
@@ -43,9 +50,9 @@ const getGeoCode = async (address) => {
 // get those parks from database
 // send those parks off to the frontend
 
-async function getClosestParks(userCoords, radius) {
+async function getClosestParks(allParksCoords, userCoords, radius) {
   let closestParks = [];
-  const allParksCoords = await closestParksDAOS.fetchAllParksCoordinates();
+  // const allParksCoords = await closestParksDAOS.fetchAllParksCoordinates();
   for (let park of allParksCoords) {
     const { Lat, Lon, ParkID, ParkName } = park;
     let distance = calculateDistanceHelper(
@@ -110,7 +117,11 @@ async function getParksByDistance(req, res) {
     const cityAndState = userCity + ", " + userState;
     // console.log(cityAndState);
     const coordinates = await getGeoCode(cityAndState);
-    const closestParks = await getClosestParks(coordinates, userRadius);
+    const closestParks = await getClosestParks(
+      allParksCoords,
+      coordinates,
+      userRadius
+    );
     let result = await closestParksDAOS.closestParksfromDB(closestParks);
 
     if (sort === "desc") {
