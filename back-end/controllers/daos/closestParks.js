@@ -1,6 +1,23 @@
 const { getModelForCollection } = require("../../shared/mongoose");
 const util = require("util");
 
+async function fetchAllParksCoordinates() {
+  const parks = await getModelForCollection("parksSchema");
+  let allParks = await parks.find({}); // find without filter to fetch all documents
+
+  let transformedParks = allParks.map((park) => {
+    let parkObject = park.toObject(); // convert to plain JavaScript object
+    return {
+      ParkName: parkObject.fullName,
+      ParkID: parkObject.id,
+      Lat: parkObject.latitude,
+      Lon: parkObject.longitude,
+    };
+  });
+  console.log(transformedParks);
+  return transformedParks;
+}
+
 async function closestParksfromDB(Parks) {
   const parkIDs = Parks.map((obj) => obj.ParkID);
   const distances = Parks.map((obj) => obj.distance);
@@ -28,4 +45,7 @@ async function closestParksfromDB(Parks) {
   // console.log(util.inspect(parksResult, { depth: 3 }));
 }
 
-module.exports = closestParksfromDB;
+module.exports = {
+  closestParksfromDB,
+  fetchAllParksCoordinates,
+};
