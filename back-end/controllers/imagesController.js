@@ -2,12 +2,12 @@ const { S3 } = require("@aws-sdk/client-s3");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const DAOS = require("./daos/parks.js");
+require('dotenv').config();
 
-// create env after
 const s3 = new S3({
   credentials: {
-    accessKeyId: "AKIAVGIG4ZYIMVC4ENVN",
-    secretAccessKey: "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",
+    accessKeyId: process.env.S3_BUCKET,
+    secretAccessKey: process.env.SECRET_KEY,
   },
   region: "us-west-2",
 });
