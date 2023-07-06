@@ -31,7 +31,7 @@ export default function PhotosAndReviews() {
 	};
 
 	useEffect(() => {
-		dispatch(retrieveParkReviews(parkCode))
+		dispatch(retrieveParkReviews(parkCode));
 	}, []);
 
 	useEffect(() => {

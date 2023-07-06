@@ -1,4 +1,5 @@
 const { getModelForCollection } = require("../../shared/mongoose");
+const ObjectId = require("mongoose").Types.ObjectId;
 const util = require("util");
 const fs = require("fs");
 
@@ -104,16 +105,87 @@ const getParks = async (
 const getParkDetails = async (id) => {
   const parks = await getModelForCollection("parksSchema");
   let queryProjection =
-    "fullName parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees";
+    "id fullName parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees";
 
   const result = await parks.findById(id).select(queryProjection);
   console.log(result);
   return result;
 };
 
-// module.exports = getParks;
+const submitImages = async (id, url) => {
+  const parks = await getModelForCollection("parksSchema");
 
-module.exports = { getParks, getParkDetails };
+  let result = await parks.findById(id).select("fullName parkCode userImages");
+
+  if (result) {
+    result.userImages.push({
+      url: url,
+      favouritedCount: 0,
+      uploadDate: new Date(),
+    });
+  }
+
+  await result.save();
+
+  console.log(result.userImages);
+  return result;
+};
+
+const editImage = async (imageID, count) => {
+  const parks = await getModelForCollection("parksSchema");
+
+  let countNumber = +count;
+
+  let updated = await parks.updateOne(
+    { "userImages._id": imageID },
+    { $set: { "userImages.$.favouritedCount": countNumber } }
+  );
+  let result = await parks.findOne({
+    userImages: { $elemMatch: { _id: imageID } },
+  });
+
+  // console.log(result.userImages);
+  return result.userImages;
+};
+
+const deleteImage = async (id) => {
+  const parks = await getModelForCollection("parksSchema");
+
+  const image = await parks.updateMany({ $pull: { userImages: { _id: id } } });
+
+  if (!image) {
+    throw new Error(`No image found with ID ${id}`);
+  }
+
+  console.log(image);
+};
+
+const retrieveImages = async (id) => {
+  const parks = await getModelForCollection("parksSchema");
+
+  const park = await parks.findById(id);
+
+  if (!park) {
+    throw new Error(`No image found with ID ${id}`);
+  }
+
+  console.log(park);
+
+  if (park.userImages) {
+    return park.userImages;
+  }
+
+  return {};
+};
+
+module.exports = {
+  getParks,
+  getParkDetails,
+  submitImages,
+  editImage,
+  deleteImage,
+  retrieveImages,
+};
 
 // getParks(["Shopping", "Food"], "CA");
 // populateLocaldatabase();
