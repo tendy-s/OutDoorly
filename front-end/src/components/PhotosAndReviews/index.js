@@ -9,106 +9,116 @@ import styles from "./photos-and-reviews.module.scss";
 import { ReviewTable } from "../ReviewTable";
 import Photo from "./Photo";
 import Alert from "@mui/material/Alert";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { retrieveParkReviews } from "../../redux/ParkDetails/ParkDetails.thunks";
 
 export default function PhotosAndReviews() {
-  const { parkCode } = useParams();
-  const parkDetails = useSelector((store) => store.parkDetails.details);
-  const [value, setValue] = useState(0);
+	const { parkCode } = useParams();
+	const parkDetails = useSelector((store) => store.parkDetails.details);
+	const reviews = useSelector((store) => store.parkDetails.userReviews);
+	const [value, setValue] = useState(0);
 
-  const [photoModal, setPhotoModal] = useState(false);
-  const [reviewModal, setReviewModal] = useState(false);
-  const [showReviewsAlert, setReviewsAlert] = useState(false);
-  const [showPhotosAlert, setPhotosAlert] = useState(false);
+	const [photoModal, setPhotoModal] = useState(false);
+	const [reviewModal, setReviewModal] = useState(false);
+	const [showReviewsAlert, setReviewsAlert] = useState(false);
+	const [showPhotosAlert, setPhotosAlert] = useState(false);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (showReviewsAlert) {
-      setTimeout(() => {
-        setReviewsAlert(false);
-      }, 4000);
-    }
-  }, [showReviewsAlert]);
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
 
-  useEffect(() => {
-    if (showPhotosAlert) {
-      setTimeout(() => {
-        setPhotosAlert(false);
-      }, 4000);
-    }
-  }, [showPhotosAlert]);
+	useEffect(() => {
+		dispatch(retrieveParkReviews(parkCode))
+	}, []);
 
-  if (!parkDetails) {
-    return <div>loading...</div>;
-  }
+	useEffect(() => {
+		console.log(reviews);
+	}, [reviews]);
 
-  return (
-    <div className={styles.photosAndReviewsWrapper}>
-      <Tabs
-        value={value}
-        style={{ display: "flex", justifyContent: "center" }}
-        onChange={handleChange}
-        aria-label="basic tabs example"
-      >
-        <Tab label="Reviews" />
-        <Tab label="Photos" />
-      </Tabs>
+	useEffect(() => {
+		if (showReviewsAlert) {
+			setTimeout(() => {
+				setReviewsAlert(false);
+			}, 4000);
+		}
+	}, [showReviewsAlert]);
 
-      <TabPanel value={value} index={0}>
-        <div className={styles.addReviewButton}>
-          <Button variant="outlined" onClick={() => setReviewModal(true)}>
-            Add review
-          </Button>
-        </div>
-        {showReviewsAlert && (
-          <Alert
-            className={styles.submitAlert}
-            severity="success"
-            maxWidth={false}
-            variant="filled"
-            sx={{ mb: 2 }}
-          >
-            Review added successfully
-          </Alert>
-        )}
-        <ReviewTable />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <div className={styles.addPhotoButton}>
-          <Button variant="outlined" onClick={() => setPhotoModal(true)}>
-            Add photo
-          </Button>
-        </div>
-        {showPhotosAlert && (
-          <Alert
-            className={styles.submitAlert}
-            severity="success"
-            maxWidth={false}
-            variant="filled"
-            sx={{ mb: 2 }}
-          >
-            Photo added successfully
-          </Alert>
-        )}
-        <div className={styles.parkImagesContainer}>
-          {parkDetails.images.map((imgDetails, i) => {
-            if (i === parkDetails.images.length - 1) {
-              return <Photo url={imgDetails.url} className={styles.lastImg} />;
-            } else {
-              return <Photo url={imgDetails.url} />;
-            }
-          })}
-        </div>
-      </TabPanel>
-      {reviewModal && (
-        <ReviewsModal setVisible={setReviewModal} setAlert={setReviewsAlert} />
-      )}
-      {photoModal && (
-        <PhotosModal setVisible={setPhotoModal} setAlert={setPhotosAlert} />
-      )}
-    </div>
-  );
+	useEffect(() => {
+		if (showPhotosAlert) {
+			setTimeout(() => {
+				setPhotosAlert(false);
+			}, 4000);
+		}
+	}, [showPhotosAlert]);
+
+	if (!parkDetails) {
+		return <div>loading...</div>;
+	}
+
+	return (
+		<div className={styles.photosAndReviewsWrapper}>
+			<Tabs
+				value={value}
+				style={{ display: "flex", justifyContent: "center" }}
+				onChange={handleChange}
+				aria-label="basic tabs example">
+				<Tab label="Reviews" />
+				<Tab label="Photos" />
+			</Tabs>
+
+			<TabPanel value={value} index={0}>
+				<div className={styles.addReviewButton}>
+					<Button variant="outlined" onClick={() => setReviewModal(true)}>
+						Add review
+					</Button>
+				</div>
+				{showReviewsAlert && (
+					<Alert
+						className={styles.submitAlert}
+						severity="success"
+						maxWidth={false}
+						variant="filled"
+						sx={{ mb: 2 }}>
+						Review added successfully
+					</Alert>
+				)}
+				<ReviewTable />
+			</TabPanel>
+			<TabPanel value={value} index={1}>
+				<div className={styles.addPhotoButton}>
+					<Button variant="outlined" onClick={() => setPhotoModal(true)}>
+						Add photo
+					</Button>
+				</div>
+				{showPhotosAlert && (
+					<Alert
+						className={styles.submitAlert}
+						severity="success"
+						maxWidth={false}
+						variant="filled"
+						sx={{ mb: 2 }}>
+						Photo added successfully
+					</Alert>
+				)}
+				<div className={styles.parkImagesContainer}>
+					{parkDetails.images.map((imgDetails, i) => {
+						if (i === parkDetails.images.length - 1) {
+							return <Photo url={imgDetails.url} className={styles.lastImg} />;
+						} else {
+							return <Photo url={imgDetails.url} />;
+						}
+					})}
+				</div>
+			</TabPanel>
+			{reviewModal && (
+				<ReviewsModal setVisible={setReviewModal} setAlert={setReviewsAlert} />
+			)}
+			{photoModal && (
+				<PhotosModal setVisible={setPhotoModal} setAlert={setPhotosAlert} />
+			)}
+		</div>
+	);
 }
