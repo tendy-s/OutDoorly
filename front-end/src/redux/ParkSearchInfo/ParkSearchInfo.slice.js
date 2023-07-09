@@ -9,6 +9,10 @@ export const A_TO_Z_SORTING = "A_Z_SORT";
 
 export const Z_TO_A_SORTING = "Z_A_SORT";
 
+export const INCREASING = "INCREASING";
+
+export const DECREASING = "DECREASING";
+
 const DEFAULT_REVIEWS = [
   {
     id: 1,
@@ -70,6 +74,7 @@ const DEFAULT_REVIEWS = [
 
 const INITIAL_STATE = {
   loading: false,
+  searchMode: undefined,
   searchActivities: [],
   searchStates: [],
   searchAmenities: [],
@@ -77,17 +82,21 @@ const INITIAL_STATE = {
   searchDistance: undefined,
   activityOptions: [],
   searchResults: [],
-  selectedParkCode: undefined,
+  selectedParkID: undefined,
   parkDetails: undefined,
   currReviewID: 4,
   sortDir: A_TO_Z_SORTING,
   currImageID: 1,
+  distanceSortDir: INCREASING,
 };
 
 const parkSearchSlice = createSlice({
   name: "parkSearchInfo",
   initialState: INITIAL_STATE,
   reducers: {
+    setSearchMode: (state, action) => {
+      state.searchMode = action.payload;
+    },
     setSearchActivities: (state, action) => {
       state.searchActivities = action.payload;
     },
@@ -103,8 +112,8 @@ const parkSearchSlice = createSlice({
     setSearchAmenities: (state, action) => {
       state.searchAmenities = action.payload;
     },
-    setSelectedParkCode: (state, action) => {
-      state.selectedParkCode = action.payload;
+    setSelectedParkID: (state, action) => {
+      state.selectedParkID = action.payload;
     },
     submitUserReview: (state, action) => {
       state.parkDetails.userReviews.push({
@@ -123,6 +132,10 @@ const parkSearchSlice = createSlice({
     toggleSort: (state) => {
       state.sortDir =
         state.sortDir === A_TO_Z_SORTING ? Z_TO_A_SORTING : A_TO_Z_SORTING;
+    },
+    toggleDistanceSort: (state) => {
+      state.distanceSortDir =
+        state.distanceSortDir === INCREASING ? DECREASING : INCREASING;
     },
   },
   extraReducers: (builder) => {
@@ -144,7 +157,8 @@ const parkSearchSlice = createSlice({
       })
       .addCase(searchForParks.fulfilled, (state, action) => {
         state.loading = false;
-        state.searchResults = action.payload.data;
+        console.log("ACTION ", action);
+        state.searchResults = action.payload;
       })
       .addCase(searchForParks.rejected, (state) => {
         state.loading = false;
@@ -154,7 +168,7 @@ const parkSearchSlice = createSlice({
       })
       .addCase(retrieveParkDetails.fulfilled, (state, action) => {
         state.loading = false;
-        state.parkDetails = action.payload.data[0];
+        state.parkDetails = action.payload;
         state.parkDetails.userReviews = DEFAULT_REVIEWS;
       })
       .addCase(retrieveParkDetails.rejected, (state) => {
@@ -164,15 +178,17 @@ const parkSearchSlice = createSlice({
 });
 
 export const {
+  setSearchMode,
   setSearchActivities,
   setSearchAmenities,
   setSearchStates,
-  setSelectedParkCode,
+  setSelectedParkID,
   setSearchCity,
   setSearchDistance,
   submitUserReview,
   submitUserImage,
   toggleSort,
+  toggleDistanceSort,
 } = parkSearchSlice.actions;
 
 export default parkSearchSlice.reducer;

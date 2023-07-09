@@ -3,7 +3,10 @@ import {
   getActivitiesRoute,
   getActivitiesSearchRoute,
   getAmenitiesRoute,
+  getAppActivitiesSearchRoute,
+  getAppParkDetailsRoute,
   getParkDetailsRoute,
+  getProximitySearchRoute,
 } from "../routes";
 
 export function getActivities() {
@@ -19,6 +22,16 @@ export function getParksByActivity(activites) {
   return axios.get(url);
 }
 
-export function getParkDetails(parkCode) {
-  return axios.get(getParkDetailsRoute(parkCode));
+export function getParksByProximity(city, state, radius, sortDir) {
+  return axios.get(getProximitySearchRoute(city, state, radius, sortDir));
+}
+
+export function getParksByPreferences(activities, usStates, amenities, sort) {
+  return axios.get(
+    getAppActivitiesSearchRoute(usStates, activities, amenities, sort)
+  );
+}
+
+export function getParkDetails(id) {
+  return axios.get(getAppParkDetailsRoute(id));
 }

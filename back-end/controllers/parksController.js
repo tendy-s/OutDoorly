@@ -12,31 +12,35 @@ const DAOS = require("./daos/parks.js");
 
 const getParksStateAndActivities = async (req, res) => {
   try {
-
     let selectedActivities;
     let selectedAmenities;
     let selectedState;
     let sortBy;
 
-    if (req.query.activities){
-       selectedActivities = req.query.activities;
+    if (req.query.activities) {
+      selectedActivities = req.query.activities;
     }
 
-    if (req.query.amenities){
-       selectedAmenities = req.query.amenities;
+    if (req.query.amenities) {
+      selectedAmenities = req.query.amenities;
     }
 
-    if (req.query.state){
+    if (req.query.state) {
       selectedState = req.query.state;
     }
 
-    if (req.query.sortBy){
+    if (req.query.sortBy) {
       sortBy = req.query.sortBy;
     }
 
-    const result = await DAOS.getParks(selectedActivities, selectedAmenities, selectedState, sortBy);
+    const result = await DAOS.getParks(
+      selectedActivities,
+      selectedAmenities,
+      selectedState,
+      sortBy
+    );
     console.log(result);
-  
+
     return res.status(200).json(result);
   } catch (err) {
     console.log(err);
@@ -44,28 +48,24 @@ const getParksStateAndActivities = async (req, res) => {
   }
 };
 
-const getParkDetails = async (req, res) =>{
-
+const getParkDetails = async (req, res) => {
   console.log(req.params.id);
 
-  if (!req.params.id || req.params.id === ":id"){
-    return res.status(400).json({error: "Id param must be provided."});
+  if (!req.params.id || req.params.id === ":id") {
+    return res.status(400).json({ error: "Id param must be provided." });
   }
 
   const objId = req.params.id;
 
-  try{
-
+  try {
     const result = await DAOS.getParkDetails(objId);
     console.log(result);
 
     return res.status(200).json(result);
-
-  }catch(err){
+  } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal database error." });
   }
+};
 
-}
-
-module.exports = {getParksStateAndActivities, getParkDetails};
+module.exports = { getParksStateAndActivities, getParkDetails };
