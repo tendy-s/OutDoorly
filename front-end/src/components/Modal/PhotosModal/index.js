@@ -3,8 +3,9 @@ import { useRef } from "react";
 import { Modal, Fade, Box, Typography, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from "./photos-modal.module.scss";
-import { useDispatch } from "react-redux";
-import { submitUserImage } from "../../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { postParkImage } from "../../../redux/ParkDetails/ParkDetails.thunks";
+
 
 export default function PhotosModal(props) {
   const setVisible = props.setVisible;
@@ -31,7 +32,7 @@ export default function PhotosModal(props) {
 
   function handleSubmit() {
     setVisible(false);
-    dispatch(submitUserImage({ url: URL.createObjectURL(uploadedFiles[0]) }));
+    dispatch(postParkImage(URL.createObjectURL(Array.from(uploadedFiles)[0])));
     props.setAlert(true);
   }
 

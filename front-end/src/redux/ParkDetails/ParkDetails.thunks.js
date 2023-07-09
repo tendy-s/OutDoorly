@@ -44,7 +44,7 @@ export const postParkImage = createAsyncThunk(
   "parkDetails/postImage",
   async (image, thunkApi) => {
     const state = thunkApi.getState();
-    const res = await postImage(state.parkDetails.details["_id"]).then(() => {
+    const res = await postImage(state.parkDetails.details["_id"], image).then(() => {
       return getImage(state.parkDetails.details.id);
     });
     return res.data.images;
@@ -56,7 +56,7 @@ export const retrieveParkImages = createAsyncThunk(
   async (_, thunkApi) => {
     const state = thunkApi.getState();
     const res = await getImage(state.parkDetails.details["_id"]);
-    const images = res.data.images;
+    const images = res.data;
     return images;
   }
 );

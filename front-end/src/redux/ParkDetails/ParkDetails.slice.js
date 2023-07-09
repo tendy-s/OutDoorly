@@ -11,9 +11,7 @@ import { DEFAULT_REVIEWS } from "./defaultReviews";
 const INITIAL_STATE = {
   details: undefined,
   userReviews: [],
-	userImages: [],
-  currImageID: 1,
-  currReviewID: 4,
+  userImages: [],
   loading: false,
 };
 

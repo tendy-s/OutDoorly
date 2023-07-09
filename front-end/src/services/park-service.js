@@ -5,10 +5,9 @@ import {
   getAmenitiesRoute,
   getAppActivitiesSearchRoute,
   getAppParkDetailsRoute,
-  getParkDetailsRoute,
   getProximitySearchRoute,
   getReviewRoute,
-	getImageRoute
+  getImageRoute,
 } from "../routes";
 
 export function getActivities() {
@@ -55,11 +54,13 @@ export function getImage(id) {
   return axios.get(getImageRoute(id));
 }
 
-
 export function postImage(id, image) {
-return axios({
-	method: "post",
-	url: getImageRoute(id),
-	data: image
-});
+  console.log(image);
+  var imageData= new FormData();
+  imageData.append("image-upload", image);
+  return axios({
+    method: "post",
+    url: getImageRoute(id),
+    data: imageData,
+  });
 }

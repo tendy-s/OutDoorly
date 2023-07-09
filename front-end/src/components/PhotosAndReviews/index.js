@@ -11,11 +11,14 @@ import Photo from "./Photo";
 import Alert from "@mui/material/Alert";
 import { useDispatch, useSelector } from "react-redux";
 
-import { retrieveParkReviews } from "../../redux/ParkDetails/ParkDetails.thunks";
+import {
+  retrieveParkImages,
+  retrieveParkReviews,
+} from "../../redux/ParkDetails/ParkDetails.thunks";
 
 export default function PhotosAndReviews() {
   const { parkCode } = useParams();
-  const parkDetails = useSelector((store) => store.parkDetails.details);
+  const park = useSelector((store) => store.parkDetails);
   const [value, setValue] = useState(0);
 
   const [photoModal, setPhotoModal] = useState(false);
@@ -32,12 +35,19 @@ export default function PhotosAndReviews() {
   };
 
   useEffect(() => {
-    dispatch(retrieveParkReviews(parkCode));
-  }, []);
+    console.log(images);
+  }, [images]);
 
   useEffect(() => {
-    setImages([...parkDetails.images, parkDetails.userImages]);
-  }, [parkDetails]);
+    setImages(park?.details.images.concat(park.userImages));
+  }, [park.userImages, park.details]);
+
+  useEffect(() => {
+    if (park.details) {
+      dispatch(retrieveParkReviews(parkCode));
+      dispatch(retrieveParkImages(park.details["_id"]));
+    }
+  }, []);
 
   useEffect(() => {
     if (showReviewsAlert) {
@@ -55,7 +65,7 @@ export default function PhotosAndReviews() {
     }
   }, [showPhotosAlert]);
 
-  if (!parkDetails) {
+  if (!park.details) {
     return <div>loading...</div>;
   }
 
@@ -106,8 +116,14 @@ export default function PhotosAndReviews() {
         )}
         <div className={styles.parkImagesContainer}>
           {images.map((imgDetails, i) => {
-            if (i === parkDetails.images.length - 1) {
-              return <Photo key={i} url={imgDetails.url} className={styles.lastImg} />;
+            if (i === images.length - 1) {
+              return (
+                <Photo
+                  key={i}
+                  url={imgDetails?.url}
+                  className={styles.lastImg}
+                />
+              );
             } else {
               return <Photo key={i} url={imgDetails.url} />;
             }
