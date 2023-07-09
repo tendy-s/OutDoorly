@@ -10,9 +10,7 @@ import { Rating } from "@mui/material";
 import { useSelector } from "react-redux";
 
 export function ReviewTable() {
-  const reviews = useSelector(
-    (store) => store.parkDetails.details.userReviews
-  );
+  const reviews = useSelector((store) => store.parkDetails.userReviews);
   return (
     <List className={styles.reviewsList}>
       {reviews.map(
@@ -26,7 +24,7 @@ export function ReviewTable() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={userName} secondary={<p>{comment}</p>} />
-                <Rating name="read-only" value={experienceRating} readOnly />
+                <Rating value={parseInt(experienceRating)} readOnly />
               </ListItem>
               {idx !== reviews.length - 1 && (
                 <Divider variant="inset" component="li" />

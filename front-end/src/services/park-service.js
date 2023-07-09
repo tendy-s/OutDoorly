@@ -8,6 +8,7 @@ import {
   getParkDetailsRoute,
   getProximitySearchRoute,
   getReviewRoute,
+	getImageRoute
 } from "../routes";
 
 export function getActivities() {
@@ -42,10 +43,23 @@ export function getReview(id) {
   return axios.get(getReviewRoute(id));
 }
 
-export function postReview(id) {
+export function postReview(id, review) {
   return axios({
     method: "post",
     url: getReviewRoute(id),
-    data: {},
+    data: review,
   });
+}
+
+export function getImage(id) {
+  return axios.get(getImageRoute(id));
+}
+
+
+export function postImage(id, image) {
+return axios({
+	method: "post",
+	url: getImageRoute(id),
+	data: image
+});
 }

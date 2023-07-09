@@ -23,7 +23,11 @@ export function getAppParkDetailsRoute(id) {
 }
 
 export function getReviewRoute(id) {
-  return `${APP_API_BASE_ROUTE}/reviews/${id}`;
+  return `${APP_API_BASE_ROUTE}/parks/review/${id}`;
+}
+
+export function getImageRoute(id) {
+  return `${APP_API_BASE_ROUTE}/parks/images/${id}`;
 }
 
 // national parks API
