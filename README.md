@@ -32,8 +32,8 @@ Have national parks recommended based on personal preferences and athletic abili
 
 
 ### What is some additional functionality you can add/remove based on time constraints?
-Smarter filtering based on preferences or amenities 
-Marking parks based on popularity
+- Smarter filtering based on preferences or amenities 
+- Marking parks based on popularity
 
 ### Project task requirements: 
 #### 3-5 minimal requirements (will definitely complete) 
