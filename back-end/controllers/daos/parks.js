@@ -1,5 +1,5 @@
 const { getModelForCollection } = require("../../shared/mongoose");
-const ObjectId = require("mongoose").Types.ObjectId;
+const {paginateData} = require('../../shared/pagination')
 const util = require("util");
 const fs = require("fs");
 
@@ -54,7 +54,10 @@ const getParks = async (
   selectedActivities,
   selectedAmenities,
   state,
-  sortBy = ""
+  sortBy = "", 
+  offset,
+  limit,
+  page
 ) => {
   const parks = await getModelForCollection("parksSchema");
 
@@ -93,12 +96,19 @@ const getParks = async (
     sorting.fullName = sortBy;
   }
 
-  const result = await parks
-    .find(queryBuilder)
-    .select(queryProjection)
-    .sort(sorting);
+  const query = parks
+  .find(queryBuilder)
+  .select(queryProjection)
+  .sort(sorting)
+  .limit(limit)
+  .skip(offset)
+  const data = await query.exec()
 
-  console.log(result);
+  const countQuery = parks
+  .find(queryBuilder)
+  .select(queryProjection)
+  const result = await paginateData(parks, countQuery, data, page, limit)
+
   return result;
 };
 
@@ -108,7 +118,7 @@ const getParkDetails = async (id) => {
     "fullName parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees";
 
   const result = await parks.findById(id).select(queryProjection);
-  console.log(result);
+  // console.log(result);
   return result;
 };
 
@@ -169,7 +179,7 @@ const retrieveImages = async (id) => {
     throw new Error(`No image found with ID ${id}`);
   }
 
-  console.log(park);
+  // console.log(park);
 
   if (park.userImages) {
     return park.userImages;
