@@ -7,6 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
 import { Rating } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 
 export function ReviewTable() {
@@ -25,6 +26,7 @@ export function ReviewTable() {
                 </ListItemAvatar>
                 <ListItemText primary={userName} secondary={<p>{comment}</p>} />
                 <Rating value={parseInt(experienceRating)} readOnly />
+                <Delete className={styles.reviewsDelete} />
               </ListItem>
               {idx !== reviews.length - 1 && (
                 <Divider variant="inset" component="li" />

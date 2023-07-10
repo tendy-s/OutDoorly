@@ -56,11 +56,12 @@ export function getImage(id) {
 
 export function postImage(id, image) {
   console.log(image);
-  var imageData= new FormData();
+  var imageData = new FormData();
   imageData.append("image-upload", image);
   return axios({
     method: "post",
     url: getImageRoute(id),
     data: imageData,
+    headers: { "Content-Type": "multipart/form-data" },
   });
 }

@@ -20,7 +20,6 @@ export default function ParkDetails() {
   };
 
   useEffect(() => {
-    console.log("SETTING ID ", id);
     dispatch(setSelectedParkID(id));
     dispatch(retrieveParkDetails());
   }, []);

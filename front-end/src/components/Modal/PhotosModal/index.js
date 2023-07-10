@@ -6,7 +6,6 @@ import styles from "./photos-modal.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { postParkImage } from "../../../redux/ParkDetails/ParkDetails.thunks";
 
-
 export default function PhotosModal(props) {
   const setVisible = props.setVisible;
   const [open] = useState(true);
@@ -32,7 +31,8 @@ export default function PhotosModal(props) {
 
   function handleSubmit() {
     setVisible(false);
-    dispatch(postParkImage(URL.createObjectURL(Array.from(uploadedFiles)[0])));
+    // dispatch(postParkImage(URL.createObjectURL(Array.from(uploadedFiles)[0])));
+    dispatch(postParkImage(Array.from(uploadedFiles)[0]));
     props.setAlert(true);
   }
 

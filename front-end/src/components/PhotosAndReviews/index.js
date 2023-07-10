@@ -35,10 +35,6 @@ export default function PhotosAndReviews() {
   };
 
   useEffect(() => {
-    console.log(images);
-  }, [images]);
-
-  useEffect(() => {
     setImages(park?.details.images.concat(park.userImages));
   }, [park.userImages, park.details]);
 
@@ -121,6 +117,7 @@ export default function PhotosAndReviews() {
                 <Photo
                   key={i}
                   url={imgDetails?.url}
+				  likes={imgDetails.favouritedCount}
                   className={styles.lastImg}
                 />
               );

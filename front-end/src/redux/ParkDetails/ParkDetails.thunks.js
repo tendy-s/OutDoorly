@@ -44,10 +44,12 @@ export const postParkImage = createAsyncThunk(
   "parkDetails/postImage",
   async (image, thunkApi) => {
     const state = thunkApi.getState();
-    const res = await postImage(state.parkDetails.details["_id"], image).then(() => {
-      return getImage(state.parkDetails.details.id);
-    });
-    return res.data.images;
+    const res = await postImage(state.parkDetails.details["_id"], image).then(
+      () => {
+        return getImage(state.parkDetails.details["_id"]);
+      }
+    );
+    return res.data;
   }
 );
 
