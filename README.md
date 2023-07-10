@@ -20,15 +20,15 @@ Users provide reviews on their personal experience with different national parks
 
 
 ### What type of data will it store?
-User reviews
-User submitted photos
-User accounts (potentially)
+- User reviews
+- User submitted photos
+- User accounts (potentially)
 
  
 ### What will users be able to do with this data? 
-Decide on a suitable national park to visit 
-Share their national park experience with others
-Have national parks recommended based on personal preferences and athletic ability 
+- Decide on a suitable national park to visit 
+- Share their national park experience with others
+- Have national parks recommended based on personal preferences and athletic ability 
 
 
 ### What is some additional functionality you can add/remove based on time constraints?
