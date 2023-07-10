@@ -44,19 +44,18 @@ Marking parks based on popularity
 
 
 #### 3-7 "standard" requirements (will most likely complete) 
-- Ability to filter/ search results
+- Ability to filter/sort search results
 - Show map location of selected park
 - Ability to see more detailed info (e.g. fees, hours) regarding each national park 
-- Find national parks that are having events in the next month
 - Ability to locate parks by amenities offered
 
 
 #### 2-3 stretch requirements (plan to complete at least 1!) 
-- Leverage ChatGPT
 - Alert users if the park they are in experiences an emergency situation
 - Ability to locate parks by proximity
 - Popular pictures get shown ahead of others
-- User profiles
+- User login
+- Find national parks that are having events in the next month
 
 ### Pick 2 of your minimal requirements and break each of them down into ~2-5 smaller tasks! 
 #### This will help you divide up work among your teammates 
