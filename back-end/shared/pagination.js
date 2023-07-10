@@ -7,19 +7,24 @@ const getPagination = (page, size) => {
     return { limit, offset };
   };
   
-  //Given data page and limit, generate current page and total # of pages info
+  //Given data model,data, page and limit, generate current page and total # of pages info
   // return provided data with added pagination info
-  const getPagingData = (data, page, limit = 1) => {
-    if (Array.isArray(data.count)) {
-      data.count = data.count.length;
-      data.totalPages = Math.ceil(data.count.length / limit);
+  const paginateData = async (model, query, data, page, limit = 1) => {
+    const result = {
+      data: data,
     }
-    data.currentPage = page ? page : 1;
-    data.totalPages = Math.ceil(data.count / limit);
-    return data;
-  };
+    const totalCount = await model.countDocuments(query)
+    result.count = totalCount
+    result.currentPage = page ? page : 1;
+    result.totalPages = Math.ceil(result.count / limit);
+
+    console.log(result)
+    return result;
+    
+  }
   
   module.exports = {
     getPagination: getPagination,
-    getPagingData: getPagingData,
+    paginateData: paginateData,
+
   };
