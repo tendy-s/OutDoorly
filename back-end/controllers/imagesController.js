@@ -2,7 +2,7 @@ const { S3 } = require("@aws-sdk/client-s3");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const DAOS = require("./daos/parks.js");
-require('dotenv').config();
+require("dotenv").config();
 
 const s3 = new S3({
   credentials: {
@@ -17,11 +17,12 @@ const uploadHelper = (bucketName) =>
     storage: multerS3({
       s3: s3,
       bucket: bucketName,
+      // acl: "public-read",
       metadata: function (req, file, cb) {
         cb(null, { fieldName: file.fieldname });
       },
       key: function (req, file, cb) {
-        cb(null, `${Date.now()}.jpeg`);
+        cb(null, `doc/${Date.now()}.jpeg`);
       },
     }),
   });
@@ -32,7 +33,7 @@ const uploadImage = async (req, res) => {
       return res.status(400).json({ error: "Id param must be provided." });
     }
 
-    const uploadSingle = uploadHelper("outdoorlyphotos").single("image-upload");
+    const uploadSingle = uploadHelper('outdoorly').single("image-upload");
 
     uploadSingle(req, res, async (err) => {
       if (err)

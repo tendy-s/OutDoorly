@@ -20,20 +20,20 @@ Users provide reviews on their personal experience with different national parks
 
 
 ### What type of data will it store?
-User reviews
-User submitted photos
-User accounts (potentially)
+- User reviews
+- User submitted photos
+- User accounts (potentially)
 
  
 ### What will users be able to do with this data? 
-Decide on a suitable national park to visit 
-Share their national park experience with others
-Have national parks recommended based on personal preferences and athletic ability 
+- Decide on a suitable national park to visit 
+- Share their national park experience with others
+- Have national parks recommended based on personal preferences and athletic ability 
 
 
 ### What is some additional functionality you can add/remove based on time constraints?
-Smarter filtering based on preferences or amenities 
-Marking parks based on popularity
+- Smarter filtering based on preferences or amenities 
+- Marking parks based on popularity
 
 ### Project task requirements: 
 #### 3-5 minimal requirements (will definitely complete) 
@@ -44,19 +44,18 @@ Marking parks based on popularity
 
 
 #### 3-7 "standard" requirements (will most likely complete) 
-- Ability to filter/ search results
+- Ability to filter/sort search results
 - Show map location of selected park
 - Ability to see more detailed info (e.g. fees, hours) regarding each national park 
-- Find national parks that are having events in the next month
 - Ability to locate parks by amenities offered
 
 
 #### 2-3 stretch requirements (plan to complete at least 1!) 
-- Leverage ChatGPT
 - Alert users if the park they are in experiences an emergency situation
 - Ability to locate parks by proximity
 - Popular pictures get shown ahead of others
-- User profiles
+- User login
+- Find national parks that are having events in the next month
 
 ### Pick 2 of your minimal requirements and break each of them down into ~2-5 smaller tasks! 
 #### This will help you divide up work among your teammates 
