@@ -5,7 +5,6 @@ export const A_TO_Z_SORTING = "A_Z_SORT";
 
 export const Z_TO_A_SORTING = "Z_A_SORT";
 
-
 export const INCREASING = "INCREASING";
 
 export const DECREASING = "DECREASING";
@@ -23,6 +22,7 @@ const INITIAL_STATE = {
   selectedParkID: undefined,
   sortDir: A_TO_Z_SORTING,
   distanceSortDir: INCREASING,
+  currPage: 1,
 };
 
 const parkSearchSlice = createSlice({
@@ -49,6 +49,9 @@ const parkSearchSlice = createSlice({
     },
     setSelectedParkID: (state, action) => {
       state.selectedParkID = action.payload;
+    },
+    setPageNumber: (state, action) => {
+      state.currPage = action.payload;
     },
     toggleSort: (state) => {
       state.sortDir =
@@ -99,6 +102,7 @@ export const {
   submitUserImage,
   toggleSort,
   toggleDistanceSort,
+  setPageNumber,
 } = parkSearchSlice.actions;
 
 export default parkSearchSlice.reducer;

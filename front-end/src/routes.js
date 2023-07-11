@@ -22,9 +22,10 @@ export function getAppActivitiesSearchRoute(
   state,
   activities,
   amenities,
-  sort
+  sort,
+  page
 ) {
-  return `${APP_API_BASE_ROUTE}/parks/?state=${state}${activities}${amenities}${sort}`;
+  return `${APP_API_BASE_ROUTE}/parks/?state=${state}${activities}${amenities}${sort}&page=${page}&size=${1}`;
 }
 
 export function getAppParkDetailsRoute(id) {

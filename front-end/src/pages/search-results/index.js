@@ -31,7 +31,11 @@ export default function SearchResults() {
     console.log(searchCity, searchDistance);
   }, [sortDir, distanceSortDir]);
 
-  if (searchResults && searchResults.length === 0) {
+  if (
+    !searchResults ||
+    !searchResults?.data ||
+    searchResults?.data?.length === 0
+  ) {
     return (
       <div className={styles.noResults}>
         <img

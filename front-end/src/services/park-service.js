@@ -28,9 +28,15 @@ export function getParksByProximity(city, state, radius, sortDir) {
   return axios.get(getProximitySearchRoute(city, state, radius, sortDir));
 }
 
-export function getParksByPreferences(activities, usStates, amenities, sort) {
+export function getParksByPreferences(
+  activities,
+  usStates,
+  amenities,
+  sort,
+  page
+) {
   return axios.get(
-    getAppActivitiesSearchRoute(usStates, activities, amenities, sort)
+    getAppActivitiesSearchRoute(usStates, activities, amenities, sort, page)
   );
 }
 

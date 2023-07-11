@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@aws-sdk/client-sns": "^3.363.0",
     "aws-sdk": "^2.1409.0",
     "aws-sdk-js-codemod": "^0.14.1",
     "axios": "^1.4.0",

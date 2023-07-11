@@ -24,20 +24,17 @@ export const searchForParks = createAsyncThunk(
     if (state.parkSearchInfo.searchMode === "PREFERENCES") {
       let sort =
         state.parkSearchInfo.sortDir === Z_TO_A_SORTING ? "&sortBy=desc" : "";
-      try {
-        res = await getParksByPreferences(
-          state.parkSearchInfo.searchActivities
-            .map((activity) => `&activities[]=${activity.label}`)
-            .join(""),
-          state.parkSearchInfo.searchStates.value,
-          state.parkSearchInfo.searchAmenities
-            .map((amenity) => `&amenities[]=${amenity.label}`)
-            .join(""),
-          sort
-        );
-      } catch (e) {
-        console.log("ERROR ", e);
-      }
+      res = await getParksByPreferences(
+        state.parkSearchInfo.searchActivities
+          .map((activity) => `&activities[]=${activity.label}`)
+          .join(""),
+        state.parkSearchInfo.searchStates.value,
+        state.parkSearchInfo.searchAmenities
+          .map((amenity) => `&amenities[]=${amenity.label}`)
+          .join(""),
+        sort,
+        state.parkSearchInfo.currPage
+      );
     } else {
       console.log(
         "Search city",

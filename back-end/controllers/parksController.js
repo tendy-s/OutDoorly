@@ -12,7 +12,7 @@ const DAOS = require("./daos/parks.js");
 */
 
 const getParksStateAndActivities = async (req, res) => {
-  const page = req.query.page
+  const page = Number(req.query.page)
   const size = req.query.size
   if (page - 1 < 0) {
     return null;
