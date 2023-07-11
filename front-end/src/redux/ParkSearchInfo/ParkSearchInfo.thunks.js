@@ -32,7 +32,8 @@ export const searchForParks = createAsyncThunk(
         state.parkSearchInfo.searchAmenities
           .map((amenity) => `&amenities[]=${amenity.label}`)
           .join(""),
-        sort
+        sort,
+        state.parkSearchInfo.currPage
       );
     } else {
       console.log(
