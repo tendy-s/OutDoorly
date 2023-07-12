@@ -1,4 +1,5 @@
 // import { getParks } from "./daos/parks.js";
+const { getPagingData, getPagination } = require("../shared/pagination.js");
 const DAOS = require("./daos/parks.js");
 
 /*  Returns the information associated with parks that contain ALL 
@@ -11,6 +12,15 @@ const DAOS = require("./daos/parks.js");
 */
 
 const getParksStateAndActivities = async (req, res) => {
+  const page = req.query.page
+  const size = req.query.size
+  if (page - 1 < 0) {
+    return null;
+  }
+  if (size <= 0) {
+    return null;
+  }
+  const { offset, limit } = getPagination(page, size);
   try {
     let selectedActivities;
     let selectedAmenities;
@@ -37,10 +47,12 @@ const getParksStateAndActivities = async (req, res) => {
       selectedActivities,
       selectedAmenities,
       selectedState,
-      sortBy
+      sortBy, 
+      offset, 
+      limit,
+      page
     );
-    console.log(result);
-
+    // console.log(result)
     return res.status(200).json(result);
   } catch (err) {
     console.log(err);
@@ -59,7 +71,7 @@ const getParkDetails = async (req, res) => {
 
   try {
     const result = await DAOS.getParkDetails(objId);
-    console.log(result);
+    // console.log(result);
 
     return res.status(200).json(result);
   } catch (err) {
