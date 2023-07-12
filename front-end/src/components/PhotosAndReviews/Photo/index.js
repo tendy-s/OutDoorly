@@ -12,13 +12,10 @@ const photoStyle = {
   },
 };
 
-const likes = 99;
 
 export default function Photo(props) {
   const [hovered, setHovered] = useState(false);
   const [favourited, setFavourited] = useState(false);
-
-  useEffect(() => {}, [favourited]);
 
   return (
     <div
@@ -41,7 +38,7 @@ export default function Photo(props) {
       {!hovered && (
         <div className={styles.favourites}>
           <FavoriteIcon />
-          <div>{likes}</div>
+          <div>{props.likes}</div>
         </div>
       )}
     </div>

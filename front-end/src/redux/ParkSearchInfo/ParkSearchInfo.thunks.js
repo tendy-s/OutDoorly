@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getActivities,
-  getParkDetails,
   getParksByPreferences,
   getParksByProximity,
 } from "../../services/park-service";

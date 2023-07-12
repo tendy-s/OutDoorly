@@ -6,21 +6,20 @@ import { TabPanel } from "../../components/ParkDetailsTabPanel";
 import PhotosAndReviews from "../../components/PhotosAndReviews";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedParkID } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
-import { retrieveParkDetails } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
+import { retrieveParkDetails } from "../../redux/ParkDetails/ParkDetails.thunks";
 import ParkMap from "../../components/Map/index.js";
 
 export default function ParkDetails() {
   const { id } = useParams();
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
-  const parkDetails = useSelector((store) => store.parkSearchInfo.parkDetails);
+  const parkDetails = useSelector((store) => store.parkDetails.details);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   useEffect(() => {
-    console.log("SETTING ID ", id);
     dispatch(setSelectedParkID(id));
     dispatch(retrieveParkDetails());
   }, []);

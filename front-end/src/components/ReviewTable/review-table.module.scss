@@ -1,14 +1,22 @@
 .reviewsList {
-    width: 100%;
-    max-width: 100%;
-    background-color: white;
-    
-    .reviewsListItem {
-        align-items: flex-start;
-    }
-    
-    .reviewsAvatar {
-        background-color: teal;
-    }
-}
+  width: 100%;
+  max-width: 100%;
+  background-color: white;
 
+  .reviewsListItem {
+    align-items: flex-start;
+
+	.reviewsDelete {
+      margin-left: 1rem;
+	}
+
+    .reviewsDelete:hover {
+      cursor: pointer;
+      opacity: 0.75;
+    }
+  }
+
+  .reviewsAvatar {
+    background-color: teal;
+  }
+}

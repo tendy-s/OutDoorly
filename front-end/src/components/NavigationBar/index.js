@@ -3,6 +3,7 @@ import styles from "./navigation-bar.module.scss";
 import HikingIcon from "@mui/icons-material/Hiking";
 import { useNavigate } from "react-router-dom";
 import { getRoutes } from "../../routes";
+import { cyan } from "@mui/material/colors"
 
 export function NavigationBar() {
 	const navigate = useNavigate();

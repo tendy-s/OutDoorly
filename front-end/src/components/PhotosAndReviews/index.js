@@ -9,11 +9,16 @@ import styles from "./photos-and-reviews.module.scss";
 import { ReviewTable } from "../ReviewTable";
 import Photo from "./Photo";
 import Alert from "@mui/material/Alert";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  retrieveParkImages,
+  retrieveParkReviews,
+} from "../../redux/ParkDetails/ParkDetails.thunks";
 
 export default function PhotosAndReviews() {
   const { parkCode } = useParams();
-  const parkDetails = useSelector((store) => store.parkSearchInfo.parkDetails);
+  const park = useSelector((store) => store.parkDetails);
   const [value, setValue] = useState(0);
 
   const [photoModal, setPhotoModal] = useState(false);
@@ -21,9 +26,24 @@ export default function PhotosAndReviews() {
   const [showReviewsAlert, setReviewsAlert] = useState(false);
   const [showPhotosAlert, setPhotosAlert] = useState(false);
 
+  const [images, setImages] = useState([]);
+
+  const dispatch = useDispatch();
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    setImages(park?.details.images.concat(park.userImages));
+  }, [park.userImages, park.details]);
+
+  useEffect(() => {
+    if (park.details) {
+      dispatch(retrieveParkReviews(parkCode));
+      dispatch(retrieveParkImages(park.details["_id"]));
+    }
+  }, []);
 
   useEffect(() => {
     if (showReviewsAlert) {
@@ -41,7 +61,7 @@ export default function PhotosAndReviews() {
     }
   }, [showPhotosAlert]);
 
-  if (!parkDetails) {
+  if (!park.details) {
     return <div>loading...</div>;
   }
 
@@ -51,8 +71,7 @@ export default function PhotosAndReviews() {
         value={value}
         style={{ display: "flex", justifyContent: "center" }}
         onChange={handleChange}
-        aria-label="basic tabs example"
-      >
+        aria-label="basic tabs example">
         <Tab label="Reviews" />
         <Tab label="Photos" />
       </Tabs>
@@ -69,8 +88,7 @@ export default function PhotosAndReviews() {
             severity="success"
             maxWidth={false}
             variant="filled"
-            sx={{ mb: 2 }}
-          >
+            sx={{ mb: 2 }}>
             Review added successfully
           </Alert>
         )}
@@ -88,17 +106,23 @@ export default function PhotosAndReviews() {
             severity="success"
             maxWidth={false}
             variant="filled"
-            sx={{ mb: 2 }}
-          >
+            sx={{ mb: 2 }}>
             Photo added successfully
           </Alert>
         )}
         <div className={styles.parkImagesContainer}>
-          {parkDetails.images.map((imgDetails, i) => {
-            if (i === parkDetails.images.length - 1) {
-              return <Photo url={imgDetails.url} className={styles.lastImg} />;
+          {images.map((imgDetails, i) => {
+            if (i === images.length - 1) {
+              return (
+                <Photo
+                  key={i}
+                  url={imgDetails?.url}
+				  likes={imgDetails.favouritedCount}
+                  className={styles.lastImg}
+                />
+              );
             } else {
-              return <Photo url={imgDetails.url} />;
+              return <Photo key={i} url={imgDetails.url} />;
             }
           })}
         </div>

@@ -26,6 +26,7 @@ export default function PreferenceSearch() {
   const activities = useSelector(
     (store) => store.parkSearchInfo.activityOptions
   );
+
   const {
     handleSubmit,
     control,
@@ -48,6 +49,7 @@ export default function PreferenceSearch() {
     }
     populateAmenities();
   }, []);
+
 
   function onSubmitSearchForm({ activities, state, amenities }) {
     dispatch(setSearchMode("PREFERENCES"));
