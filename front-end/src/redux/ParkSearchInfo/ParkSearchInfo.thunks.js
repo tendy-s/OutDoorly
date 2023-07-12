@@ -42,12 +42,25 @@ export const searchForParks = createAsyncThunk(
       res = await getParksByProximity(
         state.parkSearchInfo.searchCity.split(", ")[0],
         state.parkSearchInfo.searchCity.split(", ")[1],
-        state.parkSearchInfo.searchDistance
+        state.parkSearchInfo.searchDistance,
+        state.parkSearchInfo.distanceSortDir
       );
     }
 
     console.log("RES ", res);
     // const res = await getParksByActivity(state.parkSearchInfo.searchActivities);
+    return res.data;
+  }
+);
+
+export const retrieveParkDetails = createAsyncThunk(
+  "parkSearchInfo/retrieveParkDetails",
+  async (_, thunkApi) => {
+    const state = thunkApi.getState();
+    console.log("PARK DETAILS FETCHING", state.parkSearchInfo.selectedParkID);
+
+    const res = await getParkDetails(state.parkSearchInfo.selectedParkID);
+    console.log("PARK DETAILS ", res);
     return res.data;
   }
 );

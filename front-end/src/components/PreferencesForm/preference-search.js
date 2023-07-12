@@ -15,11 +15,9 @@ import {
   setSearchMode,
   setSearchStates,
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+import { useForm, Controller } from "react-hook-form";
 
 export default function PreferenceSearch() {
-  const [selectedActivities, setSelectedActivities] = useState([]);
-  const [selectedStates, setSelectedStates] = useState([]);
-  const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [amenities, setAmenities] = useState([]);
 
   const dispatch = useDispatch();
@@ -28,6 +26,12 @@ export default function PreferenceSearch() {
   const activities = useSelector(
     (store) => store.parkSearchInfo.activityOptions
   );
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     dispatch(fetchParkActivities());
@@ -46,56 +50,106 @@ export default function PreferenceSearch() {
     populateAmenities();
   }, []);
 
-  function onSubmitSearch() {
+
+  function onSubmitSearchForm({ activities, state, amenities }) {
     dispatch(setSearchMode("PREFERENCES"));
-    dispatch(setSearchActivities(selectedActivities));
-    dispatch(setSearchStates(selectedStates));
-    dispatch(setSearchAmenities(selectedAmenities));
+    dispatch(setSearchActivities(activities));
+    dispatch(setSearchStates(state));
+    dispatch(setSearchAmenities(amenities));
     navigate(getRoutes().searchResults);
   }
 
   return (
-    <div className={styles.formWrapper}>
+    <form
+      className={styles.formWrapper}
+      onSubmit={handleSubmit(onSubmitSearchForm)}
+    >
       <Typography variant="h5" sx={{ mt: 4, mb: 2, fontWeight: "medium" }}>
-         Which activities are you interested in?
+        Which activities are you interested in?
+      </Typography>
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({ field: { onChange, value } }) => (
+          <Select
+            options={activities}
+            className={styles.selector}
+            value={value}
+            onChange={onChange}
+            isMulti
+            sx={{ mb: 2 }}
+            placeholder="Select some activities"
+          />
+        )}
+        name="activities"
+      />
+      {errors.activities && (
+        <Typography variant="p" style={{ color: "red" }}>
+          Please choose at least one activity.
+        </Typography>
+      )}
+      <Typography variant="h5" sx={{ mt: 4, mb: 2, fontWeight: "medium" }}>
+        Which amenities are you interested in?
       </Typography>
 
-      <Select
-        options={activities}
-        className={styles.selector}
-        onChange={(v) => setSelectedActivities(v)}
-        isMulti
-        sx={{ mb:2 }}
-        placeholder="Select some activities"
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({ field: { onChange, value } }) => (
+          <Select
+            options={amenities}
+            className={styles.selector}
+            value={value}
+            onChange={onChange}
+            isMulti
+            sx={{ mb: 2 }}
+            placeholder="Select some amenities"
+          />
+        )}
+        name="amenities"
       />
+      {errors.amenities && (
+        <Typography variant="p" style={{ color: "red" }}>
+          Please choose at least one amenity.
+        </Typography>
+      )}
 
       <Typography variant="h5" sx={{ mt: 4, mb: 2, fontWeight: "medium" }}>
-         Which amenities are you interested in?
+        Which state are you interested in visiting?
       </Typography>
 
-      <Select
-        options={amenities}
-        className={styles.selector}
-        onChange={(v) => setSelectedAmenities(v)}
-        isMulti
-        sx={{ mt: 4, mb: 1, fontWeight: "medium" }}
-        placeholder="Select some amenities"
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({ field: { onChange, value } }) => (
+          <Select
+            options={STATE_OPTIONS}
+            className={styles.selector}
+            value={value}
+            onChange={onChange}
+            sx={{ mb: 2 }}
+            placeholder="Select a state"
+          />
+        )}
+        name="state"
       />
-      <Typography variant="h5" sx={{ mt: 4, mb: 2, fontWeight: "medium" }}>
-         Which state are you interested in visiting?
-      </Typography>
+      {errors.state && (
+        <Typography variant="p" style={{ color: "red" }}>
+          Please choose a state.
+        </Typography>
+      )}
 
-      <Select
-        className={styles.selector}
-        options={STATE_OPTIONS}
-        onChange={(v) => setSelectedStates(v)}
-        placeholder="Select a state"
-      />
       <div className={styles.submitButton}>
-        <Button variant="contained" onClick={onSubmitSearch}>
+        <Button variant="contained" type="submit">
           Find parks
         </Button>
       </div>
-    </div>
+    </form>
   );
 }

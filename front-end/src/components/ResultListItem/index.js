@@ -8,6 +8,7 @@ export default function ResultListItem({
   parkID,
   description,
   images,
+  distance,
 }) {
   return (
     <div className={styles.parkContainer}>
@@ -15,8 +16,10 @@ export default function ResultListItem({
         <CardContent>
           <div
             className={styles.listItemWrapper}
-            onClick={() => (window.location.href = `/park-details/${parkID}`)}>
-            <h4>{fullName}</h4>
+            onClick={() => (window.location.href = `/park-details/${parkID}`)}
+          >
+            <h3>{fullName}</h3>
+            {distance && <h4>Distance: {distance.toFixed(2)} km</h4>}
             <div className={styles.resultsWrapper}>
               <img
                 className={styles.previewImage}

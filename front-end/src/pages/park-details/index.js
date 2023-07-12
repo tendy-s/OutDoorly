@@ -24,6 +24,9 @@ export default function ParkDetails() {
     dispatch(retrieveParkDetails());
   }, []);
 
+  useEffect(() => {
+    console.log(parkDetails);
+  });
   if (!parkDetails) {
     return <div> loading...</div>;
   }

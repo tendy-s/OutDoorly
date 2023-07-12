@@ -14,52 +14,91 @@ import {
 
 import Slider from "@mui/material/Slider";
 import PlacesAutoComplete from "../PlacesAutoComplete";
+import { useForm, Controller } from "react-hook-form";
 
 export default function DistanceSearch() {
-  const [distanceValue, setDistanceValue] = useState(45);
-  const [selectedCity, setSelectedCity] = useState("");
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      distance: 50,
+    },
+  });
 
-  function onSubmitDistanceSearch() {
+  function onSubmitDistanceSearch({ city, distance }) {
+    console.log("RES ", city);
     dispatch(setSearchMode("PROXIMITY"));
-    dispatch(setSearchCity(selectedCity));
-    dispatch(setSearchDistance(distanceValue));
+    dispatch(setSearchCity(city));
+    dispatch(setSearchDistance(distance));
     navigate(getRoutes().searchResults);
   }
-
-  const handleChange = (event, newValue) => {
-    setDistanceValue(newValue);
-  };
-
+  
   function valuetext(value) {
     return `${value}km`;
   }
 
   return (
-    <div className={styles.formWrapper}>
+className={styles.formWrapper}>
+    <form
+      className={styles.formWrapper}
+      onSubmit={handleSubmit(onSubmitDistanceSearch)}
+    >
+
       <Typography variant="h5" sx={{ mt: 3, mb: 2, fontWeight: "medium" }}>
         {" "}
         Which city are you located in?
       </Typography>
-      <PlacesAutoComplete onChange={setSelectedCity} />
+
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({ field: { onChange } }) => (
+          <PlacesAutoComplete onChange={onChange} />
+        )}
+        name="city"
+      />
+      {errors.city && (
+        <Typography variant="p" style={{ color: "red" }}>
+          Please enter a city
+        </Typography>
+      )}
       <Typography variant="h5" sx={{ mt: 3, mb: 2, fontWeight: "medium" }}>
         {" "}
         How far are you willing to travel? (in km)
       </Typography>
-
-      <Slider
-        className={styles.slider}
-        value={distanceValue}
-        onChange={handleChange}
-        getAriaValueText={valuetext}
-        valueLabelDisplay="on"
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+          validate: (v) => v > 0,
+        }}
+        render={({ field: { onChange, value } }) => (
+          <Slider
+            className={styles.slider}
+            value={value}
+            onChange={onChange}
+            getAriaValueText={valuetext}
+            valueLabelDisplay="on"
+            max={800}
+          />
+        )}
+        name="distance"
       />
+      {errors.distance && (
+        <Typography variant="p" style={{ color: "red" }}>
+          Please choose a non-zero distance in km
+        </Typography>
+      )}
 
-      <Button variant="contained" onClick={onSubmitDistanceSearch}>
+      <Button variant="contained" type="submit">
         Search parks
       </Button>
-    </div>
+    </form>
   );
 }

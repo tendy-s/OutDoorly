@@ -11,6 +11,7 @@ export default function ResultsListing({ searchResults }) {
             key={p.parkCode}
             fullName={p.fullName}
             parkID={p._id}
+            distance={p.distance}
             description={p.description}
             images={p.images}
           />
