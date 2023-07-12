@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRoutes } from "../../routes";
 import { useState } from "react";
-import Typography from "@mui/material/Typography"
+import Typography from "@mui/material/Typography";
 import styles from "./preferences-form.module.scss";
 
 import {
@@ -36,18 +36,16 @@ export default function DistanceSearch() {
     dispatch(setSearchDistance(distance));
     navigate(getRoutes().searchResults);
   }
-  
+
   function valuetext(value) {
     return `${value}km`;
   }
 
   return (
-className={styles.formWrapper}>
     <form
       className={styles.formWrapper}
       onSubmit={handleSubmit(onSubmitDistanceSearch)}
     >
-
       <Typography variant="h5" sx={{ mt: 3, mb: 2, fontWeight: "medium" }}>
         {" "}
         Which city are you located in?

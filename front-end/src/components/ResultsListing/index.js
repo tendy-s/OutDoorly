@@ -5,7 +5,7 @@ export default function ResultsListing({ searchResults }) {
   console.log("SEARCH RESULTS ", searchResults);
   return (
     <div>
-      {searchResults.map((p) => {
+      {searchResults.data.map((p) => {
         return (
           <ResultListItem
             key={p.parkCode}

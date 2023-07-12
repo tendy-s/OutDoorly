@@ -50,12 +50,11 @@ export default function PreferenceSearch() {
     populateAmenities();
   }, []);
 
-
   function onSubmitSearchForm({ activities, state, amenities }) {
     dispatch(setSearchMode("PREFERENCES"));
-    dispatch(setSearchActivities(activities));
+    dispatch(setSearchActivities(activities || []));
     dispatch(setSearchStates(state));
-    dispatch(setSearchAmenities(amenities));
+    dispatch(setSearchAmenities(amenities || []));
     navigate(getRoutes().searchResults);
   }
 
@@ -69,9 +68,6 @@ export default function PreferenceSearch() {
       </Typography>
       <Controller
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onChange, value } }) => (
           <Select
             options={activities}
@@ -96,9 +92,6 @@ export default function PreferenceSearch() {
 
       <Controller
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onChange, value } }) => (
           <Select
             options={amenities}
