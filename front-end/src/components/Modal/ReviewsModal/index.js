@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { submitUserReview } from "../../../redux/ParkDetails/ParkDetails.slice";
 import { postParkReview } from "../../../redux/ParkDetails/ParkDetails.thunks";
 
+
 export default function ReviewsModal(props) {
   const setVisible = props.setVisible;
   const [open, setOpen] = useState(true);
@@ -26,12 +27,13 @@ export default function ReviewsModal(props) {
     setVisible(false);
   }
 
+
   function handleUpload() {
     dispatch(
       postParkReview({
         comment: comment,
         userName: name,
-        userID: 1234,
+        userID: Math.random(9999999),
         title: "test",
         experienceRating: rating,
       })

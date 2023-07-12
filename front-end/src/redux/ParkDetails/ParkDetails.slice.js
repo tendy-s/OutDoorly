@@ -3,6 +3,7 @@ import {
   retrieveParkDetails,
   retrieveParkReviews,
   postParkReview,
+	deleteParkReview,
   retrieveParkImages,
   postParkImage,
 } from "./ParkDetails.thunks";
@@ -62,6 +63,17 @@ const parkDetailsSlice = createSlice({
         state.userReviews = action.payload;
       })
       .addCase(postParkReview.rejected, (state) => {
+        state.loading = false;
+      })
+
+      .addCase(deleteParkReview.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteParkReview.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userReviews = action.payload;
+      })
+      .addCase(deleteParkReview.rejected, (state) => {
         state.loading = false;
       })
 

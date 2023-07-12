@@ -15,8 +15,7 @@ export default function ResultListItem({
         <CardContent>
           <div
             className={styles.listItemWrapper}
-            onClick={() => (window.location.href = `/park-details/${parkID}`)}
-          >
+            onClick={() => (window.location.href = `/park-details/${parkID}`)}>
             <h4>{fullName}</h4>
             <div className={styles.resultsWrapper}>
               <img

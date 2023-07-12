@@ -4,6 +4,7 @@ import {
   getParkDetails,
   getReview,
   postReview,
+  deleteReview,
   getImage,
   postImage,
 } from "../../services/park-service";
@@ -32,6 +33,19 @@ export const postParkReview = createAsyncThunk(
   async (review, thunkApi) => {
     const state = thunkApi.getState();
     const res = await postReview(state.parkDetails.details.id, review).then(
+      () => {
+        return getReview(state.parkDetails.details.id);
+      }
+    );
+    return res.data.reviews;
+  }
+);
+
+export const deleteParkReview = createAsyncThunk(
+  "parkDetails/deleteReview",
+  async (userID, thunkApi) => {
+    const state = thunkApi.getState();
+    const res = await deleteReview(state.parkDetails.details.id, userID).then(
       () => {
         return getReview(state.parkDetails.details.id);
       }

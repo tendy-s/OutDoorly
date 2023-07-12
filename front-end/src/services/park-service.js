@@ -50,6 +50,16 @@ export function postReview(id, review) {
   });
 }
 
+export function deleteReview(id, userID) {
+  return axios({
+    method: "delete",
+    url: getReviewRoute(id),
+    data: {
+      userID: userID,
+    },
+  });
+}
+
 export function getImage(id) {
   return axios.get(getImageRoute(id));
 }
