@@ -11,7 +11,9 @@ import {
 import { useState } from "react";
 import styles from "./reviews-modal.module.scss";
 import { useDispatch } from "react-redux";
-import { submitUserReview } from "../../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+import { submitUserReview } from "../../../redux/ParkDetails/ParkDetails.slice";
+import { postParkReview } from "../../../redux/ParkDetails/ParkDetails.thunks";
+
 
 export default function ReviewsModal(props) {
   const setVisible = props.setVisible;
@@ -25,9 +27,16 @@ export default function ReviewsModal(props) {
     setVisible(false);
   }
 
+
   function handleUpload() {
     dispatch(
-      submitUserReview({ experienceRating: rating, comment, userName: name })
+      postParkReview({
+        comment: comment,
+        userName: name,
+        userID: Math.random(9999999),
+        title: "test",
+        experienceRating: rating,
+      })
     );
     props.setAlert(true);
     handleClose();
