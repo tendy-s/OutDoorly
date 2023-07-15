@@ -2,6 +2,8 @@ const fs = require("fs");
 const axios = require("axios");
 const closestParksDAOS = require("./daos/closestParks.js");
 const path = require("path");
+const { getPagination } = require("../shared/pagination.js");
+const { paginateDataClosestParks } = require("../shared/pagination");
 
 // const allParksCoordsPath = path.join(
 //   __dirname,
@@ -102,10 +104,22 @@ function sortParksByDistanceHelper(closestParks) {
 
 async function getParksByDistance(req, res) {
   try {
+    const page = Number(req.query.page);
+    // console.log(page);
+    const size = req.query.size;
+    // console.log(size);
+    if (page - 1 < 0) {
+      return null;
+    }
+    if (size <= 0) {
+      return null;
+    }
+
     const userCity = req.query.city;
     const userState = req.query.state;
     const userRadius = req.query.radius;
     const sort = req.query.sortBy;
+    console.log(userCity);
 
     // Check if city or state is not provided in the request
     if (!userCity || !userState || !userRadius) {
@@ -116,18 +130,25 @@ async function getParksByDistance(req, res) {
 
     const cityAndState = userCity + ", " + userState;
     // console.log(cityAndState);
-    const coordinates = await getGeoCode(cityAndState);
+    const userCoordinates = await getGeoCode(cityAndState);
     const closestParks = await getClosestParks(
       allParksCoords,
-      coordinates,
+      userCoordinates,
       userRadius
     );
     let result = await closestParksDAOS.closestParksfromDB(closestParks);
-
     if (sort === "desc") {
       result = result.reverse();
     }
-    res.status(201).json(result);
+    const { offset, limit } = getPagination(page, size);
+    const paginatedResult = await paginateDataClosestParks(
+      result,
+      page,
+      limit,
+      offset
+    );
+
+    res.status(201).json(paginatedResult);
 
     // console.log(closestParks);
   } catch (err) {
