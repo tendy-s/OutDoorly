@@ -23,15 +23,6 @@ async function addReviewDAOS(newReview, parkId) {
     throw new Error(`No park found with ID ${parkId}`);
   }
 
-  // check if a review by the same user already exists.
-  const existingReviewIndex = park.userReviews.findIndex(
-    (review) => review.userID === newReview.userID
-  );
-
-  if (existingReviewIndex !== -1) {
-    throw new Error(`A review by user ${newReview.userID} already exists.`);
-  }
-
   const result = await parks.findOneAndUpdate(
     { id: parkId },
     { $push: { userReviews: newReview } }

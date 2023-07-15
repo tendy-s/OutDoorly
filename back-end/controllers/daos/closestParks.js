@@ -1,5 +1,4 @@
 const { getModelForCollection } = require("../../shared/mongoose");
-
 const util = require("util");
 
 async function fetchAllParksCoordinates() {
@@ -40,20 +39,6 @@ async function closestParksfromDB(Parks) {
     let parkObject = park.toObject(); // convert to plain JavaScript object
     return { ...parkObject, distance: distances[index] };
   });
-
-  // const query = parks
-  // .find(queryBuilder)
-  // .select(queryProjection)
-  // .sort(sorting)
-  // .limit(limit)
-  // .skip(offset)
-  // const data = await query.exec()
-
-  // const data = combined.slice(offset, offset + limit);
-
-  // const countQuery = combined.length;
-  // console.log(countQuery);
-  // const result = await paginateDataClosestParks(countQuery, data, page, limit);
 
   return combined;
 
