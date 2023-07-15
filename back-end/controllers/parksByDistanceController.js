@@ -109,10 +109,10 @@ async function getParksByDistance(req, res) {
     const size = req.query.size;
     // console.log(size);
     if (page - 1 < 0) {
-      return null;
+      throw new Error(`Page number cannot be 0 or negative`);
     }
     if (size <= 0) {
-      return null;
+      throw new Error(`Size cannot be 0 or negative`);
     }
 
     const userCity = req.query.city;

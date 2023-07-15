@@ -5,13 +5,39 @@ const {
   getReviewDAOS,
 } = require("./daos/review");
 
+const {
+  getPagination,
+  paginateDataClosestParks,
+} = require("../shared/pagination.js");
+
 // Get User Review
 const getReview = async (req, res) => {
   const parkId = req.params.id;
+  const page = Number(req.query.page);
+  // console.log(page);
+  const size = req.query.size;
+  // console.log(size);
 
   try {
+    if (page - 1 < 0) {
+      throw new Error(`Page number cannot be 0 or negative`);
+    }
+    if (size <= 0) {
+      throw new Error(`Size cannot be 0 or negative`);
+    }
     const reviews = await getReviewDAOS(parkId);
-    res.status(200).json({ reviews });
+
+    const { offset, limit } = getPagination(page, size);
+    const paginatedResult = await paginateDataClosestParks(
+      reviews,
+      page,
+      limit,
+      offset
+    );
+
+    // console.log(paginatedResult);
+
+    res.status(200).json({ paginatedResult });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -20,6 +46,7 @@ const getReview = async (req, res) => {
 // Create/Add User Review
 const addReview = async (req, res) => {
   const parkId = req.params.id;
+
   const reviewData = req.body;
   const { comment, userName, userID, title, experienceRating } = req.body;
 
