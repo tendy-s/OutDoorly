@@ -37,7 +37,7 @@ const getReview = async (req, res) => {
 
     // console.log(paginatedResult);
 
-    res.status(200).json({ paginatedResult });
+    res.status(200).json(paginatedResult);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
