@@ -93,10 +93,11 @@ export default function DistanceSearch() {
           Please choose a non-zero distance in km
         </Typography>
       )}
-
+<div className={styles.submitButton} >
       <Button variant="contained" type="submit">
         Search parks
       </Button>
+	  </div>
     </form>
   );
 }

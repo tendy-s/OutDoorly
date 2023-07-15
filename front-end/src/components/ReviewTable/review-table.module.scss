@@ -6,9 +6,10 @@
   .reviewsListItem {
     align-items: flex-start;
 
-	.reviewsDelete {
+    .reviewsDelete {
       margin-left: 1rem;
-	}
+      color: #757575;
+    }
 
     .reviewsDelete:hover {
       cursor: pointer;
