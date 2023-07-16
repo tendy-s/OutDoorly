@@ -10,13 +10,10 @@ export default function ResultsListing({ searchResults }) {
   const dispatch = useDispatch();
   return (
     <div>
-<<<<<<< HEAD
-=======
       <h3 className={styles.resultsHeading}>
         {searchResults.count === 1 ? "Result" : "Results"} (
         {searchResults.count})
       </h3>
->>>>>>> 4e292bf (update pagination for preference search results)
       {searchResults.data.map((p) => {
         return (
           <ResultListItem
