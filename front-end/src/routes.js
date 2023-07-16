@@ -1,5 +1,7 @@
 import { DECREASING } from "./redux/ParkSearchInfo/ParkSearchInfo.slice";
 
+const PAGE_SIZE = 6;
+
 export function getRoutes() {
   return {
     home: "/",
@@ -12,20 +14,20 @@ export const PARKS_API_BASE_ROUTE = "https://developer.nps.gov/api/v1/";
 export const PARKS_API_KEY = "tpKlhub2fE3bdPbvzHdMthRnjLj560SE0eLaBUKZ";
 export const APP_API_BASE_ROUTE = "http://localhost:3001";
 
-export function getProximitySearchRoute(city, state, radius, sortDir) {
+export function getProximitySearchRoute(city, state, radius, sortDir, page) {
   return `${APP_API_BASE_ROUTE}/parks/distance?city=${city}&state=${state}&radius=${radius}${
     sortDir === DECREASING ? "&sortBy=desc" : ""
-  }`;
+  }&page=${page}&size=${PAGE_SIZE}`;
 }
 
-export function getAppActivitiesSearchRoute(
+export function getSearchByPreferencesSearchRoute(
   state,
   activities,
   amenities,
   sort,
   page
 ) {
-  return `${APP_API_BASE_ROUTE}/parks/?state=${state}${activities}${amenities}${sort}&page=${page}&size=${1}`;
+  return `${APP_API_BASE_ROUTE}/parks/?state=${state}${activities}${amenities}${sort}&page=${page}&size=${PAGE_SIZE}`;
 }
 
 export function getAppParkDetailsRoute(id) {
@@ -38,7 +40,6 @@ export function getReviewRoute(id) {
 
 export function getImageRoute(id) {
   return `${APP_API_BASE_ROUTE}/parks/images/${id}`;
-
 }
 
 // national parks API

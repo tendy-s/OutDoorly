@@ -45,10 +45,9 @@ export const searchForParks = createAsyncThunk(
         state.parkSearchInfo.searchCity.split(", ")[0],
         state.parkSearchInfo.searchCity.split(", ")[1],
         state.parkSearchInfo.searchDistance,
-        state.parkSearchInfo.distanceSortDir
+        state.parkSearchInfo.distanceSortDir,
+        state.parkSearchInfo.currPage
       );
-      //TODO remove once BE in place
-      res = { data: res };
     }
 
     console.log("RES ", res);

@@ -7,6 +7,7 @@ import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks
 import {
   A_TO_Z_SORTING,
   INCREASING,
+  setPageNumber,
   toggleDistanceSort,
   toggleSort,
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
@@ -27,6 +28,7 @@ export default function SearchResults() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setPageNumber(1));
     dispatch(searchForParks());
     console.log(searchCity, searchDistance);
   }, [sortDir, distanceSortDir]);
