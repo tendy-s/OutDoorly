@@ -3,7 +3,7 @@ import {
   retrieveParkDetails,
   retrieveParkReviews,
   postParkReview,
-	deleteParkReview,
+  deleteParkReview,
   retrieveParkImages,
   postParkImage,
 } from "./ParkDetails.thunks";
@@ -11,9 +11,10 @@ import { DEFAULT_REVIEWS } from "./defaultReviews";
 
 const INITIAL_STATE = {
   details: undefined,
-  userReviews: [],
+  userReviews: undefined,
   userImages: [],
   loading: false,
+  currPage: 1,
 };
 
 const parkDetailsSlice = createSlice({
@@ -29,6 +30,9 @@ const parkDetailsSlice = createSlice({
         id: state.currImageID,
       });
       state.currImageID++;
+    },
+    setPageNumber: (state, action) => {
+      state.currPage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -101,5 +105,6 @@ const parkDetailsSlice = createSlice({
   },
 });
 
-export const { submitUserReview, submitUserImage } = parkDetailsSlice.actions;
+export const { submitUserReview, submitUserImage, setPageNumber } =
+  parkDetailsSlice.actions;
 export default parkDetailsSlice.reducer;

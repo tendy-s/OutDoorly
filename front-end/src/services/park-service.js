@@ -50,8 +50,8 @@ export function getParkDetails(id) {
   return axios.get(getAppParkDetailsRoute(id));
 }
 
-export function getReview(id) {
-  return axios.get(getReviewRoute(id));
+export function getReview(id, page) {
+  return axios.get(getReviewRoute(id, page));
 }
 
 export function postReview(id, review) {

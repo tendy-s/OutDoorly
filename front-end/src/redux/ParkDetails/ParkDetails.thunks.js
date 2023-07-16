@@ -22,8 +22,11 @@ export const retrieveParkReviews = createAsyncThunk(
   "parkDetails/retrieveReviews",
   async (_, thunkApi) => {
     const state = thunkApi.getState();
-    const res = await getReview(state.parkDetails.details.id);
-    const reviews = res.data.reviews;
+    const res = await getReview(
+      state.parkDetails.details.id,
+      state.parkDetails.currPage
+    );
+    const reviews = res.data;
     return reviews;
   }
 );

@@ -34,8 +34,8 @@ export function getAppParkDetailsRoute(id) {
   return `${APP_API_BASE_ROUTE}/parks/${id}`;
 }
 
-export function getReviewRoute(id) {
-  return `${APP_API_BASE_ROUTE}/parks/review/${id}`;
+export function getReviewRoute(id, page) {
+  return `${APP_API_BASE_ROUTE}/parks/review/${id}?page=${page}&size=${PAGE_SIZE}`;
 }
 
 export function getImageRoute(id) {
