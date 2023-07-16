@@ -1,15 +1,17 @@
 .navBar {
   min-width: 100%;
+  color: #667761;
 }
 
 .pageName{
-  margin-left: 2rem;
-  font-size: 2rem;
-  margin-right: auto;
 }
 
 .pageName {
   display: inline;
+  font-size: 2rem;
+  width: fit-content;
+  margin: 1%;
+  margin-left: 2%;
 }
 
 .pageName:hover {
