@@ -9,7 +9,7 @@ let GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const oauth2Client = new google.auth.OAuth2(
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
-  "http://localhost:3000/auth/google/callback"
+  "http://localhost:3001/auth/google/callback"
 );
 
 // Generates a URL that asks permission to use/access user's email and profile
@@ -19,11 +19,14 @@ function getGoogleAuthURL() {
     "https://www.googleapis.com/auth/userinfo.email",
   ];
 
-  return oauth2Client.generateAuthUrl({
+  const instance = oauth2Client.generateAuthUrl({
     access_type: "offline",
     prompt: "consent",
     scope: scopes,
   });
+  console.log(instance)
+
+  return instance
 }
 
 // Authentication Middleware - Takes JWT Token in Header and authenticates

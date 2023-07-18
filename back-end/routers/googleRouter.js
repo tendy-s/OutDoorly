@@ -1,8 +1,8 @@
 const express = require("express");
 const { getGoogleAuthURL } = require("../shared/authenticate.js");
 const urlparse = require("urlparse");
-const queryParse = require("query-string");
-const { oauth2Client } = require("../utils/authenticate.js");
+const queryParse = require("query-string")
+const { oauth2Client } = require("../shared/authenticate.js");
 const { google } = require("googleapis");
 const { getJWT } = require("../shared/jwt.js");
 
