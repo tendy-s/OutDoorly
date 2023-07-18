@@ -3,7 +3,7 @@ import {
   getActivitiesRoute,
   getActivitiesSearchRoute,
   getAmenitiesRoute,
-  getAppActivitiesSearchRoute,
+  getSearchByPreferencesSearchRoute,
   getAppParkDetailsRoute,
   getProximitySearchRoute,
   getReviewRoute,
@@ -24,13 +24,25 @@ export function getParksByActivity(activites) {
   return axios.get(url);
 }
 
-export function getParksByProximity(city, state, radius, sortDir) {
-  return axios.get(getProximitySearchRoute(city, state, radius, sortDir));
+export function getParksByProximity(city, state, radius, sortDir, page) {
+  return axios.get(getProximitySearchRoute(city, state, radius, sortDir, page));
 }
 
-export function getParksByPreferences(activities, usStates, amenities, sort) {
+export function getParksByPreferences(
+  activities,
+  usStates,
+  amenities,
+  sort,
+  page
+) {
   return axios.get(
-    getAppActivitiesSearchRoute(usStates, activities, amenities, sort)
+    getSearchByPreferencesSearchRoute(
+      usStates,
+      activities,
+      amenities,
+      sort,
+      page
+    )
   );
 }
 
@@ -38,8 +50,8 @@ export function getParkDetails(id) {
   return axios.get(getAppParkDetailsRoute(id));
 }
 
-export function getReview(id) {
-  return axios.get(getReviewRoute(id));
+export function getReview(id, page) {
+  return axios.get(getReviewRoute(id, page));
 }
 
 export function postReview(id, review) {

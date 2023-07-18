@@ -19,6 +19,100 @@ const populateLocaldatabase = async () => {
   }
 };
 
+// ONLY RUN to add fake reviews to db
+const addReviewsToDB = async () => {
+  const model = await getModelForCollection("parksSchema");
+  const fakeReviews = [{
+              comment: "Great park! Loved it!",
+              userName: "Jim",
+              userID: 12345,
+              title: "Awesome sights!",
+              experienceRating:"5"
+  },
+  {
+    comment: "I painted the mountains",
+    userName: "Pam",
+    userID: 12,
+    title: "Breathtaking",
+    experienceRating:"5"
+},
+{
+  comment: "Bonjour",
+  userName: "Michael",
+  userID: 12343,
+  title: "I lost my watch",
+  experienceRating:"3"
+},
+{
+  comment: "Yummy wild berries",
+  userName: "Dwight",
+  userID: 1234561,
+  title: "I saw a black bear",
+  experienceRating:"2"
+},
+{
+  comment: "Pretzels?",
+  userName: "Stanley",
+  userID: 123459,
+  title: "Bring pretzels",
+  experienceRating:"5"
+},
+{
+comment: "Wear proper shoes",
+userName: "Phyllis",
+userID: 120,
+title: "My feet hurt",
+experienceRating:"3"
+},
+{
+comment: "Yo",
+userName: "Roy",
+userID: 12340,
+title: "Looking for hiking buddies",
+experienceRating:"3"
+},
+{
+comment: "I'd rather be at home with my cats",
+userName: "Angela",
+userID: 123456789,
+title: "UV rays were so harmful",
+experienceRating:"1"
+},
+]
+//  const parks = await model.find({});
+const query = await model.updateMany(
+          {},
+          { $set: { userReviews: fakeReviews } }
+        );
+ console.log("Query ", query)
+  // const { data } = JSON.parse(
+  //   fs.readFileSync("../../data/allParksAmenities.json")
+  // );
+
+  // for (let amenities of data) {
+  //   // console.log(util.inspect(amenities, {showHidden: false, depth: null, colors: true}))
+  //   for (let amenity of amenities) {
+  //     let amenityName = amenity.name;
+  //     // console.log(util.inspect(amenityName, {showHidden: false, depth: null, colors: true}))
+  //     for (let p of amenity.parks) {
+  //       let parkCode = p.parkCode;
+  //       console.log(
+  //         util.inspect(parkCode, {
+  //           showHidden: false,
+  //           depth: null,
+  //           colors: true,
+  //         })
+  //       );
+  //       const query = await model.updateMany(
+  //         { parkCode: p.parkCode },
+  //         { $push: { amenities: amenityName } }
+  //       );
+  //       console.log(query);
+  //     }
+  //   }
+  // }
+}
+
 const addAmenitiesToDB = async () => {
   const model = await getModelForCollection("parksSchema");
 
@@ -201,3 +295,5 @@ module.exports = {
 // populateLocaldatabase();
 // addAmenitiesToDB();
 // getParks(['Astronomy'], ['Bicycle - Rack'], "CA", 'desc');
+
+// addReviewsToDB();
