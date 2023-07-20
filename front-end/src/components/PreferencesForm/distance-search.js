@@ -24,7 +24,7 @@ export default function DistanceSearch() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      distance: 50,
+      distance: 0,
     },
   });
 

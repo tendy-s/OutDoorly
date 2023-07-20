@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./search-results.module.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ResultsListing from "../../components/ResultsListing";
 import { Button } from "@mui/material";
 import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
@@ -11,6 +11,8 @@ import {
   toggleDistanceSort,
   toggleSort,
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+import React from "react";
+import { ClimbingBoxLoader } from "react-spinners";
 
 export default function SearchResults() {
   const searchResults = useSelector(
@@ -26,6 +28,15 @@ export default function SearchResults() {
   );
   const searchMode = useSelector((state) => state.parkSearchInfo.searchMode);
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3600);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     dispatch(setPageNumber(1));
@@ -50,22 +61,37 @@ export default function SearchResults() {
   }
   return (
     <div>
-      <div className={styles.sortButton}>
-        {searchMode === "PREFERENCES" ? (
-          <Button onClick={() => dispatch(toggleSort())}>
-            {sortDir === A_TO_Z_SORTING ? "Sort A-Z" : "Sort Z-A"}
-          </Button>
-        ) : (
-          <Button onClick={() => dispatch(toggleDistanceSort())}>
-            {distanceSortDir === INCREASING
-              ? "Sort by Increasing Distance"
-              : "Sort by Decreasing Distance"}
-          </Button>
-        )}
-      </div>
-      <div className={styles.searchResultsWrapper}>
-        <ResultsListing searchResults={searchResults} />
-      </div>
+      {isLoading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <ClimbingBoxLoader size={60} color="#667761" />
+        </div>
+      ) : (
+        <div>
+          <div className={styles.sortButton}>
+            {searchMode === "PREFERENCES" ? (
+              <Button onClick={() => dispatch(toggleSort())}>
+                {sortDir === A_TO_Z_SORTING ? "Sort A-Z" : "Sort Z-A"}
+              </Button>
+            ) : (
+              <Button onClick={() => dispatch(toggleDistanceSort())}>
+                {distanceSortDir === INCREASING
+                  ? "Sort by Increasing Distance"
+                  : "Sort by Decreasing Distance"}
+              </Button>
+            )}
+          </div>
+          <div className={styles.searchResultsWrapper}>
+            <ResultsListing searchResults={searchResults} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
