@@ -7,7 +7,6 @@ import {
   retrieveParkImages,
   postParkImage,
 } from "./ParkDetails.thunks";
-import { DEFAULT_REVIEWS } from "./defaultReviews";
 
 const INITIAL_STATE = {
   details: undefined,

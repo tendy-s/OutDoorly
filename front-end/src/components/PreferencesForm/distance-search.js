@@ -2,7 +2,6 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRoutes } from "../../routes";
-import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import styles from "./preferences-form.module.scss";
 
@@ -30,7 +29,6 @@ export default function DistanceSearch() {
   });
 
   function onSubmitDistanceSearch({ city, distance }) {
-    console.log("RES ", city);
     dispatch(setSearchMode("PROXIMITY"));
     dispatch(setSearchCity(city));
     dispatch(setSearchDistance(distance));
@@ -93,11 +91,11 @@ export default function DistanceSearch() {
           Please choose a non-zero distance in km
         </Typography>
       )}
-<div className={styles.submitButton} >
-      <Button variant="contained" type="submit">
-        Search parks
-      </Button>
-	  </div>
+      <div className={styles.submitButton}>
+        <Button variant="contained" type="submit">
+          Search parks
+        </Button>
+      </div>
     </form>
   );
 }

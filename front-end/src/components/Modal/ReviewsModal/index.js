@@ -11,9 +11,7 @@ import {
 import { useState } from "react";
 import styles from "./reviews-modal.module.scss";
 import { useDispatch } from "react-redux";
-import { submitUserReview } from "../../../redux/ParkDetails/ParkDetails.slice";
 import { postParkReview } from "../../../redux/ParkDetails/ParkDetails.thunks";
-
 
 export default function ReviewsModal(props) {
   const setVisible = props.setVisible;
@@ -26,7 +24,6 @@ export default function ReviewsModal(props) {
   function handleClose() {
     setVisible(false);
   }
-
 
   function handleUpload() {
     dispatch(
@@ -54,18 +51,21 @@ export default function ReviewsModal(props) {
         backdrop: {
           timeout: 500,
         },
-      }}>
+      }}
+    >
       <Fade in={open}>
         <Box
           sx={{
             bgcolor: "background.paper",
           }}
-          className={styles.modalBox}>
+          className={styles.modalBox}
+        >
           <Typography
             className={styles.modalHeader}
             id="transition-modal-title"
             variant="h6"
-            component="h2">
+            component="h2"
+          >
             Add a Review
           </Typography>
           <TextField

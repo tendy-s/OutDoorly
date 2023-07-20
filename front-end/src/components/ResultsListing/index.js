@@ -6,7 +6,6 @@ import { setPageNumber } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
 
 export default function ResultsListing({ searchResults }) {
-  console.log("SEARCH RESULTS ", searchResults);
   const dispatch = useDispatch();
   return (
     <div>
