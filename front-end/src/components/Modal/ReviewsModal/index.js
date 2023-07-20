@@ -72,7 +72,7 @@ export default function ReviewsModal(props) {
             id="outlined-multiline-static"
             sx={{ mb: 3, mt: 1 }}
             size="small"
-            label="Review Name"
+            label="Reviewer Name"
             onChange={(e) => setName(e.target.value)}
           />
           <TextField

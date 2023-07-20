@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getParkDetails } from "../../services/park-service";
 import { Button, Tab, Tabs } from "@mui/material";
 import { TabPanel } from "../../components/ParkDetailsTabPanel";
 import ReviewsModal from "../../components/Modal/ReviewsModal";
@@ -10,7 +9,6 @@ import { ReviewTable } from "../ReviewTable";
 import Photo from "./Photo";
 import Alert from "@mui/material/Alert";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   retrieveParkImages,
   retrieveParkReviews,
