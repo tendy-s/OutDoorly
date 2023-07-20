@@ -28,27 +28,18 @@ export default function SearchResults() {
   );
   const searchMode = useSelector((state) => state.parkSearchInfo.searchMode);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+  const loading = useSelector((state) => state.parkSearchInfo.loading);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3600);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
+    if (!searchMode) {
+      window.location.href = "/";
+    }
     dispatch(setPageNumber(1));
     dispatch(searchForParks());
     console.log(searchCity, searchDistance);
   }, [sortDir, distanceSortDir]);
 
-  if (
-    !searchResults ||
-    !searchResults?.data ||
-    searchResults?.data?.length === 0
-  ) {
+  if (!loading && searchResults?.data?.length === 0) {
     return (
       <div className={styles.noResults}>
         <img
@@ -61,7 +52,7 @@ export default function SearchResults() {
   }
   return (
     <div>
-      {isLoading ? (
+      {loading || !searchResults ? (
         <div
           style={{
             display: "flex",

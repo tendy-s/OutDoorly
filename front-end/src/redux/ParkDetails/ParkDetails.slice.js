@@ -13,6 +13,8 @@ const INITIAL_STATE = {
   userReviews: undefined,
   userImages: [],
   loading: false,
+  loadingParkReviews: false,
+  loadingParkImages: false,
   currPage: 1,
 };
 
@@ -48,58 +50,58 @@ const parkDetailsSlice = createSlice({
       })
 
       .addCase(retrieveParkReviews.pending, (state) => {
-        state.loading = true;
+        state.loadingParkReviews = true;
       })
       .addCase(retrieveParkReviews.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingParkReviews = false;
         state.userReviews = action.payload;
       })
       .addCase(retrieveParkReviews.rejected, (state) => {
-        state.loading = false;
+        state.loadingParkReviews = false;
       })
 
       .addCase(postParkReview.pending, (state) => {
-        state.loading = true;
+        state.loadingParkReviews = true;
       })
       .addCase(postParkReview.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingParkReviews = false;
         state.userReviews = action.payload;
       })
       .addCase(postParkReview.rejected, (state) => {
-        state.loading = false;
+        state.loadingParkReviews = false;
       })
 
       .addCase(deleteParkReview.pending, (state) => {
-        state.loading = true;
+        state.loadingParkReviews = true;
       })
       .addCase(deleteParkReview.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingParkReviews = false;
         state.userReviews = action.payload;
       })
       .addCase(deleteParkReview.rejected, (state) => {
-        state.loading = false;
+        state.loadingParkReviews = false;
       })
 
       .addCase(retrieveParkImages.pending, (state) => {
-        state.loading = true;
+        state.loadingParkImages = true;
       })
       .addCase(retrieveParkImages.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingParkImages = false;
         state.userImages = action.payload;
       })
       .addCase(retrieveParkImages.rejected, (state) => {
-        state.loading = false;
+        state.loadingParkImages = false;
       })
 
       .addCase(postParkImage.pending, (state) => {
-        state.loading = true;
+        state.loadingParkImages = true;
       })
       .addCase(postParkImage.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingParkImages = false;
         state.userImages = action.payload;
       })
       .addCase(postParkImage.rejected, (state) => {
-        state.loading = false;
+        state.loadingParkImages = false;
       });
   },
 });

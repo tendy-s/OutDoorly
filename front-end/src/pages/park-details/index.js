@@ -14,7 +14,9 @@ export default function ParkDetails() {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const parkDetails = useSelector((store) => store.parkDetails.details);
-  const [isLoading, setIsLoading] = useState(true);
+  const loading = useSelector((state) => state.parkDetails.loading);
+  console.log("LOADING ", loading, parkDetails);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -24,17 +26,9 @@ export default function ParkDetails() {
     dispatch(retrieveParkDetails());
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div>
-      {isLoading ? (
+      {loading || !parkDetails ? (
         <div
           style={{
             display: "flex",
@@ -48,7 +42,7 @@ export default function ParkDetails() {
       ) : (
         <div className={styles.parkDetailsWrapper}>
           <Typography variant="h3" sx={{ m: 2 }}>
-            {parkDetails.fullName}
+            {parkDetails?.fullName}
           </Typography>
 
           <img
