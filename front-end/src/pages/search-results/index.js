@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./search-results.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ResultsListing from "../../components/ResultsListing";
 import { Button } from "@mui/material";
 import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
@@ -13,6 +13,7 @@ import {
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 import React from "react";
 import { ClimbingBoxLoader } from "react-spinners";
+import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 
 export default function SearchResults() {
   const searchResults = useSelector(
@@ -72,9 +73,15 @@ export default function SearchResults() {
               </Button>
             ) : (
               <Button onClick={() => dispatch(toggleDistanceSort())}>
-                {distanceSortDir === INCREASING
-                  ? "Sort by Increasing Distance"
-                  : "Sort by Decreasing Distance"}
+                {distanceSortDir === INCREASING ? (
+                  <>
+                    <ArrowDropUp /> Sort by Increasing Distance
+                  </>
+                ) : (
+                  <>
+                    <ArrowDropDown /> Sort by Decreasing Distance
+                  </>
+                )}
               </Button>
             )}
           </div>
