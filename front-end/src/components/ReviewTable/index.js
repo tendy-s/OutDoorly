@@ -59,7 +59,6 @@ export function ReviewTable() {
       <div className={styles.pagination}>
         <Pagination
           count={reviews?.totalPages}
-          page={reviews?.currentPage}
           onChange={(_, page) => {
             dispatch(setPageNumber(page));
             dispatch(retrieveParkReviews());

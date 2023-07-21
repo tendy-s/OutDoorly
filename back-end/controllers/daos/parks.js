@@ -22,63 +22,149 @@ const populateLocaldatabase = async () => {
 // ONLY RUN to add fake reviews to db
 const addReviewsToDB = async () => {
   const model = await getModelForCollection("parksSchema");
-  const fakeReviews = [{
-              comment: "Great park! Loved it!",
-              userName: "Jim",
-              userID: 12345,
-              title: "Awesome sights!",
-              experienceRating:"5"
-  },
-  {
-    comment: "I painted the mountains",
-    userName: "Pam",
-    userID: 12,
-    title: "Breathtaking",
-    experienceRating:"5"
-},
-{
-  comment: "Bonjour",
-  userName: "Michael",
-  userID: 12343,
-  title: "I lost my watch",
-  experienceRating:"3"
-},
-{
-  comment: "Yummy wild berries",
-  userName: "Dwight",
-  userID: 1234561,
-  title: "I saw a black bear",
-  experienceRating:"2"
-},
-{
-  comment: "Pretzels?",
-  userName: "Stanley",
-  userID: 123459,
-  title: "Bring pretzels",
-  experienceRating:"5"
-},
-{
-comment: "Wear proper shoes",
-userName: "Phyllis",
-userID: 120,
-title: "My feet hurt",
-experienceRating:"3"
-},
-{
-comment: "Yo",
-userName: "Roy",
-userID: 12340,
-title: "Looking for hiking buddies",
-experienceRating:"3"
-},
-{
-comment: "I'd rather be at home with my cats",
-userName: "Angela",
-userID: 123456789,
-title: "UV rays were so harmful",
-experienceRating:"1"
-},
-]
+let fakeReviews = [
+    {
+        comment: "Bears, beets, Battlestar Galactica",
+        userName: "Dwight Schrute",
+        userID: 1234561,
+        title: "Hiking is fun!",
+        experienceRating: "4",
+      },
+      {
+        comment: "Identity theft is not a joke, Jim!",
+        userName: "Jim Halpert",
+        userID: 12345,
+        title: "Beware of bears",
+        experienceRating: "3",
+      },
+      {
+        comment: "I brought my beet salad",
+        userName: "Toby Flenderson",
+        userID: 1234510,
+        title: "Good place for a picnic",
+        experienceRating: "4",
+      },
+      {
+        comment: "Where's the nearest bathroom?",
+        userName: "Kelly Kapoor",
+        userID: 12342,
+        title: "Bathroom Breaks Needed",
+        experienceRating: "3",
+      },
+      {
+        comment: "I hope we don't get lost",
+        userName: "Andy Bernard",
+        userID: 12344,
+        title: "Navigational Challenges",
+        experienceRating: "3",
+      },
+      {
+        comment: "I'm on a diet, no snacks for me",
+        userName: "Kevin Malone",
+        userID: 12346,
+        title: "Great Place for a Workout",
+        experienceRating: "4",
+      },
+      {
+        comment: "Time for some beet farming",
+        userName: "Mose Schrute",
+        userID: 1234511,
+        title: "Best Hiking Trail Ever",
+        experienceRating: "5",
+      },
+      {
+        comment: "I have a lot of Dundies",
+        userName: "Michael Scott",
+        userID: 12343,
+        title: "Dundie-Worthy Experience",
+        experienceRating: "5",
+      },
+      {
+        comment: "The fire's not real, right?",
+        userName: "Ryan Howard",
+        userID: 1234512,
+        title: "Spooky Campfire Stories",
+        experienceRating: "4",
+      },
+      {
+        comment: "Who wants to have a picnic?",
+        userName: "Phyllis Lapin-Vance",
+        userID: 12348,
+        title: "Picnic Spot",
+        experienceRating: "3",
+      },
+    {
+      comment: "I'll bring my beet whistle",
+      userName: "Dwight Schrute",
+      userID: 1234562,
+      title: "Beet Whistling Adventure",
+      experienceRating: "5",
+    },
+    {
+      comment: "I'm up for some extreme hiking!",
+      userName: "Creed Bratton",
+      userID: 1234563,
+      title: "Thrills and Chills",
+      experienceRating: "4",
+    },
+    {
+      comment: "Can't wait to take photos!",
+      userName: "Pam Beesly",
+      userID: 1234564,
+      title: "Photography Paradise",
+      experienceRating: "5",
+    },
+    {
+      comment: "I'll bring my secret snacks",
+      userName: "Oscar Martinez",
+      userID: 1234565,
+      title: "Delicious Treats",
+      experienceRating: "4",
+    },
+    {
+      comment: "I'll do some yoga poses on the hike",
+      userName: "Angela Martin",
+      userID: 1234566,
+      title: "Yoga in Nature",
+      experienceRating: "3",
+    },
+    {
+      comment: "I'll be the campfire storyteller",
+      userName: "Michael Scott",
+      userID: 1234567,
+      title: "Nighttime Adventures",
+      experienceRating: "4",
+    },
+    {
+      comment: "I'm just here for the nature",
+      userName: "Erin Hannon",
+      userID: 1234568,
+      title: "Nature Lover's Dream",
+      experienceRating: "5",
+    },
+    {
+      comment: "I'll sing campfire songs",
+      userName: "Andy Bernard",
+      userID: 1234569,
+      title: "Music and Hiking",
+      experienceRating: "3",
+    },
+    {
+      comment: "Who needs a map? I'll lead the way!",
+      userName: "Kevin Malone",
+      userID: 1234570,
+      title: "Navigational Expert",
+      experienceRating: "4",
+    },
+    {
+      comment: "Hiking is the perfect time for birdwatching",
+      userName: "Phyllis Smith",
+      userID: 1234571,
+      title: "Birdwatching Enthusiast",
+      experienceRating: "5",
+    },
+  ];
+
 //  const parks = await model.find({});
 const query = await model.updateMany(
           {},
