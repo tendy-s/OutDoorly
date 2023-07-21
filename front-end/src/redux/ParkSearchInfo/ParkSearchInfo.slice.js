@@ -18,7 +18,7 @@ const INITIAL_STATE = {
   searchCity: undefined,
   searchDistance: undefined,
   activityOptions: [],
-  searchResults: [],
+  searchResults: undefined,
   selectedParkID: undefined,
   sortDir: A_TO_Z_SORTING,
   distanceSortDir: INCREASING,
@@ -31,6 +31,15 @@ const parkSearchSlice = createSlice({
   reducers: {
     setSearchMode: (state, action) => {
       state.searchMode = action.payload;
+    },
+    clearSearchResults: (state, action) => {
+      console.log("CLEARING RESULTS");
+      state.searchMode = undefined;
+      state.currPage = 1;
+      state.searchCity = undefined;
+      state.searchDistance = undefined;
+      state.loading = true;
+      state.searchResults = undefined;
     },
     setSearchActivities: (state, action) => {
       state.searchActivities = action.payload;
@@ -81,7 +90,6 @@ const parkSearchSlice = createSlice({
       })
       .addCase(searchForParks.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("ACTION ", action);
         state.searchResults = action.payload;
       })
       .addCase(searchForParks.rejected, (state) => {
@@ -103,6 +111,7 @@ export const {
   toggleSort,
   toggleDistanceSort,
   setPageNumber,
+  clearSearchResults,
 } = parkSearchSlice.actions;
 
 export default parkSearchSlice.reducer;

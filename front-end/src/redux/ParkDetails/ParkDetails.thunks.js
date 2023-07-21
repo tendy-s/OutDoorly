@@ -12,6 +12,7 @@ import {
 export const retrieveParkDetails = createAsyncThunk(
   "parkDetails/retrieveParkDetails",
   async (_, thunkApi) => {
+    console.log("RETRIEVING PARK DETAILS");
     const state = thunkApi.getState();
     const res = await getParkDetails(state.parkSearchInfo.selectedParkID);
     return res.data;

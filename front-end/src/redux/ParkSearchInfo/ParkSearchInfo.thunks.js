@@ -49,9 +49,6 @@ export const searchForParks = createAsyncThunk(
         state.parkSearchInfo.currPage
       );
     }
-
-    console.log("RES ", res);
-    // const res = await getParksByActivity(state.parkSearchInfo.searchActivities);
     return res.data;
   }
 );

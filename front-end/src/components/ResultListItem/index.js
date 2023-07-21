@@ -1,7 +1,7 @@
 import styles from "./result-list-item.module.scss";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Button, Rating, Typography} from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 export default function ResultListItem({
   fullName,
@@ -18,7 +18,7 @@ export default function ResultListItem({
             className={styles.listItemWrapper}
             onClick={() => (window.location.href = `/park-details/${parkID}`)}
           >
-            <Typography sx={{fontSize: 30}}>{fullName}</Typography>
+            <Typography sx={{ fontSize: 30 }}>{fullName}</Typography>
             {distance && <h4>Distance: {distance.toFixed(2)} km</h4>}
             <div className={styles.resultsWrapper}>
               <img
@@ -27,12 +27,10 @@ export default function ResultListItem({
                 alt={images[0].altText}
               />{" "}
               <div className={styles.previewText}>
-                {/* <Rating name="read-only" readOnly defaultValue={4} /> */}
                 <div>{description}</div>
-
                 <div>
                   <Button className={styles.moreDetailsButton}>
-                    More details 
+                    More details
                   </Button>
                 </div>
               </div>

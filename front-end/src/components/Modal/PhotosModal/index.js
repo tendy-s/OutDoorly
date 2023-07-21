@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Modal, Fade, Box, Typography, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from "./photos-modal.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { postParkImage } from "../../../redux/ParkDetails/ParkDetails.thunks";
 
 export default function PhotosModal(props) {
@@ -31,7 +31,6 @@ export default function PhotosModal(props) {
 
   function handleSubmit() {
     setVisible(false);
-    // dispatch(postParkImage(URL.createObjectURL(Array.from(uploadedFiles)[0])));
     dispatch(postParkImage(Array.from(uploadedFiles)[0]));
     props.setAlert(true);
   }
@@ -57,19 +56,22 @@ export default function PhotosModal(props) {
         backdrop: {
           timeout: 500,
         },
-      }}>
+      }}
+    >
       <Fade in={open}>
         <Box
           sx={{
             bgcolor: "background.paper",
           }}
-          className={styles.modalBox}>
+          className={styles.modalBox}
+        >
           <Typography
             sx={{ mx: "5rem", mt: "1rem" }}
             className={styles.modalHeader}
             id="transition-modal-title"
             variant="h6"
-            component="h2">
+            component="h2"
+          >
             Add Photos
           </Typography>
           <input
@@ -83,7 +85,8 @@ export default function PhotosModal(props) {
           <Button
             onClick={uploadPhoto}
             variant="contained"
-            sx={{ mb: ".5rem" }}>
+            sx={{ mb: ".5rem" }}
+          >
             Upload Files
           </Button>
           {displayUpload}

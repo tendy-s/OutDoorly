@@ -7,6 +7,8 @@ export function getRoutes() {
     home: "/",
     searchResults: "/search-results",
     parkDetails: "/park-details/:id",
+    login: "/login",
+    callback: "/callback",
   };
 }
 
@@ -41,7 +43,13 @@ export function getReviewRoute(id, page) {
 export function getImageRoute(id) {
   return `${APP_API_BASE_ROUTE}/parks/images/${id}`;
 }
+export function getAuthURLRoute() {
+  return `${APP_API_BASE_ROUTE}/auth/google`;
+}
 
+export function getAuthCallBackRoute(code) {
+  return `${APP_API_BASE_ROUTE}/auth/google/callback?code=${code}`;
+}
 // national parks API
 
 export function getParkDetailsRoute(parkCode) {

@@ -9,7 +9,6 @@ import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
 import { Rating } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { Pagination } from "@mui/material";
 import {
   deleteParkReview,
@@ -19,7 +18,6 @@ import { setPageNumber } from "../../redux/ParkDetails/ParkDetails.slice";
 
 export function ReviewTable() {
   const reviews = useSelector((store) => store.parkDetails.userReviews);
-  console.log("Reviews", reviews);
   const dispatch = useDispatch();
 
   function handleDelete(userID) {
@@ -61,7 +59,6 @@ export function ReviewTable() {
       <div className={styles.pagination}>
         <Pagination
           count={reviews?.totalPages}
-          page={reviews?.currentPage}
           onChange={(_, page) => {
             dispatch(setPageNumber(page));
             dispatch(retrieveParkReviews());

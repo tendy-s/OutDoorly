@@ -6,15 +6,15 @@ import { setPageNumber } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
 
 export default function ResultsListing({ searchResults }) {
-  console.log("SEARCH RESULTS ", searchResults);
   const dispatch = useDispatch();
+  console.log("RESULTS ARE ", searchResults);
   return (
     <div>
       <h3 className={styles.resultsHeading}>
         {searchResults.count === 1 ? "Result" : "Results"} (
         {searchResults.count})
       </h3>
-      {searchResults.data.map((p) => {
+      {searchResults.data?.map((p) => {
         return (
           <ResultListItem
             key={p.parkCode}

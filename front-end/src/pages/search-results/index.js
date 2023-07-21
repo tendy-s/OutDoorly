@@ -11,6 +11,9 @@ import {
   toggleDistanceSort,
   toggleSort,
 } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+import React from "react";
+import { ClimbingBoxLoader } from "react-spinners";
+import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 
 export default function SearchResults() {
   const searchResults = useSelector(
@@ -26,18 +29,18 @@ export default function SearchResults() {
   );
   const searchMode = useSelector((state) => state.parkSearchInfo.searchMode);
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.parkSearchInfo.loading);
 
   useEffect(() => {
+    if (!searchMode) {
+      window.location.href = "/";
+    }
     dispatch(setPageNumber(1));
     dispatch(searchForParks());
     console.log(searchCity, searchDistance);
   }, [sortDir, distanceSortDir]);
 
-  if (
-    !searchResults ||
-    !searchResults?.data ||
-    searchResults?.data?.length === 0
-  ) {
+  if (!loading && searchResults?.data?.length === 0) {
     return (
       <div className={styles.noResults}>
         <img
@@ -50,22 +53,43 @@ export default function SearchResults() {
   }
   return (
     <div>
-      <div className={styles.sortButton}>
-        {searchMode === "PREFERENCES" ? (
-          <Button onClick={() => dispatch(toggleSort())}>
-            {sortDir === A_TO_Z_SORTING ? "Sort A-Z" : "Sort Z-A"}
-          </Button>
-        ) : (
-          <Button onClick={() => dispatch(toggleDistanceSort())}>
-            {distanceSortDir === INCREASING
-              ? "Sort by Increasing Distance"
-              : "Sort by Decreasing Distance"}
-          </Button>
-        )}
-      </div>
-      <div className={styles.searchResultsWrapper}>
-        <ResultsListing searchResults={searchResults} />
-      </div>
+      {loading || !searchResults ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <ClimbingBoxLoader size={60} color="#667761" />
+        </div>
+      ) : (
+        <div>
+          <div className={styles.sortButton}>
+            {searchMode === "PREFERENCES" ? (
+              <Button onClick={() => dispatch(toggleSort())}>
+                {sortDir === A_TO_Z_SORTING ? "Sort A-Z" : "Sort Z-A"}
+              </Button>
+            ) : (
+              <Button onClick={() => dispatch(toggleDistanceSort())}>
+                {distanceSortDir === INCREASING ? (
+                  <>
+                    <ArrowDropUp /> Sort by Increasing Distance
+                  </>
+                ) : (
+                  <>
+                    <ArrowDropDown /> Sort by Decreasing Distance
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
+          <div className={styles.searchResultsWrapper}>
+            <ResultsListing searchResults={searchResults} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
