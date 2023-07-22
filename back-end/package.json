@@ -12,6 +12,7 @@
   "dependencies": {
     "aws-sdk": "^2.1409.0",
     "aws-sdk-js-codemod": "^0.14.1",
+    "@aws-sdk/client-s3": "^3.216.0",
     "axios": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
