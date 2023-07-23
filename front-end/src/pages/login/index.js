@@ -3,7 +3,6 @@ import axios from "axios";
 import { getAuthURLRoute } from "../../routes";
 import { Button } from "@mui/material";
 import styles from "./login.module.scss";
-// import { getAuthURLRoute } from "../../../../back-end/shared/authenticate";
 
 export const Login = () => {
   const [authURL, setAuthURL] = useState("");
@@ -15,7 +14,6 @@ export const Login = () => {
         setAuthURL(response.data.googleURL);
       }
     });
-    // console.log(getGoogleAuthURL());
   }, []);
 
   return (

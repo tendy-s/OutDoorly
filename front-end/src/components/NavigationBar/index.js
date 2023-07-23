@@ -3,11 +3,7 @@ import styles from "./navigation-bar.module.scss";
 import HikingIcon from "@mui/icons-material/Hiking";
 import { useNavigate } from "react-router-dom";
 import { getLogoutRoute, getRoutes } from "../../routes";
-import {
-  USER_SESSION,
-  isInLocalStorage,
-  writeToLocalStorage,
-} from "../../session";
+import { USER_SESSION, isInLocalStorage } from "../../session";
 import { Login } from "../../pages/login";
 import axios from "axios";
 
@@ -15,11 +11,7 @@ export function NavigationBar() {
   const navigate = useNavigate();
   return (
     <div className={styles.navBar}>
-      <AppBar
-        position="static"
-        // style={{ display: "flex", justifyContent: "space-between" }}
-        className={styles.header}
-      >
+      <AppBar position="static" className={styles.header}>
         <div
           className={styles.pageName}
           onClick={() => {
