@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./login.module.scss";
 import { getAuthURLRoute } from "../../routes";
 import { Button } from "@mui/material";
+import styles from "./login.module.scss";
 // import { getAuthURLRoute } from "../../../../back-end/shared/authenticate";
 
 export const Login = () => {
@@ -19,7 +19,7 @@ export const Login = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.login}>
       <Button variant="outlined">
         <a href={authURL}>Login with Google</a>
       </Button>

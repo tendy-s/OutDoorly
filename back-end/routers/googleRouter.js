@@ -35,7 +35,27 @@ router.get("/callback", async (req, res) => {
       token: token,
     });
   }catch (e) {
-    console.log(e);
+    res.status(500).send({Error: "Error logging in"})
+  }
+});
+
+router.get('/logout', (req, res) => {
+  try {
+    const access_token = req.session.access_token; 
+    oauth2Client.setCredentials({ access_token: access_token });
+    oauth2Client.revokeToken(access_token, (err, result) => {
+      if (err) {
+        console.error('Error revoking access token:', err);
+      // Handle any error that might occur while revoking the token
+      } else {
+        console.log('Access token revoked successfully.', result);
+      }
+
+      // Respond to the frontend with a success message
+      res.status(200).json({ message: 'Logout successful' });
+    });
+  } catch (e) {
+    res.status(500).send({ error: "Error Logging out" });
   }
 });
 
