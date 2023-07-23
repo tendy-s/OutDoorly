@@ -41,7 +41,7 @@ router.get("/callback", async (req, res) => {
 
 router.get('/logout', (req, res) => {
   try {
-    const access_token = req.session.access_token; 
+    const access_token = req.headers.access_token; 
     oauth2Client.setCredentials({ access_token: access_token });
     oauth2Client.revokeToken(access_token, (err, result) => {
       if (err) {
