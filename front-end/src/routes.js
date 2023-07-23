@@ -50,6 +50,11 @@ export function getAuthURLRoute() {
 export function getAuthCallBackRoute(code) {
   return `${APP_API_BASE_ROUTE}/auth/google/callback?code=${code}`;
 }
+
+export function getLogoutRoute() {
+  return `${APP_API_BASE_ROUTE}/auth/google/logout`;
+}
+
 // national parks API
 
 export function getParkDetailsRoute(parkCode) {

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./login.module.scss";
 import { getAuthURLRoute } from "../../routes";
 import { Button } from "@mui/material";
-// import { getAuthURLRoute } from "../../../../back-end/shared/authenticate";
+import styles from "./login.module.scss";
 
 export const Login = () => {
   const [authURL, setAuthURL] = useState("");
@@ -15,11 +14,10 @@ export const Login = () => {
         setAuthURL(response.data.googleURL);
       }
     });
-    // console.log(getGoogleAuthURL());
   }, []);
 
   return (
-    <div>
+    <div className={styles.login}>
       <Button variant="outlined">
         <a href={authURL}>Login with Google</a>
       </Button>
