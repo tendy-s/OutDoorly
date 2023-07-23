@@ -29,7 +29,9 @@ export function NavigationBar() {
                 await axios.get(getLogoutRoute(), {
                   headers: { access_token: localStorage.getItem(USER_SESSION) },
                 });
+
                 localStorage.removeItem(USER_SESSION);
+
                 window.location.reload();
               } catch (e) {
                 console.log("error:", e);

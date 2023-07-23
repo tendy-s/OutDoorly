@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Login } from "./pages/login";
 import { OAuthCallbackPage } from "./pages/callback";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
 
 const theme = createTheme({
   typography: {
@@ -40,6 +41,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <NavigationBar />
         <div className="App">
+          <ToastContainer />
           <Routes>
             <Route path={getRoutes().home} element={<Home />} />
             <Route
