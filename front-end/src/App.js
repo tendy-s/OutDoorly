@@ -13,6 +13,11 @@ import { Login } from "./pages/login";
 import { OAuthCallbackPage } from "./pages/callback";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/User/User.slice";
+import { isInLocalStorage, USER_SESSION } from "./session";
+import { useEffect } from "react";
+import jwt from "jwt-decode";
 
 const theme = createTheme({
   typography: {
@@ -36,6 +41,18 @@ const theme = createTheme({
 });
 
 function App() {
+  const dispatch = useDispatch();
+
+  function getDecodedToken() {
+    if (isInLocalStorage(USER_SESSION)) {
+        dispatch(setUser(jwt(localStorage.getItem(USER_SESSION))));
+    }
+  }
+
+  useEffect(() => {
+    getDecodedToken();
+  }, []);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>

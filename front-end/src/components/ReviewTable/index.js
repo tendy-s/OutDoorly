@@ -11,8 +11,8 @@ import { Delete } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { Pagination } from "@mui/material";
 import {
-	deleteParkReview,
-	retrieveParkReviews,
+  deleteParkReview,
+  retrieveParkReviews,
 } from "../../redux/ParkDetails/ParkDetails.thunks";
 import { setPageNumber } from "../../redux/ParkDetails/ParkDetails.slice";
 import { useEffect, useState } from "react";
@@ -20,68 +20,71 @@ import { isInLocalStorage, USER_SESSION, INVALID_TOKEN } from "../../session";
 import { hashToken } from "../../services/park-service";
 
 export function ReviewTable() {
-	const parkName = useSelector((store) => store.parkDetails.details.fullName)
-	const reviews = useSelector((store) => store.parkDetails.userReviews);
-	const [sessionToken, setToken] = useState(INVALID_TOKEN);
-	const dispatch = useDispatch();
+  const parkName = useSelector((store) => store.parkDetails.details.fullName);
+  const reviews = useSelector((store) => store.parkDetails.userReviews);
+  const user = useSelector((store) => store.user.user);
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		if (!isInLocalStorage()) setToken(localStorage.getItem(USER_SESSION));
-	}, []);
+  function handleDelete(userID) {
+    dispatch(deleteParkReview(userID));
+  }
 
-	function handleDelete(userID) {
-		dispatch(deleteParkReview(userID));
-	}
+  function checkReview(userID) {
+    return user && userID === hashToken(user.name + parkName);
+  }
 
-	function checkReview(userID) {
-    return userID === hashToken(sessionToken + parkName);
-	}
+  return (
+    <>
+      <List className={styles.reviewsList}>
+        <Divider variant="inset" component="li" />
+        {reviews?.data &&
+          reviews?.data.map((review, idx) => {
+            return (
+              <div key={review.id}>
+                <ListItem className={styles.reviewsListItem}>
+                  <ListItemAvatar>
+                    <Avatar className={styles.reviewsAvatar}>
+                      <NaturePeopleIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <span className={styles.reviewBox}>
+                        {checkReview(review.userID) && (
+                          <span
+                            onClick={() => {
+                              handleDelete(review.userID);
+                            }}
+                            className={styles.reviewsDelete}>
+                            <Delete />
+                          </span>
+                        )}
+                        {"   " + review.userName}
+                      </span>
+                    }
+                    secondary={<p>{review.comment}</p>}
+                  />
+                  <Rating value={parseInt(review.experienceRating)} readOnly />
+                </ListItem>
 
-	return (
-		<>
-			<List className={styles.reviewsList}>
-				{reviews?.data &&
-					reviews?.data.map((review, idx) => {
-						return (
-							<div key={review.id}>
-								<ListItem className={styles.reviewsListItem}>
-									<ListItemAvatar>
-										<Avatar className={styles.reviewsAvatar}>
-											<NaturePeopleIcon />
-										</Avatar>
-									</ListItemAvatar>
-									<ListItemText
-										primary={review.userName}
-										secondary={<p>{review.comment}</p>}
-									/>
-									<Rating value={parseInt(review.experienceRating)} readOnly />
-									{checkReview(review.userID) && (
-										<Delete
-											onClick={() => {
-												handleDelete(review.userID);
-											}}
-											className={styles.reviewsDelete}
-										/>
-									)}
-								</ListItem>
-								{idx !== reviews.length - 1 && (
-									<Divider variant="inset" component="li" />
-								)}
-							</div>
-						);
-					})}
-			</List>
+                {idx !== reviews.length - 1 && (
+                  <Divider variant="inset" component="li" />
+                )}
+              </div>
+            );
+          })}
+      </List>
 
-			<div className={styles.pagination}>
-				<Pagination
-					count={reviews?.totalPages}
-					onChange={(_, page) => {
-						dispatch(setPageNumber(page));
-						dispatch(retrieveParkReviews());
-					}}
-					color="primary"
-				/>
-			</div>
-		</>
-	);
+      <div className={styles.pagination}>
+        <Pagination
+          count={reviews?.totalPages}
+          onChange={(_, page) => {
+            dispatch(setPageNumber(page));
+            dispatch(retrieveParkReviews());
+          }}
+          color="primary"
+        />
+      </div>
+    </>
+  );
 }

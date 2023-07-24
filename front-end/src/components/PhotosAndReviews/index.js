@@ -38,7 +38,7 @@ export default function PhotosAndReviews() {
   }, [park.userImages, park.details]);
 
   useEffect(() => {
-    if (!isInLocalStorage()) setToken(localStorage.getItem(USER_SESSION));
+    if (isInLocalStorage(USER_SESSION)) setToken(localStorage.getItem(USER_SESSION));
   }, []);
 
 

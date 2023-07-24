@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import styles from "./reviews-modal.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postParkReview } from "../../../redux/ParkDetails/ParkDetails.thunks";
 import { hashToken } from "../../../services/park-service";
 
@@ -18,21 +18,21 @@ export default function ReviewsModal(props) {
   const setVisible = props.setVisible;
   const [open, setOpen] = useState(true);
   const [rating, setRating] = useState(0);
-  const [name, setName] = useState("");
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
 
   function handleClose() {
+    console.log(user);
     setVisible(false);
   }
 
   function handleUpload() {
-    console.log(props.sessionToken);
     dispatch(
       postParkReview({
         comment: comment,
-        userName: name,
-        userID: hashToken(props.sessionToken + props.parkName),
+        userName: user.name,
+        userID: hashToken(user.name + props.parkName),
         title: "test",
         experienceRating: rating,
       })
@@ -67,13 +67,9 @@ export default function ReviewsModal(props) {
             component="h2">
             Add a Review
           </Typography>
-          <TextField
-            id="outlined-multiline-static"
-            sx={{ mb: 3, mt: 1 }}
-            size="small"
-            label="Reviewer Name"
-            onChange={(e) => setName(e.target.value)}
-          />
+          <span sx={{ m: 3 }}>
+            Review Name: <span style={{ color: "#667761" }}>{user.name}</span>
+          </span>
           <TextField
             className={styles.modalTextField}
             margin={"small"}
@@ -82,6 +78,7 @@ export default function ReviewsModal(props) {
             multiline
             rows={3}
             onChange={(e) => setComment(e.target.value)}
+            sx={{ mt: 1.5 }}
           />
           <Rating
             className={styles.modalRating}
