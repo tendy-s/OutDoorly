@@ -9,7 +9,7 @@ const defaultModelConfig = { timestamps: true, toJSON: { virtuals: true } };
  * @returns
  */
 exports.getSchemaForCollection = (collection, mongoose) => {
-  collection = collection.toLowerCase();
+  // collection = collection.toLowerCase();
   var schema = null;
 
   const schemaDefinition = require(`./${collection}`);

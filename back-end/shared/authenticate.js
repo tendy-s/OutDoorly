@@ -5,11 +5,18 @@ require("dotenv").config();
 let GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 let GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
+// // Initialize Google OAuth Client with required params
+// const oauth2Client = new google.auth.OAuth2(
+//   GOOGLE_CLIENT_ID,
+//   GOOGLE_CLIENT_SECRET,
+//   "http://localhost:3000/callback/"
+// );
+
 // Initialize Google OAuth Client with required params
 const oauth2Client = new google.auth.OAuth2(
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
-  "http://localhost:3000/callback/"
+  process.env.CALLBACK
 );
 
 // Generates a URL that asks permission to use/access user's email and profile
