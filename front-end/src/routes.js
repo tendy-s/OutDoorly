@@ -1,6 +1,6 @@
 import { DECREASING } from "./redux/ParkSearchInfo/ParkSearchInfo.slice";
 
-const PAGE_SIZE = 6;
+export const PAGE_SIZE = 6;
 
 export function getRoutes() {
   return {
@@ -37,7 +37,7 @@ export function getAppParkDetailsRoute(id) {
 }
 
 export function getReviewRoute(id, page) {
-  return `${APP_API_BASE_ROUTE}/parks/review/${id}?page=${page}&size=${PAGE_SIZE}`;
+  return `${APP_API_BASE_ROUTE}/parks/review/${id}`;
 }
 
 export function getImageRoute(id) {

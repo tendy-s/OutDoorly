@@ -12,6 +12,7 @@ import { useState } from "react";
 import styles from "./reviews-modal.module.scss";
 import { useDispatch } from "react-redux";
 import { postParkReview } from "../../../redux/ParkDetails/ParkDetails.thunks";
+import { hashToken } from "../../../services/park-service";
 
 export default function ReviewsModal(props) {
   const setVisible = props.setVisible;
@@ -26,11 +27,12 @@ export default function ReviewsModal(props) {
   }
 
   function handleUpload() {
+    console.log(props.sessionToken);
     dispatch(
       postParkReview({
         comment: comment,
         userName: name,
-        userID: Math.random(9999999),
+        userID: hashToken(props.sessionToken + props.parkName),
         title: "test",
         experienceRating: rating,
       })
@@ -51,21 +53,18 @@ export default function ReviewsModal(props) {
         backdrop: {
           timeout: 500,
         },
-      }}
-    >
+      }}>
       <Fade in={open}>
         <Box
           sx={{
             bgcolor: "background.paper",
           }}
-          className={styles.modalBox}
-        >
+          className={styles.modalBox}>
           <Typography
             className={styles.modalHeader}
             id="transition-modal-title"
             variant="h6"
-            component="h2"
-          >
+            component="h2">
             Add a Review
           </Typography>
           <TextField

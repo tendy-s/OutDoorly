@@ -15,45 +15,61 @@ import {
   retrieveParkReviews,
 } from "../../redux/ParkDetails/ParkDetails.thunks";
 import { setPageNumber } from "../../redux/ParkDetails/ParkDetails.slice";
+import { useEffect, useState } from "react";
+import { isInLocalStorage, USER_SESSION, INVALID_TOKEN } from "../../session";
+import { hashToken } from "../../services/park-service";
 
 export function ReviewTable() {
   const reviews = useSelector((store) => store.parkDetails.userReviews);
+  const [sessionToken, setToken] = useState(INVALID_TOKEN);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!isInLocalStorage()) setToken(localStorage.getItem(USER_SESSION));
+  }, []);
 
   function handleDelete(userID) {
     dispatch(deleteParkReview(userID));
   }
 
+  function checkReview(userID) {
+    console.log(sessionToken);
+    return userID === hashToken(sessionToken).toString();
+  }
+
   return (
     <>
       <List className={styles.reviewsList}>
-        {reviews?.data?.map((review, idx) => {
-          return (
-            <div key={review.id}>
-              <ListItem className={styles.reviewsListItem}>
-                <ListItemAvatar>
-                  <Avatar className={styles.reviewsAvatar}>
-                    <NaturePeopleIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary={review.userName}
-                  secondary={<p>{review.comment}</p>}
-                />
-                <Rating value={parseInt(review.experienceRating)} readOnly />
-                <Delete
-                  onClick={() => {
-                    handleDelete(review.userID);
-                  }}
-                  className={styles.reviewsDelete}
-                />
-              </ListItem>
-              {idx !== reviews.length - 1 && (
-                <Divider variant="inset" component="li" />
-              )}
-            </div>
-          );
-        })}
+        {reviews?.data &&
+          reviews?.data.map((review, idx) => {
+            return (
+              <div key={review.id}>
+                <ListItem className={styles.reviewsListItem}>
+                  <ListItemAvatar>
+                    <Avatar className={styles.reviewsAvatar}>
+                      <NaturePeopleIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={review.userName}
+                    secondary={<p>{review.comment}</p>}
+                  />
+                  <Rating value={parseInt(review.experienceRating)} readOnly />
+                  {checkReview(review.userID) && (
+                    <Delete
+                      onClick={() => {
+                        handleDelete(review.userID);
+                      }}
+                      className={styles.reviewsDelete}
+                    />
+                  )}
+                </ListItem>
+                {idx !== reviews.length - 1 && (
+                  <Divider variant="inset" component="li" />
+                )}
+              </div>
+            );
+          })}
       </List>
 
       <div className={styles.pagination}>

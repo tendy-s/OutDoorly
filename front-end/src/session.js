@@ -1,4 +1,5 @@
 export const USER_SESSION = "outdoorly_us";
+export const INVALID_TOKEN = "";
 
 export function isInLocalStorage(key) {
   try {

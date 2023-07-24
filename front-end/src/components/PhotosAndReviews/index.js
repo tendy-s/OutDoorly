@@ -14,6 +14,8 @@ import {
   retrieveParkReviews,
 } from "../../redux/ParkDetails/ParkDetails.thunks";
 
+import { isInLocalStorage, USER_SESSION, INVALID_TOKEN } from "../../session";
+
 export default function PhotosAndReviews() {
   const { parkCode } = useParams();
   const park = useSelector((store) => store.parkDetails);
@@ -24,7 +26,7 @@ export default function PhotosAndReviews() {
   const [showReviewsAlert, setReviewsAlert] = useState(false);
   const [showPhotosAlert, setPhotosAlert] = useState(false);
   const [images, setImages] = useState([]);
-
+  const [sessionToken, setToken] = useState(INVALID_TOKEN);
   const dispatch = useDispatch();
 
   const handleChange = (event, newValue) => {
@@ -34,6 +36,11 @@ export default function PhotosAndReviews() {
   useEffect(() => {
     setImages(park?.details.images.concat(park.userImages));
   }, [park.userImages, park.details]);
+
+  useEffect(() => {
+    if (!isInLocalStorage()) setToken(localStorage.getItem(USER_SESSION));
+  }, []);
+
 
   useEffect(() => {
     if (park.details) {
@@ -68,8 +75,7 @@ export default function PhotosAndReviews() {
         value={value}
         style={{ display: "flex", justifyContent: "center" }}
         onChange={handleChange}
-        aria-label="basic tabs example"
-      >
+        aria-label="basic tabs example">
         <Tab label="Reviews" />
         <Tab label="Photos" />
       </Tabs>
@@ -86,8 +92,7 @@ export default function PhotosAndReviews() {
             severity="success"
             maxWidth={false}
             variant="filled"
-            sx={{ mb: 2 }}
-          >
+            sx={{ mb: 2 }}>
             Review added successfully
           </Alert>
         )}
@@ -105,8 +110,7 @@ export default function PhotosAndReviews() {
             severity="success"
             maxWidth={false}
             variant="filled"
-            sx={{ mb: 2 }}
-          >
+            sx={{ mb: 2 }}>
             Photo added successfully
           </Alert>
         )}
@@ -128,10 +132,19 @@ export default function PhotosAndReviews() {
         </div>
       </TabPanel>
       {reviewModal && (
-        <ReviewsModal setVisible={setReviewModal} setAlert={setReviewsAlert} />
+        <ReviewsModal
+          sessionToken={sessionToken}
+          setVisible={setReviewModal}
+          setAlert={setReviewsAlert}
+		  parkName={park.details.fullName}
+        />
       )}
       {photoModal && (
-        <PhotosModal setVisible={setPhotoModal} setAlert={setPhotosAlert} />
+        <PhotosModal
+          sessionToken={sessionToken}
+          setVisible={setPhotoModal}
+          setAlert={setPhotosAlert}
+        />
       )}
     </div>
   );
