@@ -38,10 +38,13 @@ export const postParkReview = createAsyncThunk(
     const state = thunkApi.getState();
     const res = await postReview(state.parkDetails.details.id, review).then(
       () => {
-        return getReview(state.parkDetails.details.id);
+        return getReview(
+          state.parkDetails.details.id,
+          state.parkDetails.currPage
+        );
       }
     );
-    return res.data.reviews;
+    return res.data;
   }
 );
 
@@ -51,10 +54,13 @@ export const deleteParkReview = createAsyncThunk(
     const state = thunkApi.getState();
     const res = await deleteReview(state.parkDetails.details.id, userID).then(
       () => {
-        return getReview(state.parkDetails.details.id);
+        return getReview(
+          state.parkDetails.details.id,
+          state.parkDetails.currPage
+        );
       }
     );
-    return res.data.reviews;
+    return res.data;
   }
 );
 
