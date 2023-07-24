@@ -2,21 +2,17 @@ import "@fontsource/poppins";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/400-italic.css";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import SearchResults from "./pages/search-results";
 import ParkDetails from "./pages/park-details";
 import { getRoutes } from "./routes";
 import { NavigationBar } from "./components/NavigationBar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { USER_SESSION, isInLocalStorage } from "./session";
 import { Login } from "./pages/login";
 import { OAuthCallbackPage } from "./pages/callback";
+import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
 
 const theme = createTheme({
   typography: {
@@ -45,6 +41,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <NavigationBar />
         <div className="App">
+          <ToastContainer />
           <Routes>
             <Route path={getRoutes().home} element={<Home />} />
             <Route
@@ -59,6 +56,7 @@ function App() {
               element={<OAuthCallbackPage />}
             />
           </Routes>
+          <Footer />
         </div>
       </ThemeProvider>
     </Router>
