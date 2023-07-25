@@ -7,7 +7,6 @@ import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks
 
 export default function ResultsListing({ searchResults }) {
   const dispatch = useDispatch();
-  console.log("RESULTS ARE ", searchResults);
   return (
     <div>
       <h3 className={styles.resultsHeading}>
@@ -16,14 +15,17 @@ export default function ResultsListing({ searchResults }) {
       </h3>
       {searchResults.data?.map((p) => {
         return (
-          <ResultListItem
-            key={p.parkCode}
-            fullName={p.fullName}
-            parkID={p._id}
-            distance={p.distance}
-            description={p.description}
-            images={p.images}
-          />
+          <div>
+            <ResultListItem
+              key={p.parkCode}
+              fullName={p.fullName}
+              parkID={p._id}
+              distance={p.distance}
+              description={p.description}
+              images={p.images}
+            />
+            <br />
+          </div>
         );
       })}
       <div className={styles.pagination}>

@@ -16,8 +16,7 @@ export default function ResultListItem({
         <CardContent>
           <div
             className={styles.listItemWrapper}
-            onClick={() => (window.location.href = `/park-details/${parkID}`)}
-          >
+            onClick={() => (window.location.href = `/park-details/${parkID}`)}>
             <Typography sx={{ fontSize: 30 }}>{fullName}</Typography>
             {distance && <h4>Distance: {distance.toFixed(2)} km</h4>}
             <div className={styles.resultsWrapper}>
@@ -25,7 +24,7 @@ export default function ResultListItem({
                 className={styles.previewImage}
                 src={images[0].url}
                 alt={images[0].altText}
-              />{" "}
+              />
               <div className={styles.previewText}>
                 <div>{description}</div>
                 <div>
