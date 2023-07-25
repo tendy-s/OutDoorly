@@ -1,24 +1,30 @@
 .listItemWrapper {
-    background-color: white;
-    padding: 1rem;
+  background-color: white;
+  padding: 1rem;
 }
 
 .parkContainer {
-    border: 1px black solid;
-	margin: 0 2.5%;
+  border: 1px black solid;
+  margin: 0 2.5%;
+}
+
+.parkContainer:hover {
+	filter: brightness(.95);
+	cursor: pointer;
 }
 
 .previewImage {
-    max-width: 10rem;
-	border-radius: .5rem;
+  max-width: 10rem;
+  max-height: 10rem;
+  border-radius: 0.5rem;
+  object-fit: contain;
 }
 
 .previewText {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .resultsWrapper {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
-
