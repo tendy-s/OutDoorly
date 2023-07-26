@@ -33,7 +33,7 @@ export default function ReviewsModal(props) {
 	useEffect(() => {
 		setEdit(Object.keys(props.reviewed).length !== 0);
 		setRating(parseInt(props.reviewed.experienceRating) || 0);
-		setComment(props.reviewed.comment || "")
+		setComment(props.reviewed.comment || "");
 	}, []);
 
 	function handleUpload() {
