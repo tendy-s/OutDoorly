@@ -1,26 +1,35 @@
 .parkDetailsWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 60rem;
-    margin: 0 auto 0 auto;
-	box-shadow: 0 5px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 60rem;
+  margin: 0 auto 0 auto;
+  box-shadow: 0 5px 4px;
 }
 
 .mainImg {
-    max-width: 40rem;
-	filter: brightness(0.85);
-	border-radius: 1%;
+  max-width: 40rem;
+  filter: brightness(0.85);
+  border-radius: 1%;
 }
 
 .descriptionContainer {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .description {
-	align-items: center;
-	width: 40%;
-	margin-left: 2%;
-	padding-right: 2%;
+  align-items: center;
+  width: 40%;
+  margin-left: 2%;
+  padding-right: 2%;
+}
+
+.map {
+  width: 40%;
+  margin-left: 1.5rem;
+}
+
+.link:hover {
+filter: brightness(0.7)
 }

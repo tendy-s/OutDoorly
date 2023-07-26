@@ -154,7 +154,7 @@ const getParks = async (
 const getParkDetails = async (id) => {
   const parks = await getModelForCollection("parksSchema");
   let queryProjection =
-    "id fullName parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees";
+    "id fullName parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees addresses designation topics url ammenities activities";
 
   const result = await parks.findById(id).select(queryProjection);
   // console.log(result);
