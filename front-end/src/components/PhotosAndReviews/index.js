@@ -15,6 +15,7 @@ import {
 } from "../../redux/ParkDetails/ParkDetails.thunks";
 
 import { isInLocalStorage, USER_SESSION, INVALID_TOKEN } from "../../session";
+import { hashToken } from "../../services/park-service";
 
 export default function PhotosAndReviews() {
   const { parkCode } = useParams();
@@ -25,9 +26,23 @@ export default function PhotosAndReviews() {
   const [reviewModal, setReviewModal] = useState(false);
   const [showReviewsAlert, setReviewsAlert] = useState(false);
   const [showPhotosAlert, setPhotosAlert] = useState(false);
+  const [reviewed, setReviewed] = useState(false);
   const [images, setImages] = useState([]);
   const [sessionToken, setToken] = useState(INVALID_TOKEN);
+  const user = useSelector((store) => store.user.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setReviewed(
+      park?.userReviews?.data.reduce((acc, curr) => {
+        return acc || curr.userID === hashToken(user.name + park.details.fullName);
+      }, false)
+    );
+  }, [park, user]);
+
+  useEffect(() => {
+    console.log(reviewed);
+  }, reviewed);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -97,7 +112,7 @@ export default function PhotosAndReviews() {
                   marginBottom: "5%",
                   marginTop: "3%",
                 }}>
-                Add Review
+                {reviewed ? `Edit Review` : `Add Review`}
               </Button>
               <Typography color="secondary"> Login to Add a Review </Typography>
             </div>
@@ -129,7 +144,9 @@ export default function PhotosAndReviews() {
                 justifyContent: "center",
                 flexDirection: "column",
               }}>
-              <Button variant="outlined" disabled
+              <Button
+                variant="outlined"
+                disabled
                 style={{
                   marginBottom: "5%",
                   marginTop: "3%",
@@ -177,6 +194,8 @@ export default function PhotosAndReviews() {
           setVisible={setReviewModal}
           setAlert={setReviewsAlert}
           parkName={park.details.fullName}
+          reviewed={reviewed}
+          setReviewed={setReviewed}
         />
       )}
       {photoModal && (

@@ -39,6 +39,7 @@ export default function ResultsListing({ searchResults }) {
           color="primary"
         />
       </div>
+      <br />
     </div>
   );
 }

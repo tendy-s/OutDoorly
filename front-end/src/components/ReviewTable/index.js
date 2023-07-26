@@ -15,8 +15,6 @@ import {
   retrieveParkReviews,
 } from "../../redux/ParkDetails/ParkDetails.thunks";
 import { setPageNumber } from "../../redux/ParkDetails/ParkDetails.slice";
-import { useEffect, useState } from "react";
-import { isInLocalStorage, USER_SESSION, INVALID_TOKEN } from "../../session";
 import { hashToken } from "../../services/park-service";
 
 export function ReviewTable() {
@@ -30,6 +28,7 @@ export function ReviewTable() {
   }
 
   function checkReview(userID) {
+	  
     return user && userID === hashToken(user.name + parkName);
   }
 
