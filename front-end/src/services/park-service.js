@@ -63,6 +63,14 @@ export function postReview(id, review) {
   });
 }
 
+export function putReview(id, review) {
+  return axios({
+    method: "put",
+    url: getReviewRoute(id),
+    data: review,
+  });
+}
+
 export function deleteReview(id, userID) {
   return axios({
     method: "delete",

@@ -3,6 +3,7 @@ import {
   retrieveParkDetails,
   retrieveParkReviews,
   postParkReview,
+	putParkReview,
   deleteParkReview,
   retrieveParkImages,
   postParkImage,
@@ -71,6 +72,17 @@ const parkDetailsSlice = createSlice({
         state.loadingParkReviews = false;
       })
 
+      .addCase(putParkReview.pending, (state) => {
+        state.loadingParkReviews = true;
+      })
+      .addCase(putParkReview.fulfilled, (state, action) => {
+        state.loadingParkReviews = false;
+        state.userReviews = action.payload;
+      })
+      .addCase(putParkReview.rejected, (state) => {
+        state.loadingParkReviews = false;
+      })
+	  
       .addCase(deleteParkReview.pending, (state) => {
         state.loadingParkReviews = true;
       })
