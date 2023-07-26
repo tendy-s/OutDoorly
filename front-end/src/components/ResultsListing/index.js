@@ -23,6 +23,7 @@ export default function ResultsListing({ searchResults }) {
               distance={p.distance}
               description={p.description}
               images={p.images}
+			park={p}
             />
             <br />
           </div>

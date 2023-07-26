@@ -105,7 +105,7 @@ const getParks = async (
   };
 
   let queryProjection =
-    "fullName parkCode states activities.name description images amenities";
+    "fullName parkCode states activities.name description images amenities addresses designation  ";
 
   let sorting = {
     fullName: "asc",
