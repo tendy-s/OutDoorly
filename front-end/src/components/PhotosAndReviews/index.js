@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Tab, Tabs } from "@mui/material";
+import { Button, Tab, Tabs, Typography } from "@mui/material";
 import { TabPanel } from "../../components/ParkDetailsTabPanel";
 import ReviewsModal from "../../components/Modal/ReviewsModal";
 import PhotosModal from "../../components/Modal/PhotosModal";
@@ -38,9 +38,9 @@ export default function PhotosAndReviews() {
   }, [park.userImages, park.details]);
 
   useEffect(() => {
-    if (isInLocalStorage(USER_SESSION)) setToken(localStorage.getItem(USER_SESSION));
+    if (isInLocalStorage(USER_SESSION))
+      setToken(localStorage.getItem(USER_SESSION));
   }, []);
-
 
   useEffect(() => {
     if (park.details) {
@@ -82,9 +82,30 @@ export default function PhotosAndReviews() {
 
       <TabPanel value={value} index={0}>
         <div className={styles.addReviewButton}>
-          <Button variant="outlined" onClick={() => setReviewModal(true)}>
-            Add review
-          </Button>
+          {sessionToken === INVALID_TOKEN ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}>
+              <Button
+                variant="outlined"
+                disabled
+                style={{
+                  marginBottom: "5%",
+                  marginTop: "3%",
+                }}>
+                Add Review
+              </Button>
+              <Typography color="secondary"> Login to Add a Review </Typography>
+            </div>
+          ) : (
+            <Button variant="outlined" onClick={() => setReviewModal(true)}>
+              Add review
+            </Button>
+          )}
         </div>
         {showReviewsAlert && (
           <Alert
@@ -100,9 +121,28 @@ export default function PhotosAndReviews() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className={styles.addPhotoButton}>
-          <Button variant="outlined" onClick={() => setPhotoModal(true)}>
-            Add photo
-          </Button>
+          {sessionToken === INVALID_TOKEN ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}>
+              <Button variant="outlined" disabled
+                style={{
+                  marginBottom: "5%",
+                  marginTop: "3%",
+                }}>
+                Add Photo
+              </Button>
+              <Typography color="secondary"> Login to Add a Photo</Typography>
+            </div>
+          ) : (
+            <Button variant="outlined" onClick={() => setPhotoModal(true)}>
+              Add photo
+            </Button>
+          )}
         </div>
         {showPhotosAlert && (
           <Alert
@@ -136,7 +176,7 @@ export default function PhotosAndReviews() {
           sessionToken={sessionToken}
           setVisible={setReviewModal}
           setAlert={setReviewsAlert}
-		  parkName={park.details.fullName}
+          parkName={park.details.fullName}
         />
       )}
       {photoModal && (

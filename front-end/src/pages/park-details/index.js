@@ -15,7 +15,6 @@ export default function ParkDetails() {
   const dispatch = useDispatch();
   const parkDetails = useSelector((store) => store.parkDetails.details);
   const loading = useSelector((state) => state.parkDetails.loading);
-  console.log("LOADING ", loading, parkDetails);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
