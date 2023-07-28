@@ -1,5 +1,5 @@
 import styles from "./photos.module.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
@@ -12,7 +12,6 @@ const photoStyle = {
   },
 };
 
-
 export default function Photo(props) {
   const [hovered, setHovered] = useState(false);
   const [favourited, setFavourited] = useState(false);
@@ -22,7 +21,8 @@ export default function Photo(props) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => setFavourited(!favourited)}
-      className={styles.photoContainer + " " + styles.notFavourited}>
+      className={styles.photoContainer + " " + styles.notFavourited}
+    >
       <img
         alt={"Park"}
         src={props.url}

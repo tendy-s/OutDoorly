@@ -8,7 +8,6 @@ import {
   getProximitySearchRoute,
   getReviewRoute,
   getImageRoute,
-  getParkDetailsRoute,
 } from "../routes";
 
 export function getActivities() {

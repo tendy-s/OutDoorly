@@ -36,7 +36,7 @@ export function OAuthCallbackPage() {
     };
 
     fetchUserSessionToken();
-  }, [code]);
+  }, [code, navigate]);
 
   return (
     <div>

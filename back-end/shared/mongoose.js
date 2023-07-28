@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { getSchemaForCollection } = require("./schema/collectionSchema");
-
+require("dotenv").config();
 let connection;
 
 /**
@@ -10,8 +10,10 @@ let connection;
  */
 const getMongooseConnection = async (refreshDatabase = false) => {
   // const MONGO_CONN_STRING = "mongodb://127.0.0.1:27017/outdoorly"; // move to .env in future
-  const MONGO_CONN_STRING =
-    "mongodb+srv://outdoorly1:Prl1out123@outdoorlycluster.gonitmf.mongodb.net/outdoorly2";
+  // const MONGO_CONN_STRING =
+  //   "mongodb+srv://outdoorly1:Prl1out123@outdoorlycluster.gonitmf.mongodb.net/outdoorly2";
+
+  const MONGO_CONN_STRING = process.env.MONGO_CONNECTION_STRING;
 
   // const DATABASE_NAME = "outdoorly"; //move to .env in future
   const DATABASE_NAME = "outdoorly2";
