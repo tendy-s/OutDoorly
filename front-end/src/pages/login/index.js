@@ -14,6 +14,7 @@ export const Login = () => {
         setAuthURL(response.data.googleURL);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

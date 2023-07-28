@@ -38,6 +38,7 @@ export default function SearchResults() {
     dispatch(setPageNumber(1));
     dispatch(searchForParks());
     console.log(searchCity, searchDistance);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortDir, distanceSortDir]);
 
   if (!loading && searchResults?.data?.length === 0) {

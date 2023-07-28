@@ -40,6 +40,7 @@ export default function PhotosAndReviews() {
       dispatch(retrieveParkReviews(parkCode));
       dispatch(retrieveParkImages(park.details["_id"]));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
