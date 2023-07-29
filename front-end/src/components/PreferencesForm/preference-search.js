@@ -35,6 +35,7 @@ export default function PreferenceSearch() {
 
   useEffect(() => {
     dispatch(fetchParkActivities());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

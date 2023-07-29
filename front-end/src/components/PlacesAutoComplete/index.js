@@ -51,6 +51,7 @@ function PlacesAutoComplete({ onChange }) {
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback`,
       () => handleScriptLoad(setQuery, autoCompleteRef, onChange)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

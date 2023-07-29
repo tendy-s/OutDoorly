@@ -9,6 +9,7 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(clearSearchResults());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className={styles.home}>

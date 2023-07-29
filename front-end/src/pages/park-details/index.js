@@ -55,6 +55,7 @@ export default function ParkDetails() {
   useEffect(() => {
     dispatch(setSelectedParkID(id));
     dispatch(retrieveParkDetails());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
