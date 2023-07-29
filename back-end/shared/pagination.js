@@ -22,6 +22,7 @@ const paginateData = async (model, query, data, page, limit = 1) => {
   return result;
 };
 
+
 // const paginateDataClosestParks = async (
 //   resultLength,
 //   data,

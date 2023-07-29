@@ -22,9 +22,7 @@ export function OAuthCallbackPage() {
           const response = await axios.get(getAuthCallBackRoute(code));
           const { token } = response.data;
           const decodedToken = jwt(token);
-          console.log("DECODED TOKEN", decodedToken);
           writeToLocalStorage(USER_SESSION, token);
-
           toast.info(`Logged in successfully as ${decodedToken.name}`);
         }
       } catch (error) {
@@ -41,7 +39,15 @@ export function OAuthCallbackPage() {
   return (
     <div>
       {loading ? (
-        <ClimbingBoxLoader />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}>
+          <ClimbingBoxLoader size={60} color="#667761" />
+        </div>
       ) : (
         <p>Error: Unable to fetch user session token.</p>
       )}

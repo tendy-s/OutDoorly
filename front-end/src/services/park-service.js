@@ -8,6 +8,8 @@ import {
   getProximitySearchRoute,
   getReviewRoute,
   getImageRoute,
+  getParkDetailsRoute,
+	PAGE_SIZE
 } from "../routes";
 
 export function getActivities() {
@@ -50,12 +52,20 @@ export function getParkDetails(id) {
 }
 
 export function getReview(id, page) {
-  return axios.get(getReviewRoute(id, page));
+  return axios.get(getReviewRoute(id, page) + `?page=${page}&size=${PAGE_SIZE}`);
 }
 
 export function postReview(id, review) {
   return axios({
     method: "post",
+    url: getReviewRoute(id),
+    data: review,
+  });
+}
+
+export function putReview(id, review) {
+  return axios({
+    method: "put",
     url: getReviewRoute(id),
     data: review,
   });
@@ -85,4 +95,14 @@ export function postImage(id, image) {
     data: imageData,
     headers: { "Content-Type": "multipart/form-data" },
   });
+}
+
+export function hashToken(token) {
+  let arr = token.split("");
+  return arr.reduce(
+    (hash, curr) =>
+      (hash =
+        curr.charCodeAt(0) + (hash << 6) + (hash << 16) - hash),
+    0
+  );
 }
