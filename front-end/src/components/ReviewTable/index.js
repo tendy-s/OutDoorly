@@ -29,7 +29,7 @@ export function ReviewTable() {
 
   function checkReview(userID) {
 	  
-    return user && userID === hashToken(user.name + parkName);
+    return user && userID === hashToken(user?.name + parkName);
   }
 
   return (

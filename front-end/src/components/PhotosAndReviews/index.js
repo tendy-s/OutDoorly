@@ -35,7 +35,7 @@ export default function PhotosAndReviews() {
 	useEffect(() => {
 		setReviewed(
 			park?.userReviews?.data.reduce((acc, curr) => {
-				return curr.userID === hashToken(user.name + park.details.fullName)
+				return curr.userID === hashToken(user?.name + park.details.fullName)
 					? curr
 					: acc;
 			}, {})
