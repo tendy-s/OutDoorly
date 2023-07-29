@@ -39,25 +39,25 @@ Users provide reviews on their personal experience with different national parks
 
 ### Project task requirements: 
 #### 3-5 minimal requirements (will definitely complete) 
-- User can select preferences (activities, state)
-- Users can add their reviews
-- Users can submit photos from their visit to the park
-- Users can view and click into a list of national park suggestions based on their preferences
+- User can select preferences (activities, state) ✅
+- Users can add their reviews ✅
+- Users can submit photos from their visit to the park ✅
+- Users can view and click into a list of national park suggestions based on their preferences ✅
 
 
 #### 3-7 "standard" requirements (will most likely complete) 
-- Ability to filter/sort search results
-- Show map location of selected park
-- Ability to see more detailed info (e.g. fees, hours) regarding each national park 
-- Ability to locate parks by amenities offered
+- Ability to filter/sort search results ✅
+- Show map location of selected park ✅
+- Ability to see more detailed info (e.g. fees, hours) regarding each national park ✅
+- Ability to locate parks by amenities offered ✅
 
 
 #### 2-3 stretch requirements (plan to complete at least 1!) 
-- Alert users if the park they are in experiences an emergency situation
-- Ability to locate parks by proximity
-- Popular pictures get shown ahead of others
-- User login
-- Find national parks that are having events in the next month
+- Alert users if the park they are in experiences an emergency situation ❌
+- Ability to locate parks by proximity ✅
+- Popular pictures get shown ahead of others ❌
+- User login ✅
+- Find national parks that are having events in the next month ❌
 
 ### Pick 2 of your minimal requirements and break each of them down into ~2-5 smaller tasks! 
 #### This will help you divide up work among your teammates 
