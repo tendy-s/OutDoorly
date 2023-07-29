@@ -29,7 +29,7 @@ const getReview = async (req, res) => {
 
     const { offset, limit } = getPagination(page, size);
     const paginatedResult = await paginateDataClosestParks(
-      reviews,
+      reviews.reverse(),
       page,
       limit,
       offset
