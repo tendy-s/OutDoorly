@@ -9,7 +9,6 @@ OutDoorly empowers hiking enthusiasts to effortlessly discover the diverse beaut
 
 
 ### Project Description: 
-### Write 3-5 sentences on your project topic.
  
 This project essentially allows for people to rate and view national parks in the US. Users are able to view information about the park such as activities, amenities and the location. A user will also be given the option to upload reviews with a description, and also upload photos to the gallery.
 
@@ -71,7 +70,6 @@ Users provide reviews on their personal experience with different national parks
 
 #### Users can submit photos from their visit to the park.
 - Allow a user to upload an image (or multiple images)
-- Allow a user to caption images
 - Images are tagged to the park that they were uploaded to
 - Image will be added to the image gallery
 
