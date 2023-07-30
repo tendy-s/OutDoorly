@@ -35,6 +35,7 @@ export default function SearchResults() {
     if (!searchMode) {
       window.location.href = "/";
     }
+    window.scrollTo(0, 0);
     dispatch(setPageNumber(1));
     dispatch(searchForParks());
     console.log(searchCity, searchDistance);
