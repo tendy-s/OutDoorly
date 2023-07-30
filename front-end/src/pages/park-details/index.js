@@ -59,7 +59,7 @@ export default function ParkDetails() {
   }, []);
 
   return (
-    <div>
+    <>
       {loading || !parkDetails ? (
         <div
           style={{
@@ -178,6 +178,6 @@ export default function ParkDetails() {
           <PhotosAndReviews />
         </div>
       )}
-    </div>
+    </>
   );
 }

@@ -21,9 +21,6 @@
   .title {
     width: 100%;
     height: fit-content;
-    display: grid;
-    grid-template-columns: 2fr;
-    grid-template-rows: 3fr;
   }
 
   .headingContainer {
@@ -38,7 +35,6 @@
     text-align: center;
     margin-top: 5%;
     margin-bottom: 0;
-    font-size: 6rem;
   }
 
   .subHeading {

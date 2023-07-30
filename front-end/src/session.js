@@ -15,9 +15,6 @@ export function isInLocalStorage(key) {
 export function writeToLocalStorage(key, value) {
   try {
     localStorage.setItem(key, value);
-    console.log(
-      `Successfully wrote "${value}" to local storage with key "${key}".`
-    );
   } catch (error) {
     console.error(
       `Error writing "${value}" to local storage with key "${key}":`,

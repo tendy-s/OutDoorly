@@ -15,11 +15,11 @@ export const fetchParkActivities = createAsyncThunk(
   }
 );
 
+// appending an arbitrary number of params to our url
 export const searchForParks = createAsyncThunk(
   "parkSearchInfo/searchForParks",
   async (_, thunkApi) => {
     const state = thunkApi.getState();
-    console.log("this is the state:", state);
     let res;
     if (state.parkSearchInfo.searchMode === "PREFERENCES") {
       let sort =
@@ -36,11 +36,6 @@ export const searchForParks = createAsyncThunk(
         state.parkSearchInfo.currPage
       );
     } else {
-      console.log(
-        "Search city",
-        state.parkSearchInfo.searchCity,
-        state.parkSearchInfo.searchDistance
-      );
       res = await getParksByProximity(
         state.parkSearchInfo.searchCity.split(", ")[0],
         state.parkSearchInfo.searchCity.split(", ")[1],
@@ -57,10 +52,7 @@ export const retrieveParkDetails = createAsyncThunk(
   "parkSearchInfo/retrieveParkDetails",
   async (_, thunkApi) => {
     const state = thunkApi.getState();
-    console.log("PARK DETAILS FETCHING", state.parkSearchInfo.selectedParkID);
-
     const res = await getParkDetails(state.parkSearchInfo.selectedParkID);
-    console.log("PARK DETAILS ", res);
     return res.data;
   }
 );

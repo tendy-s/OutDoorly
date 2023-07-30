@@ -4,13 +4,11 @@ import { useDispatch } from "react-redux";
 import { getRoutes } from "../../../routes";
 import Typography from "@mui/material/Typography";
 import styles from "./form.module.scss";
-
 import {
   setSearchDistance,
   setSearchMode,
   setSearchCity,
 } from "../../../redux/ParkSearchInfo/ParkSearchInfo.slice";
-
 import Slider from "@mui/material/Slider";
 import PlacesAutoComplete from "../PlacesAutoComplete";
 import { useForm, Controller } from "react-hook-form";

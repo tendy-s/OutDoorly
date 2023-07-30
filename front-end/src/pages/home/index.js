@@ -17,6 +17,7 @@ export default function Home() {
         <div className={styles.headingContainer}>
           <Typography
             fontWeight="fontWeightMedium"
+            fontSize={64}
             className={styles.titleHeading}
           >
             OutDoorly

@@ -15,7 +15,8 @@
 }
 
 .previewImage {
-  max-width: 10rem;
+  min-width: 10rem;
+  max-width: 17rem;
   max-height: 10rem;
   border-radius: 0.5rem;
   object-fit: contain;
@@ -23,9 +24,12 @@
 
 .previewText {
   padding: 1rem;
+  flex-basis: 60%;
+  flex-grow: 1; 
 }
 
 .resultsWrapper {
+  margin-top: 1rem;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
 }
