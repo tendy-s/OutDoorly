@@ -1,11 +1,11 @@
-import styles from "./preferences-form.module.scss";
-import { fetchParkActivities } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
+import styles from "./form.module.scss";
+import { fetchParkActivities } from "../../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
 import Button from "@mui/material/Button";
-import { getAmenities } from "../../services/park-service";
+import { getAmenities } from "../../../services/park-service";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getRoutes } from "../../routes";
+import { getRoutes } from "../../../routes";
 import Select from "react-select";
 import Typography from "@mui/material/Typography";
 import { STATE_OPTIONS } from "./state-codes";
@@ -14,7 +14,7 @@ import {
   setSearchAmenities,
   setSearchMode,
   setSearchStates,
-} from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+} from "../../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 import { useForm, Controller } from "react-hook-form";
 
 export default function PreferenceSearch() {

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./search-results.module.scss";
 import { useEffect } from "react";
-import ResultsListing from "../../components/ResultsListing";
+import ResultsListing from "../../components/search-results/ResultsListing";
 import { Button } from "@mui/material";
 import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
 import {

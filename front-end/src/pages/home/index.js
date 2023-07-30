@@ -1,5 +1,5 @@
 import styles from "./home.module.scss";
-import PreferencesForm from "../../components/PreferencesForm";
+import SearchForm from "../../components/search/SearchForm";
 import { Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -29,7 +29,7 @@ export default function Home() {
       <br />
       <br />
       <div className={styles.form}>
-        <PreferencesForm />
+        <SearchForm />
       </div>
       <br />
       <br />

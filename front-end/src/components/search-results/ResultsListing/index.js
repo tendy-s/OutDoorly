@@ -2,8 +2,8 @@ import { Pagination } from "@mui/material";
 import ResultListItem from "../ResultListItem";
 import styles from "./results-listing.module.scss";
 import { useDispatch } from "react-redux";
-import { setPageNumber } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
-import { searchForParks } from "../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
+import { setPageNumber } from "../../../redux/ParkSearchInfo/ParkSearchInfo.slice";
+import { searchForParks } from "../../../redux/ParkSearchInfo/ParkSearchInfo.thunks";
 
 export default function ResultsListing({ searchResults }) {
   const dispatch = useDispatch();

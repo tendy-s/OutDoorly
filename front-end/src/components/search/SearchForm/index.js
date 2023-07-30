@@ -1,14 +1,14 @@
-import styles from "./preferences-form.module.scss";
+import styles from "./form.module.scss";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import DistanceSearch from "./distance-search";
+import DistanceForm from "./distance-search";
 import PreferenceSearch from "./preference-search";
 
 const DISTANCE_SEARCH = "Distance ";
 const PREFERENCES_SEARCH = "Preferences ";
 
-export default function PreferencesForm() {
+export default function SearchForm() {
   const [search, setSearch] = useState(PREFERENCES_SEARCH);
 
   function toggleSearch() {
@@ -33,11 +33,7 @@ export default function PreferencesForm() {
         {" "}
         {search}{" "}
       </Button>
-      {search === PREFERENCES_SEARCH ? (
-        <PreferenceSearch />
-      ) : (
-        <DistanceSearch />
-      )}
+      {search === PREFERENCES_SEARCH ? <PreferenceSearch /> : <DistanceForm />}
     </>
   );
 }

@@ -13,9 +13,9 @@ import { Pagination } from "@mui/material";
 import {
   deleteParkReview,
   retrieveParkReviews,
-} from "../../redux/ParkDetails/ParkDetails.thunks";
-import { setPageNumber } from "../../redux/ParkDetails/ParkDetails.slice";
-import { hashToken } from "../../services/park-service";
+} from "../../../redux/ParkDetails/ParkDetails.thunks";
+import { setPageNumber } from "../../../redux/ParkDetails/ParkDetails.slice";
+import { hashToken } from "../../../services/park-service";
 
 export function ReviewTable() {
   const parkName = useSelector((store) => store.parkDetails.details.fullName);
@@ -28,7 +28,6 @@ export function ReviewTable() {
   }
 
   function checkReview(userID) {
-	  
     return user && userID === hashToken(user?.name + parkName);
   }
 
@@ -54,7 +53,8 @@ export function ReviewTable() {
                             onClick={() => {
                               handleDelete(review.userID);
                             }}
-                            className={styles.reviewsDelete}>
+                            className={styles.reviewsDelete}
+                          >
                             <Delete />
                           </span>
                         )}

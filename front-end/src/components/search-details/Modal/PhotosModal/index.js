@@ -4,7 +4,7 @@ import { Modal, Fade, Box, Typography, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from "./photos-modal.module.scss";
 import { useDispatch } from "react-redux";
-import { postParkImage } from "../../../redux/ParkDetails/ParkDetails.thunks";
+import { postParkImage } from "../../../../redux/ParkDetails/ParkDetails.thunks";
 
 export default function PhotosModal(props) {
   const setVisible = props.setVisible;
