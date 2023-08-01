@@ -18,10 +18,8 @@ export const Login = () => {
   }, []);
 
   return (
-    <div>
       <a style={{ textDecoration: "none" }} href={authURL}>
         LOGIN WITH GOOGLE
       </a>
-    </div>
   );
 };
