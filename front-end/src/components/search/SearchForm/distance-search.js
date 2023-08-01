@@ -40,10 +40,8 @@ export default function DistanceForm() {
   return (
     <form
       className={styles.formWrapper}
-      onSubmit={handleSubmit(onSubmitDistanceSearch)}
-    >
+      onSubmit={handleSubmit(onSubmitDistanceSearch)}>
       <Typography variant="h5" sx={{ mt: 3, mb: 2, fontWeight: "medium" }}>
-        {" "}
         Which city are you located in?
       </Typography>
 

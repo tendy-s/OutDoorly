@@ -2,12 +2,12 @@ import { useParams } from "react-router-dom";
 import styles from "./park-details.module.scss";
 import { useEffect, useState } from "react";
 import { Box, Tab, Tabs, Typography, Rating, Link } from "@mui/material";
-import { TabPanel } from "../../components/search-details/ParkDetailsTabPanel";
-import PhotosAndReviews from "../../components/search-details/PhotosAndReviews";
+import { TabPanel } from "../../components/ParkDetailsTabPanel";
+import PhotosAndReviews from "../../components/PhotosAndReviews";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedParkID } from "../../redux/ParkSearchInfo/ParkSearchInfo.slice";
 import { retrieveParkDetails } from "../../redux/ParkDetails/ParkDetails.thunks";
-import ParkMap from "../../components/search-details/Map/index.js";
+import ParkMap from "../../components/Map/index.js";
 import { ClimbingBoxLoader } from "react-spinners";
 
 export default function ParkDetails() {
@@ -59,7 +59,7 @@ export default function ParkDetails() {
 	}, []);
 
 	return (
-		<>
+		<div>
 			{loading || !parkDetails ? (
 				<div
 					style={{
@@ -72,7 +72,7 @@ export default function ParkDetails() {
 				</div>
 			) : (
 				<div className={styles.parkDetailsWrapper}>
-					<Typography className={styles.parkTitle} variant="h3" sx={{ textAlign: "center", m: 3 }}>
+					<Typography variant="h3" sx={{ textAlign: "center", m: 3 }}>
 						{parkDetails?.fullName}
 					</Typography>
 
@@ -88,6 +88,7 @@ export default function ParkDetails() {
 						<Tab label="About" />
 						<Tab label="Operating Hours" />
 						<Tab label="Weather Info" />
+						<Tab label="More Info" />
 					</Tabs>
 					<TabPanel value={value} index={0}>
 						<Box
@@ -96,8 +97,8 @@ export default function ParkDetails() {
 							<Box
 								sx={{ borderRight: 1, borderColor: "grey.500", mb: 2, pt: 0 }}
 								className={styles.description}>
-								<Typography variant="h6"> Topics </Typography>
-								<Typography className={styles.aboutText}>
+								<Typography>
+									<Typography variant="h6"> Topics </Typography>
 									{parkDetails.topics.slice(0, 7).map((topic, idx) => {
 										return idx === parkDetails.topics.length - 1
 											? topic.name
@@ -106,9 +107,7 @@ export default function ParkDetails() {
 								</Typography>
 								<br />
 								<Typography variant="h6"> Description</Typography>
-								<Typography className={styles.aboutText}>
-									{parkDetails.description}
-								</Typography>
+								<Typography>{parkDetails.description}</Typography>
 							</Box>
 							<Box
 								className={styles.map}
@@ -122,6 +121,59 @@ export default function ParkDetails() {
 									name={parkDetails.fullName}></ParkMap>
 								<Typography sx={{ mt: 0.5 }}>{address}</Typography>
 
+<<<<<<< HEAD
+                <Typography>
+                  <Link
+                    href={parkDetails.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={styles.link}
+                    underline="none">
+                    View the park on National Parks
+                  </Link>
+                </Typography>
+              </Box>
+            </Box>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Box sx={{ borderBottom: 1, borderColor: "grey.500", pb: 2 }}>
+              <Typography variant="h6" sx={{ textAlign: "left", mb: 0.2 }}>
+                Operating Hours
+              </Typography>
+              <Typography>
+                {parkDetails.operatingHours[0].description}
+              </Typography>
+            </Box>
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Box sx={{ borderBottom: 1, borderColor: "grey.500", pb: 3 }}>
+              <Typography variant="h6" sx={{ textAlign: "left", mb: 0.2 }}>
+                Weather Info
+              </Typography>
+              <Typography>{parkDetails.weatherInfo}</Typography>
+            </Box>
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <Box sx={{ borderBottom: 1, borderColor: "grey.500", pb: 3 }}></Box>
+          </TabPanel>
+          <div
+            style={{
+              marginTop: 5,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+            <Typography sx={{ pr: 1 }} variant="h6">
+              Average Rating:
+            </Typography>
+            <Rating value={rating} readOnly />
+          </div>
+          <PhotosAndReviews />
+        </div>
+      )}
+    </div>
+  );
+=======
 								<Typography sx={{ mb: 1.5 }}>
 									<Link
 										href={parkDetails.url}
@@ -136,15 +188,7 @@ export default function ParkDetails() {
 						</Box>
 					</TabPanel>
 					<TabPanel value={value} index={1}>
-						<Box
-							sx={{
-								borderBottom: 1,
-								borderColor: "grey.500",
-								pb: 2,
-								flexDirection: "column",
-								alignItems: "center",
-								marginX: "20%",
-							}}>
+						<Box sx={{ borderBottom: 1, borderColor: "grey.500", pb: 2 }}>
 							<Typography variant="h6" sx={{ textAlign: "left", mb: 0.2 }}>
 								Operating Hours
 							</Typography>
@@ -154,15 +198,7 @@ export default function ParkDetails() {
 						</Box>
 					</TabPanel>
 					<TabPanel value={value} index={2}>
-						<Box
-							sx={{
-								borderBottom: 1,
-								borderColor: "grey.500",
-								pb: 3,
-								flexDirection: "column",
-								alignItems: "center",
-								marginX: "15%",
-							}}>
+						<Box sx={{ borderBottom: 1, borderColor: "grey.500", pb: 3 }}>
 							<Typography variant="h6" sx={{ textAlign: "left", mb: 0.2 }}>
 								Weather Info
 							</Typography>
@@ -187,6 +223,7 @@ export default function ParkDetails() {
 					<PhotosAndReviews />
 				</div>
 			)}
-		</>
+		</div>
 	);
+>>>>>>> main
 }

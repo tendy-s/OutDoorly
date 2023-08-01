@@ -1,39 +1,44 @@
-import styles from "./form.module.scss";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import DistanceForm from "./distance-search";
 import PreferenceSearch from "./preference-search";
+import { Tab, Tabs, Box } from "@mui/material";
+import { TabPanel } from "../../search-details/ParkDetailsTabPanel/index";
 
 const DISTANCE_SEARCH = "Distance ";
 const PREFERENCES_SEARCH = "Preferences ";
 
 export default function SearchForm() {
+  const [value, setValue] = useState(0);
   const [search, setSearch] = useState(PREFERENCES_SEARCH);
 
-  function toggleSearch() {
-    if (search === PREFERENCES_SEARCH) {
-      setSearch(DISTANCE_SEARCH);
-    } else {
-      setSearch(PREFERENCES_SEARCH);
-    }
-  }
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <>
-      <Typography sx={{ mt: 3 }} variant="h4">
-        {" "}
+      <Typography sx={{ mt: 3, mb: 1 }} variant="h4">
         Searching by
       </Typography>
-      <Button
-        sx={{ mt: 1 }}
-        onClick={toggleSearch}
-        size="large"
-        className={styles.formButton}
-      >
-        {" "}
-        {search}{" "}
-      </Button>
-      {search === PREFERENCES_SEARCH ? <PreferenceSearch /> : <DistanceForm />}
+      <Tabs value={value} onChange={handleChange} aria-label="tabs">
+        <Tab style={{ fontSize: 18 }} label="Preferences" />
+        <Tab style={{ fontSize: 18 }} label="Distance" />
+      </Tabs>
+      <div role="tabpanel" hidden={value !== 1} id={`tabpanel-${1}`}>
+        {value === 1 && (
+          <Box sx={{ pt: 0, pl: 5, pr: 5, pb: 1 }}>
+            <DistanceForm />
+          </Box>
+        )}
+      </div>
+      <div role="tabpanel" hidden={value !== 0} id={`tabpanel-${0}`}>
+        {value === 0 && (
+          <Box sx={{ pt: 0, pl: 5, pr: 5, pb: 1 }}>
+            <PreferenceSearch />
+          </Box>
+        )}
+      </div>
     </>
   );
 }

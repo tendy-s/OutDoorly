@@ -18,10 +18,8 @@ export const Login = () => {
   }, []);
 
   return (
-    <div className={styles.login}>
-      <Button variant="outlined">
-        <a href={authURL}>Login with Google</a>
-      </Button>
-    </div>
+      <a style={{ textDecoration: "none" }} href={authURL}>
+        LOGIN WITH GOOGLE
+      </a>
   );
 };
