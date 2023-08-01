@@ -15,7 +15,15 @@
   filter: brightness(0.85);
   border-radius: 1%;
 }
+@media only screen and (max-width: 600px) {
+  .mainImg {
+    max-width: 80%;
+  }
 
+  .map {
+		margin-left: 5%;
+  }
+}
 .descriptionContainer {
   display: flex;
   justify-content: center;
@@ -24,15 +32,16 @@
 .description {
   align-items: center;
   width: 40%;
-  margin-left: 2%;
   padding-right: 2%;
 }
 
-.map {
-  width: 40%;
-  margin-left: 1.5rem;
+@media only screen and (min-width: 700px) {
+  .map {
+    width: 40%;
+    margin-left: 2rem;
+  }
 }
 
 .link:hover {
-filter: brightness(0.7)
+  filter: brightness(0.7);
 }
