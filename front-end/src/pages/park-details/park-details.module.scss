@@ -34,12 +34,16 @@
 }
 
 @media only screen and (max-width: 600px) {
+	.description {
+		margin-left: -7%;
+	}
   .mainImg {
     max-width: 80%;
   }
 
   .map {
     margin-left: 5%;
+		margin-right: -7%;
   }
 
   .aboutText {
