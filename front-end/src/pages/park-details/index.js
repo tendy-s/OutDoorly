@@ -67,8 +67,7 @@ export default function ParkDetails() {
             justifyContent: "center",
             alignItems: "center",
             height: "100vh",
-          }}
-        >
+          }}>
           <ClimbingBoxLoader size={60} color="#667761" />
         </div>
       ) : (
@@ -85,22 +84,18 @@ export default function ParkDetails() {
           <Tabs
             value={value}
             onChange={handleChange}
-            aria-label="basic tabs example"
-          >
+            aria-label="basic tabs example">
             <Tab label="About" />
             <Tab label="Operating Hours" />
             <Tab label="Weather Info" />
-            <Tab label="More Info" />
           </Tabs>
           <TabPanel value={value} index={0}>
             <Box
               className={styles.descriptionContainer}
-              sx={{ borderBottom: 1, borderColor: "grey.500" }}
-            >
+              sx={{ borderBottom: 1, borderColor: "grey.500" }}>
               <Box
                 sx={{ borderRight: 1, borderColor: "grey.500", mb: 2, pt: 0 }}
-                className={styles.description}
-              >
+                className={styles.description}>
                 <Typography>
                   <Typography variant="h6"> Topics </Typography>
                   {parkDetails.topics.slice(0, 7).map((topic, idx) => {
@@ -115,16 +110,14 @@ export default function ParkDetails() {
               </Box>
               <Box
                 className={styles.map}
-                styles={{ display: "flex", alignItems: "center" }}
-              >
+                styles={{ display: "flex", alignItems: "center" }}>
                 <Typography variant="h6" sx={{ textAlign: "left", mb: 0.2 }}>
                   Location
                 </Typography>
                 <ParkMap
                   lon={parkDetails.longitude}
                   lat={parkDetails.latitude}
-                  name={parkDetails.fullName}
-                ></ParkMap>
+                  name={parkDetails.fullName}></ParkMap>
                 <Typography sx={{ mt: 0.5 }}>{address}</Typography>
 
                 <Typography sx={{ mb: 1.5 }}>
@@ -133,8 +126,7 @@ export default function ParkDetails() {
                     target="_blank"
                     rel="noreferrer noopener"
                     className={styles.link}
-                    underline="none"
-                  >
+                    underline="none">
                     View the park on National Parks
                   </Link>
                 </Typography>
@@ -168,8 +160,7 @@ export default function ParkDetails() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-            }}
-          >
+            }}>
             <Typography sx={{ pr: 1 }} variant="h6">
               Average Rating:
             </Typography>

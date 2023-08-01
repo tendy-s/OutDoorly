@@ -14,7 +14,7 @@ export function getRoutes() {
 
 export const PARKS_API_BASE_ROUTE = "https://developer.nps.gov/api/v1/";
 export const PARKS_API_KEY = "tpKlhub2fE3bdPbvzHdMthRnjLj560SE0eLaBUKZ";
-export const APP_API_BASE_ROUTE = process.env.REACT_APP_BASE_URL;
+export const APP_API_BASE_ROUTE = "http://localhost:3001";
 
 export function getProximitySearchRoute(city, state, radius, sortDir, page) {
   return `${APP_API_BASE_ROUTE}/parks/distance?city=${city}&state=${state}&radius=${radius}${
