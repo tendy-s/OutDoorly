@@ -28,10 +28,22 @@ export default function ResultListItem({
 					<div
 						className={styles.listItemWrapper}
 						onClick={() => (window.location.href = `/park-details/${parkID}`)}>
-						<Typography sx={{ fontSize: 30, lineHeight: 0.7, mb: 1 }}>
+						<Typography
+							className={styles.title}
+							sx={{ fontSize: 30, lineHeight: 0.7, mb: 1 }}>
 							{fullName}
 						</Typography>
-						<Typography >{address.line2 + " " + address.city + ", " + address.stateCode + ", " + address.countryCode + " " + address.postalCode} </Typography>
+						<Typography>
+							{address.line2 +
+								" " +
+								address.city +
+								", " +
+								address.stateCode +
+								", " +
+								address.countryCode +
+								" " +
+								address.postalCode}{" "}
+						</Typography>
 						{distance && <h4>Distance: {distance.toFixed(2)} km</h4>}
 						<div className={styles.resultsWrapper}>
 							<img

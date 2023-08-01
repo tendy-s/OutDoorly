@@ -72,7 +72,7 @@ export default function ParkDetails() {
 				</div>
 			) : (
 				<div className={styles.parkDetailsWrapper}>
-					<Typography variant="h3" sx={{ textAlign: "center", m: 3 }}>
+					<Typography className={styles.parkTitle} variant="h3" sx={{ textAlign: "center", m: 3 }}>
 						{parkDetails?.fullName}
 					</Typography>
 
@@ -96,8 +96,8 @@ export default function ParkDetails() {
 							<Box
 								sx={{ borderRight: 1, borderColor: "grey.500", mb: 2, pt: 0 }}
 								className={styles.description}>
-								<Typography>
-									<Typography variant="h6"> Topics </Typography>
+								<Typography variant="h6"> Topics </Typography>
+								<Typography className={styles.aboutText}>
 									{parkDetails.topics.slice(0, 7).map((topic, idx) => {
 										return idx === parkDetails.topics.length - 1
 											? topic.name
@@ -106,7 +106,9 @@ export default function ParkDetails() {
 								</Typography>
 								<br />
 								<Typography variant="h6"> Description</Typography>
-								<Typography>{parkDetails.description}</Typography>
+								<Typography className={styles.aboutText}>
+									{parkDetails.description}
+								</Typography>
 							</Box>
 							<Box
 								className={styles.map}
@@ -152,12 +154,15 @@ export default function ParkDetails() {
 						</Box>
 					</TabPanel>
 					<TabPanel value={value} index={2}>
-						<Box sx={{
-							borderBottom: 1, borderColor: "grey.500", pb: 3,
-                flexDirection: "column",
-							alignItems: "center",
-							marginX: "15%",
-						}}>
+						<Box
+							sx={{
+								borderBottom: 1,
+								borderColor: "grey.500",
+								pb: 3,
+								flexDirection: "column",
+								alignItems: "center",
+								marginX: "15%",
+							}}>
 							<Typography variant="h6" sx={{ textAlign: "left", mb: 0.2 }}>
 								Weather Info
 							</Typography>
