@@ -4,8 +4,7 @@
 
 https://outdoorly.onrender.com/
 
-OutDoorly empowers hiking enthusiasts to effortlessly discover the diverse beauty of the US wilderness. By tailoring search results to individual preferences such as activities and location, the app enhances the overall travel experience by encouraging users to both interact with nature in a way that resonates with their interests and connecting with other adventurers through sharing reviews and photos.
-
+OutDoorly empowers hiking enthusiasts to effortlessly discover the diverse beauty of the US wilderness. Through tailoring search results to individual preferences such as activities and location, the app encourages users to both interact with nature in a way that resonates with their interests and connect with other adventurers through sharing reviews and photos.
 
 
 ### Project Description: 
