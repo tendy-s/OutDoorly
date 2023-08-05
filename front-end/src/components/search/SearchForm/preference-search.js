@@ -64,6 +64,10 @@ export default function PreferenceSearch() {
       className={styles.formWrapper}
       onSubmit={handleSubmit(onSubmitSearchForm)}
     >
+      <Typography variant="body" sx={{ mt: 5, mb: 1, fontWeight: "medium" }}>
+        An asterisk (*) indicates a required field
+      </Typography>
+
       <Typography variant="h5" sx={{ mt: 4, mb: 2, fontWeight: "medium" }}>
         Which activities are you interested in?
       </Typography>
@@ -113,7 +117,7 @@ export default function PreferenceSearch() {
       )}
 
       <Typography variant="h5" sx={{ mt: 4, mb: 2, fontWeight: "medium" }}>
-        Which state are you interested in visiting?
+        Which state are you interested in visiting? *
       </Typography>
 
       <Controller
