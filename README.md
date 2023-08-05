@@ -56,7 +56,7 @@ Render was leveraged to deploy our backend as a web service and our front end as
 
 ### Description of ‘Above and Beyond’ functionality.
 
-We went above and beyond the requirements by creating a coherent application that adheres to many UX principles (e.g. clear navigation, form validation, feedback messages, visual consistency) , and leveraging resources from our own research to achieve our standard and stretch goals. For example:   
+We went above and beyond the requirements by creating a coherent application that adheres to many UX principles (e.g. clear navigation, form validation, feedback messages, visual consistency), and leveraging resources from our own research to achieve our standard and stretch goals. For example:   
 
 - S3 buckets for image storage
 - Authentication with Google OAuth
@@ -77,7 +77,7 @@ To further improve our app, we definitely would like to implement a better user 
 
 - Syed: My contributions to the code included creating the MongoDB schema, scraping data from the National Parks API. I then created Controllers, Endpoints, DAOS, and implementing Pagination and Sorting for the 'Searching by Distance' and 'User Reviews' features. In preparation for deployment, I migrated the database from a local server to MongoDB Atlas.
   
-- Tendy: My contributions include building the initial skeleton of the frontend and the Redux implementation and expanding and refining both over the course of the project. I handled integrations with the backend, such as retrieving park details from our own database, pagination, sorting, Google OAuth and user sessions with local storage. I also integrated the National Parks API (external) into our application to retrieve a list of amenities and activities available in each park, as well as set up Places Autocomplete from the Google Maps Platform to complement our “Searching by Distance” feature.
+- Tendy: My contributions include building the initial skeleton of the frontend and the initial Redux implementation and expanding and refining both over the course of the project. I handled integrations with the backend, such as retrieving park details from our own database, pagination, sorting, Google OAuth and user sessions with local storage. I also integrated the National Parks API (external) into our application to retrieve a list of amenities and activities available in each park, as well as set up Places Autocomplete from the Google Maps Platform to complement our “Searching by Distance” feature.
   
 - Michael: My contributions to the project ranged from testing, development, to deployment. I am responsible for creating many of the endpoints utilized by the front end such as parks, amenities, and images. I also utilized the National Parks API to populate our database and created a lot of documentation for our endpoints. In addition I was also responsible for the building and deployment of the application to Render.
   
