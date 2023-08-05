@@ -34,22 +34,28 @@ OutDoorly empowers hiking enthusiasts to effortlessly discover the diverse beaut
 
 ### Description on how tech from Units 1-5 are used in the project
 
-Unit 1 – HTML/CSS/JS
+Unit 1 – HTML/CSS/JS 
+
 JavaScript is the foundation of OutDoorly, as it enables both the back-end and the front-end. Throughout our codebase, we make use of Jsx to specify the relevant HTML tags we wish to render, such as  `<img>, <form>, <h2> and <div> `, and their attributes to create structure and emphasize content. For styling, aligning, space distribution and responsive design considerations, we applied various CSS selectors, including our own customized versions, and defined rules (e.g. setting max and min height/width to 100%, displaying Flex and the appropriate direction). 
 
-Unit 2 – React/Redux
+Unit 2 – React/Redux 
+
 All of our front-end components (e.g. PhotosModal, ReviewsTable, ResultsListing, and SearchForm) are written in React, which gives us the flexibility to pass in props and call hooks like useState (e.g. for uploading files) and useEffect (e.g. for initializing our parks details page). In addition, we imported a number of React components from Material UI to ensure a consistent look and feel. Redux is essential for persisting state across the various pages of our application, which is required to support our park querying and park details workflows as they’re dependent on data from previous screens (e.g. the search results rely on the data entered by the user in the parks form). We also access the Redux store to dispatch actions such as a “searchForParks” thunk, reducers for setting search distance and submitting user reviews, and tracking pagination.
 
 Unit 3 – Node & Express
+
 Our backend is built using Node and Express, which involves defining routes that map to specified endpoints and attaching corresponding logic to handle data processing and retrieval. This involves interaction with our database in MongoDB and generating responses in JSON. The asynchronous nature of Node allows for efficient handling of multiple requests concurrently, which results in a scalable and efficient backend system. 
 
 Unit 4 – MongoDB 
+
 Our database utilizes MongoDB, which holds data of national parks initially sourced from the US National Parks API. Since the data was already in JSON format, it was suitable for a 'Parks' collection within MongoDB. Using the Mongoose library, we created a schema reflecting the existing structure, then added in new fields for user reviews and photos. A script was used to populate the existing JSON file into our collection, and additional scripts cleaned and optimized the data. Initially run as a local database, we migrated our data to MongoDB Atlas a few weeks before deployment." 
 
 Unit 5 – Builds and Deployment 
+
 Render was leveraged to deploy our backend as a web service and our front end as a static site. Render was chosen as our hosting platform of choice since it checked all our boxes of being reliable, accessible, and its ease of use. We also chose Render (as opposed to other web services) because it integrates well with github and allows us to set up automatic builds and deployments effortlessly. Building a production level full stack application necessitates the use of unit 5 technologies since users will expect it to be accessible at virtually all times.
 
 ### Description of ‘Above and Beyond’ functionality.
+
 We went above and beyond the requirements by creating a coherent application that adheres to many UX principles (e.g. clear navigation, form validation, feedback messages, visual consistency) , and leveraging resources from our own research to achieve our standard and stretch goals. For example:   
 
 - S3 buckets for image storage
@@ -59,9 +65,12 @@ We went above and beyond the requirements by creating a coherent application tha
 
 ### Description of Next Steps
 To further improve our app, we definitely would like to implement a better user workflow, where users would be able to view their liked parks, posted reviews and images and also be able to view parks based off of aggregated reviews. 
-Enhancing Search Functionality: Implementation of more sophisticated search algorithms that allow users to filter parks based on different criteria like rating, popularity, or seasonal attractions. Integration with weather APIs could provide real-time weather forecasts for parks 
-Social Integration: Users could share reviews or favorite parks with friends or social media directly from the app. Additionally, creating community forums or groups for enthusiasts to connect and plan outings together.  
-Real-time Updates: Implementing real-time notifications for events like park closures, emergency alerts, or community gatherings 
+
+- Enhancing Search Functionality: Implementation of more sophisticated search algorithms that allow users to filter parks based on different criteria like rating, popularity, or seasonal attractions. Integration with weather APIs could provide real-time weather forecasts for parks 
+
+- Social Integration: Users could share reviews or favorite parks with friends or social media directly from the app. Additionally, creating community forums or groups for enthusiasts to connect and plan outings together.  
+
+- Real-time Updates: Implementing real-time notifications for events like park closures, emergency alerts, or community gatherings 
 
 ### List of contributions
 - Has:
