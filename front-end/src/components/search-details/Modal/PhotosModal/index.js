@@ -83,7 +83,7 @@ export default function PhotosModal(props) {
             variant="contained"
             sx={{ mb: ".5rem" }}
           >
-            Upload Files
+            Upload File
           </Button>
           {displayUpload}
           <Button sx={{ mb: ".5rem" }} onClick={handleSubmit}>
