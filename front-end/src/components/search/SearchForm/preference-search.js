@@ -46,7 +46,6 @@ export default function PreferenceSearch() {
           return { label: amenity.name, value: amenity.id };
         })
       );
-      console.log(response.data.data);
     }
     populateAmenities();
   }, []);

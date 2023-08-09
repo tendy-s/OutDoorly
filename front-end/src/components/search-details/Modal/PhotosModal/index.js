@@ -13,10 +13,6 @@ export default function PhotosModal(props) {
   const uploadRef = useRef();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(uploadedFiles);
-  }, [uploadedFiles]);
-
   function handleClose() {
     setVisible(false);
   }
