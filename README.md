@@ -77,7 +77,7 @@ To further improve our app, we definitely would like to implement a better user 
 - Real-time Updates: Implementing real-time notifications for events like park closures, emergency alerts, or community gatherings 
 
 ### List of contributions
-- Has:
+- Has: My contributions to the codebase included the setup and implementation of MongoDB connections, User authentication/authorization, and pagination. I also helped with the system design of the backend, determining the flow and structure of the backend system.  
 
 - Syed: My contributions to the code included creating the MongoDB schema, scraping data from the National Parks API. I then created Controllers, Endpoints, DAOS, and implementing Pagination and Sorting for the 'Searching by Distance' and 'User Reviews' features. In preparation for deployment, I migrated the database from a local server to MongoDB Atlas.
   
