@@ -85,7 +85,7 @@ To further improve our app, we definitely would like to implement a better user 
   
 - Michael: My contributions to the project ranged from testing, development, to deployment. I am responsible for creating many of the endpoints utilized by the front end such as parks, amenities, and images. I also utilized the National Parks API to populate our database and created a lot of documentation for our endpoints. In addition I was also responsible for the building and deployment of the application to Render.
   
-- Babak: I designed both modals for reviews and photos, and I also implemented the functionality of reviews integrated into users. I worked on the homepage search flow and separating the two different search styles. I also integrated openstreetmap on park details, aggregated the review and worked on other general styling.
+- Babak: I designed both modals for reviews and photos, and I also implemented the functionality of reviews integrated into users. Additionally, I was responsible for the integration of both the photos and reviews endpoints which includes posting, deleting and retrieving photos and reviews. I worked on the homepage search flow and separating the two different search styles. I also integrated openstreetmap on park details, aggregated the reviews and worked on the entire applications general styling.
 
 
 
